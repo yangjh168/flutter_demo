@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false, //取消显示右上角debug图标
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: SplashScreen(),
     );
   }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:custom_tabbar/pages/home.dart';
 import 'package:custom_tabbar/pages/message.dart';
 import 'package:custom_tabbar/pages/personal.dart';
-// import 'package:custom_tabbar/pages/video.dart';
 import 'package:custom_tabbar/pages/examples.dart';
 
 class TabBarAdd extends StatefulWidget {
@@ -13,6 +12,9 @@ class TabBarAdd extends StatefulWidget {
 class _TabBarAddState extends State<TabBarAdd> {
   final activeTabbarColor = Colors.blue;
   final unActiveTababarColor = Color(0xff646566);
+
+  // 方式二
+  final pageController = PageController();
 
   List<Widget> tabbarList = List();
   int currentIndex = 0;
@@ -25,9 +27,23 @@ class _TabBarAddState extends State<TabBarAdd> {
   @override
   Widget build(BuildContext context) {
     final itemWidth = MediaQuery.of(context).size.width / 5;
-
     return Scaffold(
-      body: tabbarList[currentIndex],
+      // 方式一
+      // body: IndexedStack(
+      //   index: currentIndex,
+      //   children: tabbarList,
+      // ),
+      // 方式二（参考：https://www.jb51.net/article/157680.htm）
+      body: PageView(
+        controller: pageController,
+        onPageChanged: (int index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        children: tabbarList,
+        physics: NeverScrollableScrollPhysics(), // 禁止滑动
+      ),
       floatingActionButton: FloatingActionButton(
           tooltip: "发布",
           child: Icon(
@@ -77,9 +93,12 @@ class _TabBarAddState extends State<TabBarAdd> {
             ),
             onTap: () {
               if (currentIndex != index) {
-                setState(() {
-                  currentIndex = index;
-                });
+                // 方式一
+                // setState(() {
+                //   currentIndex = index;
+                // });
+                // 方式二
+                pageController.jumpToPage(index);
               }
             }));
     return item;

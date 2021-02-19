@@ -16,12 +16,14 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     //初始化动画
     _controller = AnimationController(
-        vsync: this, duration: Duration(microseconds: 3000));
+        vsync: this, duration: Duration(milliseconds: 3000));
     _animation = Tween(begin: 0.0, end: 1.0).animate(_controller);
 
     //监听
     _animation.addStatusListener((status) {
+      // AnimationStatus.completed:表示动画已经执行完毕
       if (status == AnimationStatus.completed) {
+        // pushAndRemoveUntil:跳转页面，并销毁当前控件
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (context) => TabBarAdd()),
             (route) => route == null);
@@ -42,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen>
     return FadeTransition(
       opacity: _animation,
       child: Image.network(
-        'https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1819216937,2118754409&fm=26&gp=0.jpg',
+        'http://qqpublic.qpic.cn/qq_public/0/0-2237191117-0D22387A64B541B537E2AE898FD303D8/0?fmt=jpg&size=84&h=1600&w=900&ppv=1/0',
         scale: 2.0,
         fit: BoxFit.cover,
       ),

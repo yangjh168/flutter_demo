@@ -1,10 +1,29 @@
 import 'package:custom_tabbar/pages/examples/clipper_curve.dart';
+import 'package:custom_tabbar/pages/examples/draggable_deme.dart';
+import 'package:custom_tabbar/pages/examples/right_back.dart';
+import 'package:custom_tabbar/pages/examples/tool_tips.dart';
 import 'package:custom_tabbar/pages/examples/wrap.dart';
 import 'package:flutter/material.dart';
 
-class Examples extends StatelessWidget {
+class Examples extends StatefulWidget {
+  @override
+  _ExamplesState createState() => _ExamplesState();
+}
+
+class _ExamplesState extends State<Examples>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  void initState() {
+    super.initState();
+    print('init examples ');
+  }
+
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
         appBar: AppBar(title: Text('例子')),
         body: Padding(
@@ -19,11 +38,9 @@ class Examples extends StatelessWidget {
               children: [
                 ExampleItem(name: '流式布局', widget: WrapDemo()),
                 ExampleItem(name: '曲线绘制', widget: ClipperCurve()),
-                ExampleItem(name: 'demo3', widget: WrapDemo()),
-                ExampleItem(name: 'demo4', widget: WrapDemo()),
-                Image.network(
-                  'https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1819216937,2118754409&fm=26&gp=0.jpg',
-                ),
+                ExampleItem(name: '右滑返回', widget: RightBack(isFirt: true)),
+                ExampleItem(name: 'toast提示', widget: ToolTipsDemo()),
+                ExampleItem(name: '拖拽效果', widget: DraggableDemo()),
               ],
             )));
   }

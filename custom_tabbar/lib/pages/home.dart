@@ -7,14 +7,19 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+class _HomeState extends State<Home>
+    with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   TabController _controller;
+
+  @override
+  bool get wantKeepAlive => true;
 
   // 重新初始化
   @override
   void initState() {
     super.initState();
-    _controller = TabController(length: 3, vsync: this);
+    _controller = TabController(length: 2, vsync: this);
+    print('init home');
   }
 
   // 重新销毁
@@ -26,6 +31,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('首页'),
@@ -38,15 +44,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               })
         ],
         bottom: TabBar(controller: _controller, tabs: [
-          Tab(icon: Icon(Icons.directions_car)),
-          Tab(icon: Icon(Icons.directions_transit)),
-          Tab(icon: Icon(Icons.directions_bike)),
+          Tab(child: Text('推荐')),
+          Tab(child: Text('最新')),
         ]),
       ),
       body: TabBarView(controller: _controller, children: <Widget>[
         KeepAliveDemo(),
         Text('222'),
-        Text('333'),
       ]),
     );
   }

@@ -8,7 +8,7 @@ class ClipperDemo extends StatelessWidget {
         ClipPath(
           clipper: BottomClipper(),
           child: Container(
-            color: Colors.deepPurpleAccent,
+            color: Colors.blue,
             height: 200.0,
           ),
         )

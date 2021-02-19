@@ -33,7 +33,7 @@ class _WrapDemoState extends State<WrapDemo> {
               child: Wrap(
                 //Wrap流失布局
                 children: list,
-                spacing: 26.0,
+                spacing: 0.0,
               ),
             )),
       ),
@@ -69,7 +69,9 @@ class _WrapDemoState extends State<WrapDemo> {
         width: 80.0,
         height: 80.0,
         color: Colors.yellow,
-        child: Center(child: Text('照片')),
+        child: Center(
+            child: Image.network(
+                'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3837252810,3726354792&fm=26&gp=0.jpg')),
       ),
     );
   }
