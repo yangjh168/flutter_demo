@@ -1,21 +1,11 @@
-import 'package:dio/dio.dart';
-// import 'dart:async';
-// import 'dart:io';
-import '../config/index.dart';
+import 'http_utils.dart';
 
-/// 获取首页轮播图数据
-Future getHomePageSwiper() async {
-  try {
-    Response response;
-    response = await Dio().get(
-      serviceHost + "/sysParams/homeParamList",
-    );
-    if (response.statusCode == 200) {
-      return response.data;
-    } else {
-      throw Exception('后端接口出现异常');
-    }
-  } catch (e) {
-    return print(e);
-  }
+// 获取首页轮播图数据
+Future getHomePageSwiper([data, options]) async {
+  return HttpUtils.get('/sysParams/homeParamList', data, options);
+}
+
+//获取热门商品
+Future getHotGoodsList([data, options]) async {
+  return HttpUtils.get('/', data, options);
 }
