@@ -1,10 +1,11 @@
 // import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_shop/dio/api.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter_shop/dio/json.dart';
+import 'package:flutter_shop/mock/home.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -13,6 +14,15 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
+  int page = 1;
+  List<Map> hotGoodsList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    getHotGoodsList();
+  }
+
   @override
   bool get wantKeepAlive => true;
 
@@ -28,23 +38,122 @@ class _HomePageState extends State<HomePage>
             // var data = snapshot.data;
             // print(data);
             // List<Map> swiper = (data['data']['carouselList'] as List).cast();
-            return SingleChildScrollView(
-                child: Column(
-              children: [
-                SwiperDiy(swiperDataList: bannerList),
-                HomeGridNav(
-                  gridList: gridList,
-                ),
-                ShareBanner(),
-                Recommend(recommendList: recommendList)
-              ],
-            ));
+            return EasyRefresh(
+              header: ClassicalHeader(
+                enableHapticFeedback: false,
+                refreshText: '下拉刷新',
+                refreshReadyText: '释放刷新',
+                refreshingText: '加载中...',
+                refreshedText: '刷新成功',
+                refreshFailedText: '加载失败',
+                showInfo: false, //显示额外信息(默认为时间)
+                noMoreText: '暂无数据',
+              ),
+              footer: ClassicalFooter(
+                enableHapticFeedback: false,
+                bgColor: Colors.white,
+                textColor: Colors.pink,
+                infoColor: Colors.pink,
+                loadText: '上拉加载',
+                loadingText: '加载中...',
+                loadReadyText: '释放加载',
+                loadedText: '加载完成',
+                loadFailedText: '加载失败',
+                showInfo: false,
+                noMoreText: '我也是有底线的',
+              ),
+              child: ListView(
+                children: [
+                  SwiperDiy(swiperDataList: bannerList),
+                  HomeGridNav(
+                    gridList: gridList,
+                  ),
+                  ShareBanner(),
+                  Recommend(recommendList: recommendList),
+                  hotGoods()
+                ],
+              ),
+              onRefresh: () async {},
+              onLoad: () async {
+                getHotGoodsList();
+              },
+            );
           } else {
             return Center(
               child: Text('加载中'),
             );
           }
         },
+      ),
+    );
+  }
+
+  //获取火爆商品列表
+  void getHotGoodsList() {
+    setState(() {
+      hotGoodsList.addAll(hotList);
+      page++;
+    });
+  }
+
+  //火爆专区头部
+  Widget hotTitle = Container(
+    margin: EdgeInsets.only(top: 10.0),
+    alignment: Alignment.center,
+    color: Colors.transparent,
+    padding: EdgeInsets.all(5.0),
+    child: Text('火爆专区'),
+  );
+
+  //火爆专区列表
+  Widget _wrapList() {
+    if (hotGoodsList.length != 0) {
+      List<Widget> listWidget = hotGoodsList.map((val) {
+        return InkWell(
+          onTap: () {},
+          child: Container(
+            width: 372.w,
+            color: Colors.white,
+            margin: EdgeInsets.only(bottom: 3.0),
+            child: Column(
+              children: [
+                Image.network(val['image'], width: 370.w),
+                Text(val['name'],
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(color: Colors.pink, fontSize: 26.sp)),
+                Container(
+                  padding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+                  child: Row(
+                    children: [
+                      Text('¥${val['mallPrice']}'),
+                      Text('¥${val['price']}',
+                          style: TextStyle(
+                              color: Colors.black26,
+                              decoration: TextDecoration.lineThrough))
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      }).toList();
+      //返回流式布局
+      return Wrap(
+        spacing: 2,
+        children: listWidget,
+      );
+    } else {
+      return Text('暂无数据');
+    }
+  }
+
+  // 火爆专区
+  Widget hotGoods() {
+    return Container(
+      child: Column(
+        children: [hotTitle, _wrapList()],
       ),
     );
   }
@@ -203,17 +312,5 @@ class Recommend extends StatelessWidget {
         children: [_titleWidget(), _recommedList()],
       ),
     );
-  }
-}
-
-class HotGoods extends StatefulWidget {
-  @override
-  _HotGoodsState createState() => _HotGoodsState();
-}
-
-class _HotGoodsState extends State<HotGoods> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }

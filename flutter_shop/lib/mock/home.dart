@@ -98,3 +98,49 @@ const recommendList = [
     'price': '26.8'
   },
 ];
+
+//火爆商品
+const hotList = [
+  {
+    'image':
+        'http://img11.360buyimg.com/n7/s150x150_jfs/t1/159008/30/6738/137611/6020c2d0Efe4465c1/59e519826d9c74a9.jpg.dpg',
+    'mallPrice': '18.5',
+    'price': '26.8',
+    'name': '超级商品'
+  },
+  {
+    'image':
+        'http://img11.360buyimg.com/n7/s150x150_jfs/t1/154157/25/16429/150418/601d0138Ef57c8ded/384b6ca62f6cf9de.jpg',
+    'mallPrice': '18.5',
+    'price': '26.8',
+    'name': '超级商品'
+  },
+  {
+    'image':
+        'http://img11.360buyimg.com/n7/s150x150_jfs/t1/155285/4/18202/128283/602f2b22E8b6d34b7/58b21dfa476ef446.jpg.dpg',
+    'mallPrice': '18.5',
+    'price': '26.8',
+    'name': '超级商品'
+  },
+  {
+    'image':
+        'http://img11.360buyimg.com/n7/s150x150_jfs/t1/159008/30/6738/137611/6020c2d0Efe4465c1/59e519826d9c74a9.jpg.dpg',
+    'mallPrice': '18.5',
+    'price': '26.8',
+    'name': '超级商品'
+  },
+  {
+    'image':
+        'http://img11.360buyimg.com/n7/s150x150_jfs/t1/154157/25/16429/150418/601d0138Ef57c8ded/384b6ca62f6cf9de.jpg.dpg',
+    'mallPrice': '18.5',
+    'price': '26.8',
+    'name': '超级商品'
+  },
+  {
+    'image':
+        'http://img11.360buyimg.com/n7/s150x150_jfs/t1/155285/4/18202/128283/602f2b22E8b6d34b7/58b21dfa476ef446.jpg.dpg',
+    'mallPrice': '18.5',
+    'price': '26.8',
+    'name': '超级商品'
+  },
+];
