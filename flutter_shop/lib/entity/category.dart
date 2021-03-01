@@ -1,21 +1,31 @@
 //实体生成网站：https://javiercbk.github.io/json_to_dart/
 
 class Category {
-  int id;
-  String iosShowFlag;
+  String id;
   String name;
-  List<SubCategorys> subCategorys;
+  String icon;
+  String bannerImg;
+  String iconImg;
+  List<ChildCategory> children;
 
-  Category({this.id, this.iosShowFlag, this.name, this.subCategorys});
+  Category(
+      {this.id,
+      this.name,
+      this.icon,
+      this.bannerImg,
+      this.iconImg,
+      this.children});
 
   Category.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    iosShowFlag = json['iosShowFlag'];
     name = json['name'];
-    if (json['subCategorys'] != null) {
-      subCategorys = new List<SubCategorys>();
-      json['subCategorys'].forEach((v) {
-        subCategorys.add(new SubCategorys.fromJson(v));
+    icon = json['icon'];
+    bannerImg = json['bannerImg'];
+    iconImg = json['iconImg'];
+    if (json['children'] != null) {
+      children = new List<ChildCategory>();
+      json['children'].forEach((v) {
+        children.add(new ChildCategory.fromJson(v));
       });
     }
   }
@@ -23,96 +33,38 @@ class Category {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['iosShowFlag'] = this.iosShowFlag;
     data['name'] = this.name;
-    if (this.subCategorys != null) {
-      data['subCategorys'] = this.subCategorys.map((v) => v.toJson()).toList();
+    data['icon'] = this.icon;
+    data['bannerImg'] = this.bannerImg;
+    data['iconImg'] = this.iconImg;
+    if (this.children != null) {
+      data['children'] = this.children.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
-class SubCategorys {
-  int id;
-  String iosShowFlag;
+class ChildCategory {
+  String id;
   String name;
-  List<ItemCategorys> subCategorys;
-  int type;
+  String icon;
+  String bannerImg;
 
-  SubCategorys(
-      {this.id, this.iosShowFlag, this.name, this.subCategorys, this.type});
+  ChildCategory({this.id, this.name, this.icon, this.bannerImg});
 
-  SubCategorys.fromJson(Map<String, dynamic> json) {
+  ChildCategory.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    iosShowFlag = json['iosShowFlag'];
     name = json['name'];
-    if (json['subCategorys'] != null) {
-      subCategorys = new List<ItemCategorys>();
-      json['subCategorys'].forEach((v) {
-        subCategorys.add(new ItemCategorys.fromJson(v));
-      });
-    }
-    type = json['type'];
+    icon = json['icon'];
+    bannerImg = json['bannerImg'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['iosShowFlag'] = this.iosShowFlag;
     data['name'] = this.name;
-    if (this.subCategorys != null) {
-      data['subCategorys'] = this.subCategorys.map((v) => v.toJson()).toList();
-    }
-    data['type'] = this.type;
-    return data;
-  }
-}
-
-class ItemCategorys {
-  String categoryUrl;
-  int id;
-  String iosShowFlag;
-  String name;
-  String photoName;
-  String photoPath;
-  int type;
-  String value;
-  String webVideoPath;
-
-  ItemCategorys(
-      {this.categoryUrl,
-      this.id,
-      this.iosShowFlag,
-      this.name,
-      this.photoName,
-      this.photoPath,
-      this.type,
-      this.value,
-      this.webVideoPath});
-
-  ItemCategorys.fromJson(Map<String, dynamic> json) {
-    categoryUrl = json['categoryUrl'];
-    id = json['id'];
-    iosShowFlag = json['iosShowFlag'];
-    name = json['name'];
-    photoName = json['photoName'];
-    photoPath = json['photoPath'];
-    type = json['type'];
-    value = json['value'];
-    webVideoPath = json['webVideoPath'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['categoryUrl'] = this.categoryUrl;
-    data['id'] = this.id;
-    data['iosShowFlag'] = this.iosShowFlag;
-    data['name'] = this.name;
-    data['photoName'] = this.photoName;
-    data['photoPath'] = this.photoPath;
-    data['type'] = this.type;
-    data['value'] = this.value;
-    data['webVideoPath'] = this.webVideoPath;
+    data['icon'] = this.icon;
+    data['bannerImg'] = this.bannerImg;
     return data;
   }
 }
