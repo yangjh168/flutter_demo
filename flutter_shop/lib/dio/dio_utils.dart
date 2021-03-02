@@ -100,19 +100,32 @@ class DioUtils {
             ? options['followRedirects']
             : null,
         maxRedirects: (options != null && options['maxRedirects'])
-            ? data['maxRedirects']
+            ? options['maxRedirects']
             : null,
         // requestEncoder: requestEncoder,
         responseDecoder: (options != null && options['responseDecoder'])
             ? options['responseDecoder']
             : null,
       );
-
-      Response response =
-          await _dio.request(path, data: data, options: defaultOptions);
+      var queryParameters;
+      // get请求处理
+      if (method != null && MethodValues[method] == 'get') {
+        queryParameters = data;
+      }
+      print('''
+=======================================
+请求url：$path
+请求参数：$data
+=======================================
+      ''');
+      Response response = await _dio.request(path,
+          queryParameters: queryParameters,
+          data: data,
+          options: defaultOptions);
       if (response != null) {
         var data = response.data;
-        if (data != null && data['success'] == true) {
+        print('请求结果：' + data.toString());
+        if (data != null && data['code'] == 200) {
           return data['data'];
         } else {
           _onError(ExceptionHandle.unknown_error, data['message']);

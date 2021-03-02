@@ -6,6 +6,8 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_shop/mock/home.dart';
+import 'package:flutter_shop/routers/routers.dart';
+import 'package:fluro/fluro.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -110,7 +112,6 @@ class _HomePageState extends State<HomePage>
     if (hotGoodsList.length != 0) {
       List<Widget> listWidget = hotGoodsList.map((val) {
         return InkWell(
-          onTap: () {},
           child: Container(
             width: 372.w,
             color: Colors.white,
@@ -137,6 +138,21 @@ class _HomePageState extends State<HomePage>
               ],
             ),
           ),
+          onTap: () {
+            //路由带的参数
+            //通过Routes类里的路由封装导航至第二个页面 可指定页面切换动画类型
+            //无返回值的调用，但也能打印出第二个界面退出后的返回值
+            Routes.navigateTo(
+              context,
+              Routes.goodsDetailPage,
+              params: {"key": "Hello Word ok?"},
+              transition: TransitionType.fadeIn,
+            ).then((result) {
+              // if (result != null) {
+              //   print(result);
+              // }
+            });
+          },
         );
       }).toList();
       //返回流式布局

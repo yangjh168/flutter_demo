@@ -1,10 +1,12 @@
 // import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/dio/api.dart';
 // import 'package:flutter_shop/entity/category.dart';
-import 'package:flutter_shop/mock/category.dart';
+// import 'package:flutter_shop/mock/category.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_shop/provider/category_store.dart';
+import 'package:flutter_shop/routers/routers.dart';
 
 class CategoryPage extends StatefulWidget {
   @override
@@ -36,7 +38,7 @@ class LeftMenu extends StatefulWidget {
 
 class _LeftMenuState extends State<LeftMenu> {
   int activeIndex = 0;
-  List<Map> menuList = [];
+  List menuList = [];
 
   @override
   void initState() {
@@ -45,14 +47,20 @@ class _LeftMenuState extends State<LeftMenu> {
   }
 
   void _getCategory() async {
-    // var data = json.decode(categoryList.toString());
-    // Category list = Category.fromJson(categoryList);
+    var categoryList = await getCateGoryList();
+    // List<Category> list = categoryList.map((item) {
+    //   var itemStr = json.decode(item.toString());
+    //   Category categoryItem = Category.fromJson(itemStr);
+    //   return categoryItem;
+    // });
+    // print(categoryList);
     setState(() {
       menuList.addAll(categoryList);
+      // menuList.addAll(categoryList);
     });
     // 组件创建完成的回调通知方法,直接调用会报（setState() or markNeedsBuild() called during build）错；
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      var childList = menuList[activeIndex]['children'];
+      var childList = menuList[activeIndex]['productDetailss'];
       // 更新状态管理器里的数据(不需要监听的listen必须要写false, 否则会报错)
       CateGoryStore cateGoryStore =
           Provider.of<CateGoryStore>(context, listen: false);
@@ -64,8 +72,7 @@ class _LeftMenuState extends State<LeftMenu> {
   Widget build(BuildContext context) {
     return Container(
       width: 180.w,
-      decoration: BoxDecoration(
-          border: Border(right: BorderSide(width: 0.5, color: Colors.black12))),
+      // decoration: BoxDecoration(border: Border(right: BorderSide(width: 0.5, color: Colors.black12))),
       child: ListView.builder(
           itemCount: menuList.length,
           itemBuilder: (content, index) {
@@ -78,19 +85,24 @@ class _LeftMenuState extends State<LeftMenu> {
     bool isActive = (index == activeIndex) ? true : false;
     return InkWell(
       child: Container(
-        // height: 100.h,
         padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
         decoration: BoxDecoration(
-            color: isActive ? Colors.white : Color(0xFFf5f5f5),
-            border:
-                Border(bottom: BorderSide(width: 0.5, color: Colors.black12))),
+          color: isActive ? Color(0xFFf5f5f5) : Colors.white,
+          // border: Border(bottom: BorderSide(width: 0.5, color: Colors.black12))
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(menuList[index]['name'],
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 26.sp))
+            Text(
+              menuList[index]['name'],
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                  fontSize: 26.sp,
+                  color: isActive
+                      ? Color(0xFFf63434)
+                      : Color.fromRGBO(0, 0, 0, .6)),
+            )
           ],
         ),
       ),
@@ -98,7 +110,7 @@ class _LeftMenuState extends State<LeftMenu> {
         setState(() {
           activeIndex = index;
         });
-        var childList = menuList[index]['children'];
+        var childList = menuList[index]['productDetailss'];
         // 更新状态管理器里的数据(不需要监听的listen必须要写false, 否则会报错)
         CateGoryStore cateGoryStore =
             Provider.of<CateGoryStore>(context, listen: false);
@@ -120,7 +132,7 @@ class __RightSubMenuState extends State<_RightSubMenu> {
     List subMenuList = cateGoryStore.categoryList;
     return Container(
         width: 570.w,
-        color: Colors.white,
+        color: Color(0xFFf5f5f5),
         padding: EdgeInsets.all(10.0.w),
         child: ListView.builder(
             itemCount: subMenuList.length,
@@ -132,15 +144,42 @@ class __RightSubMenuState extends State<_RightSubMenu> {
   List<Widget> _itemList(List list) {
     return list.map((item) {
       return Container(
-        width: 273.w,
+        width: 263.w,
+        margin: EdgeInsets.all(5.0.w),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+            color: Colors.white),
         child: InkWell(
-          onTap: () {},
           child: Container(
-            padding: EdgeInsets.all(5.0),
+            alignment: Alignment.center,
+            padding: EdgeInsets.all(10.0),
             child: Column(
-              children: [Image.network(item['icon']), Text(item['name'])],
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.network(item['url']),
+                Container(
+                  padding: EdgeInsets.only(left: 5.0, right: 5.0),
+                  height: 80.h,
+                  child: Text(item['title'],
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center),
+                ),
+                Text(
+                  '￥${item["price"] == 99999 ? item["marketPrice"] : item["price"]}',
+                  style: TextStyle(color: Colors.red),
+                )
+              ],
             ),
           ),
+          onTap: () {
+            Routes.navigateTo(context, Routes.goodsDetailPage,
+                params: {"skuId": item['skuId']}).then((result) {
+              // if (result != null) {
+              //   print(result);
+              // }
+            });
+          },
         ),
       );
     }).toList();
