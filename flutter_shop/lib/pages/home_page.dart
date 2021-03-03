@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_shop/dio/api.dart';
+import 'package:flutter_shop/widget/space_header.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -41,16 +42,7 @@ class _HomePageState extends State<HomePage>
             // print(data);
             // List<Map> swiper = (data['data']['carouselList'] as List).cast();
             return EasyRefresh(
-              header: ClassicalHeader(
-                enableHapticFeedback: false,
-                refreshText: '下拉刷新',
-                refreshReadyText: '释放刷新',
-                refreshingText: '加载中...',
-                refreshedText: '刷新成功',
-                refreshFailedText: '加载失败',
-                showInfo: false, //显示额外信息(默认为时间)
-                noMoreText: '暂无数据',
-              ),
+              header: SpaceHeader(),
               footer: ClassicalFooter(
                 enableHapticFeedback: false,
                 bgColor: Colors.white,
@@ -240,7 +232,7 @@ class ShareBanner extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(10.0),
       child: InkWell(
-        child: Image.asset('images/banner.png'),
+        child: Image.asset('assets/image/banner.png'),
         onTap: () {
           _launchURL();
         },

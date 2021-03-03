@@ -27,12 +27,13 @@ class _IndexPageState extends State<IndexPage> {
     MemberPage(),
   ];
 
+  // 方式二
+  final pageController = PageController();
+
   int currentIndex = 0;
-  var currentPage;
 
   @override
   void initState() {
-    currentPage = tabBodies[currentIndex];
     super.initState();
   }
 
@@ -45,15 +46,27 @@ class _IndexPageState extends State<IndexPage> {
         items: bottomTabs,
         currentIndex: currentIndex,
         onTap: (index) {
-          setState(() {
-            currentIndex = index;
-            currentPage = tabBodies[currentIndex];
-          });
+          // setState(() {
+          //   currentIndex = index;
+          // });
+          if (currentIndex != index) {
+            pageController.jumpToPage(index);
+          }
         },
       ),
-      body: IndexedStack(
-        index: currentIndex,
+      // body: IndexedStack(
+      //   index: currentIndex,
+      //   children: tabBodies,
+      // ),
+      body: PageView(
+        controller: pageController,
+        onPageChanged: (int index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
         children: tabBodies,
+        physics: NeverScrollableScrollPhysics(), // 禁止滑动
       ),
     );
   }
