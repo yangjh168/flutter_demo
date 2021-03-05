@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_shop/provider/category_store.dart';
 import 'package:flutter_shop/routers/routers.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class CategoryPage extends StatefulWidget {
   @override
@@ -22,7 +23,7 @@ class _CategoryPageState extends State<CategoryPage>
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-      appBar: AppBar(title: Text('分类'), backgroundColor: Color(0xFFf1503B)),
+      appBar: AppBar(title: Text('分类'), elevation: 0),
       body: Container(
           child: Row(
         children: [LeftMenu(), _RightSubMenu()],
@@ -130,36 +131,49 @@ class __RightSubMenuState extends State<_RightSubMenu> {
   Widget build(BuildContext context) {
     CateGoryStore cateGoryStore = Provider.of<CateGoryStore>(context);
     List subMenuList = cateGoryStore.categoryList;
-    return Container(
-        width: 570.w,
+    return Expanded(
+      child: Container(
         color: Color(0xFFf5f5f5),
-        padding: EdgeInsets.all(10.0.w),
         child: ListView.builder(
             itemCount: subMenuList.length,
             itemBuilder: (content, index) {
               return _subItemContent(subMenuList);
-            }));
+            }),
+      ),
+    );
   }
 
   List<Widget> _itemList(List list) {
     return list.map((item) {
       return Container(
-        width: 263.w,
-        margin: EdgeInsets.all(5.0.w),
+        width: 270.w,
+        margin: EdgeInsets.only(right: 10.0.w, bottom: 10.0.w),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(5.0)),
             color: Colors.white),
         child: InkWell(
           child: Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.all(10.0),
+            padding: EdgeInsets.all(10.0.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.network(item['url']),
+                CachedNetworkImage(
+                  imageUrl: "${item['url']}",
+                  placeholder: (context, url) => Container(
+                    width: 130,
+                    height: 80,
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                      ),
+                    ),
+                  ),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
                 Container(
-                  padding: EdgeInsets.only(left: 5.0, right: 5.0),
-                  height: 80.h,
+                  padding: EdgeInsets.only(left: 5.0.w, right: 5.0.w),
+                  height: 60.h,
                   child: Text(item['title'],
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -187,9 +201,13 @@ class __RightSubMenuState extends State<_RightSubMenu> {
 
   Widget _subItemContent(List subList) {
     if (subList != null && subList.length > 0) {
-      return Wrap(
-        spacing: 2,
-        children: _itemList(subList),
+      return Container(
+        padding: EdgeInsets.only(left: 10.0.w),
+        margin: EdgeInsets.only(top: 10.0.w),
+        child: Wrap(
+          spacing: 0,
+          children: _itemList(subList),
+        ),
       );
     } else {
       return Text('暂无数据');

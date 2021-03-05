@@ -12,6 +12,8 @@ class Routes {
   //定义路由路径
   static String goodsDetailPage = "/goodsDetailPage";
 
+  static String webviewPage = "/webviewPage";
+
   //全局路由配置
   static void configureRoutes(FluroRouter router) {
     //定义找不到路由的回调方法，与显示界面
@@ -29,13 +31,14 @@ class Routes {
 
     //定义一个路由路径与Handler,
     router.define(goodsDetailPage, handler: goodsDetailHandler);
+    router.define(webviewPage, handler: webviewPageHandler);
   }
 
   // 需要页面返回值的跳转
   static navigateToForResult<T>(BuildContext context, String path,
       {Map<String, dynamic> params,
       bool clearStack = false,
-      TransitionType transition = TransitionType.fadeIn}) async {
+      TransitionType transition = TransitionType.inFromRight}) async {
     //FocusScope.of(context).requestFocus(new FocusNode());
     String query = "";
     if (params != null) {
@@ -64,7 +67,7 @@ class Routes {
   static Future navigateTo(BuildContext context, String path,
       {Map<String, dynamic> params,
       bool clearStack = false,
-      TransitionType transition = TransitionType.fadeIn}) {
+      TransitionType transition = TransitionType.inFromRight}) {
     //FocusScope.of(context).requestFocus(new FocusNode());
     String query = "";
     if (params != null) {

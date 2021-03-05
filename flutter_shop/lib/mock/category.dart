@@ -1,1538 +1,1871 @@
 const categoryList = [
   {
-    "id": "fu001",
-    "name": "家具",
-    "icon":
-        "https://res-qa.app.ikea.cn/static/public/catalog/fu001/thumbnail.png?v=10",
-    "bannerImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/fu001/banner.jpg?v=10",
-    "iconImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/fu001/icon.svg?v=10",
-    "children": [
+    "id": "320",
+    "name": "热门推荐",
+    "showName": 1,
+    "seq": 800,
+    "configKey": 2,
+    "url": "",
+    "jsonUrl": "",
+    "moreText": "",
+    "isShowButton": 0,
+    "buttonDesc": "",
+    "buttonFontColor": "",
+    "buttonBackColor": "",
+    "rows": null,
+    "cols": null,
+    "maxProductNum": null,
+    "moduleCode": "010206",
+    "beginAt": null,
+    "endAt": null,
+    "startAt": null,
+    "productDetailss": [
       {
-        "id": "fu006",
-        "name": "扶手椅和贵妃椅",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/fu006/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/fu006/banner.jpg?v=10",
+        "id": "4872",
+        "skuId": 3459,
+        "title": "Find X3 Pro",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202103/20210303110326603f012e85db6.png?_w_=320&_h_=320",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 311,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 99999,
+        "originalPrice": null,
+        "categoryId": 1,
+        "link":
+            "https://store.oppo.com/cn/app/product/index?skuId=3459&us=fenleiye&um=hot&is_simple=1",
+        "isLogin": 0,
+        "marketPrice": "3月11日 全球发布",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       },
       {
-        "id": "fu003",
-        "name": "沙发",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/fu003/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/fu003/banner.jpg?v=10",
+        "id": "4875",
+        "skuId": 3013,
+        "title": "Reno5 Pro+ 星河入梦",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202012/202012250512565fe5b3301193d.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 310,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 3999,
+        "originalPrice": null,
+        "categoryId": 1,
+        "link":
+            "https://store.oppo.com/cn/app/product/index?skuId=3013&us=fenleiye&um=hot&is_simple=1",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [
+          {"type": 1, "activityInfo": "12期免息"},
+          {"type": 5, "activityInfo": "积分抵200"}
+        ],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       },
       {
-        "id": "19053",
-        "name": "衣柜",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/19053/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/19053/banner.jpg?v=10",
+        "id": "4870",
+        "skuId": 3444,
+        "title": "Reno5 K 恋恋青风 8G+128G",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202102/202102230202496034a7a96c422.png?_w_=320&_h_=320",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 309,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 2699,
+        "originalPrice": null,
+        "categoryId": 1,
+        "link":
+            "https://store.oppo.com/cn/app/product/index?skuId=3444&us=fenleiye&um=hot&is_simple=1",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": [
+          {
+            "id": "17332",
+            "name": "新品",
+            "configKey": "201",
+            "pigment": "",
+            "beginAt": null,
+            "endAt": null
+          }
+        ]
       },
       {
-        "id": "10664",
-        "name": "备用沙发套",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10664/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10664/banner.jpg?v=10",
+        "id": "6057",
+        "skuId": 2739,
+        "title": "Reno5 星河入梦",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202012/202012280412115fe99bcba2e91.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 300,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 2699,
+        "originalPrice": null,
+        "categoryId": 1,
+        "link":
+            "https://store.oppo.com/cn/app/product/index?skuId=2739&us=fenleiye&um=hot&is_simple=1",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [
+          {"type": 1, "activityInfo": "12期免息"},
+          {"type": 5, "activityInfo": "积分抵200"}
+        ],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       },
       {
-        "id": "st002",
-        "name": "书柜和搁架单元",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/st002/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/st002/banner.jpg?v=10",
+        "id": "4876",
+        "skuId": 1402,
+        "title": "OPPO Enco W51 降噪耳机 绒白",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202005/202005220405275ec7896b4d39e.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 295,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 499,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "https://store.oppo.com/cn/app/product/index?skuId=1402&us=fenleiye&um=hot",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [
+          {"type": 1, "activityInfo": "6期免息"},
+          {"type": 3, "activityInfo": "满80减80"},
+          {"type": 5, "activityInfo": "积分抵5%"}
+        ],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       },
       {
-        "id": "10475",
-        "name": "电视柜及视听类家具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10475/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10475/banner.jpg?v=10",
+        "id": "4873",
+        "skuId": 2269,
+        "title": "OnePlus 8T 银时/12GB+256GB",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202010/202010130410225f856a4e63cc4.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 294,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 3699,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "https://store.oppo.com/cn/app/product/index?skuId=2269&us=fenleiye&um=hot",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [
+          {"type": 1, "activityInfo": "24期免息"},
+          {"type": 5, "activityInfo": "积分抵20%"}
+        ],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       },
       {
-        "id": "st004",
-        "name": "抽屉柜和抽屉框架",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/st004/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/st004/banner.jpg?v=10",
+        "id": "6058",
+        "skuId": 3418,
+        "title": "OPPO手环 时尚版 黑金",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202102/202102081102316020b39f7f225.png?_w_=320&_h_=320",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 290,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 249,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "https://store.oppo.com/cn/app/product/index?skuId=3418&us=fenleiye&um=hot&is_simple=1",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       },
       {
-        "id": "30454",
-        "name": "餐边柜和长几",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/30454/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/30454/banner.jpg?v=10",
+        "id": "4874",
+        "skuId": 3419,
+        "title": "realme 真我GT 5G",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202103/20210304010356604073246f3b5.png?_w_=320&_h_=320",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 270,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 2799,
+        "originalPrice": 2899,
+        "categoryId": 2,
+        "link":
+            "https://store.oppo.com/cn/app/product/index?skuId=3419&us=fenleiye&um=hot&is_simple=1",
+        "isLogin": 0,
+        "marketPrice": null,
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [
+          {"type": 1, "activityInfo": "3期免息"}
+        ],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": [
+          {
+            "id": "17055",
+            "name": "新品",
+            "configKey": "201",
+            "pigment": "",
+            "beginAt": null,
+            "endAt": null
+          }
+        ]
       },
       {
-        "id": "st003",
-        "name": "橱柜和展示柜",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/st003/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/st003/banner.jpg?v=10",
+        "id": "4896",
+        "skuId": 3127,
+        "title": "realme 真我V15 5G 镜湖蓝/6GB+128GB",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202101/202101110701565ffc3894272cd.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 260,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 1399,
+        "originalPrice": 1499,
+        "categoryId": 2,
+        "link":
+            "https://store.oppo.com/cn/app/product/index?skuId=3127&us=fenleiye&um=hot&is_simple=1",
+        "isLogin": 0,
+        "marketPrice": null,
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [
+          {"type": 5, "activityInfo": "积分抵50"}
+        ],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       },
       {
-        "id": "bm003",
-        "name": "床",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/bm003/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/bm003/banner.jpg?v=10",
+        "id": "4871",
+        "skuId": 2229,
+        "title": "OPPO Enco X 真无线降噪耳机  白歌",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202010/202010190810125f8d84f4975fe.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 250,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 999,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "https://store.oppo.com/cn/app/product/index?skuId=2229&us=fenleiye&um=hot",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [
+          {"type": 1, "activityInfo": "6期免息"},
+          {"type": 3, "activityInfo": "满100减100"},
+          {"type": 5, "activityInfo": "积分抵5%"}
+        ],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       },
       {
-        "id": "fu004",
-        "name": "桌子-书桌和餐桌",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/fu004/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/fu004/banner.jpg?v=10",
+        "id": "4877",
+        "skuId": 942,
+        "title": "ROCK 重力车载出风口支架 灰色",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202012/202012080712095fcf6691293de.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 200,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 59,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "https://store.oppo.com/cn/app/product/index?skuId=942&us=fenleiye&um=hot&is_simple=1",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       },
       {
-        "id": "16244",
-        "name": "吧台家具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16244/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16244/banner.jpg?v=10",
-      },
-      {
-        "id": "19141",
-        "name": "咖啡馆家具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/19141/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/19141/banner.jpg?v=10",
-      },
-      {
-        "id": "fu002",
-        "name": "椅子",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/fu002/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/fu002/banner.jpg?v=10",
-      },
-      {
-        "id": "od003",
-        "name": "户外家具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/od003/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/od003/banner.jpg?v=10",
-      },
-      {
-        "id": "18767",
-        "name": "儿童家具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/18767/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/18767/banner.jpg?v=10",
-      },
-      {
-        "id": "fu005",
-        "name": "推车",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/fu005/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/fu005/banner.jpg?v=10",
-      },
-      {
-        "id": "46080",
-        "name": "房间隔断",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/46080/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/46080/banner.jpg?v=10",
-      },
-      {
-        "id": "45780",
-        "name": "婴儿家具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/45780/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/45780/banner.jpg?v=10",
+        "id": "4868",
+        "skuId": 842,
+        "title": "享睡助眠香薰机 SA1001-4",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/201910/201910290310295db7e531e01f9.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 190,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 369,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "https://store.oppo.com/cn/app/product/index?skuId=842&us=fenleiye&um=hot&is_simple=1",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [
+          {"type": 5, "activityInfo": "积分抵100%"}
+        ],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       }
-    ]
+    ],
+    "link": null,
+    "isLogin": null,
+    "moreLink": null,
+    "moreIsLogin": null
   },
   {
-    "id": "ka001",
-    "name": "橱柜和家电",
-    "icon":
-        "https://res-qa.app.ikea.cn/static/public/catalog/ka001/thumbnail.png?v=10",
-    "bannerImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/ka001/banner.jpg?v=10",
-    "iconImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/ka001/icon.svg?v=10",
-    "children": [
+    "id": "570",
+    "name": "OPPO Ace 系列",
+    "showName": 1,
+    "seq": 30,
+    "configKey": 10,
+    "url": "",
+    "jsonUrl": "",
+    "moreText": "",
+    "isShowButton": 0,
+    "buttonDesc": "",
+    "buttonFontColor": "",
+    "buttonBackColor": "",
+    "rows": null,
+    "cols": null,
+    "maxProductNum": null,
+    "moduleCode": "010225",
+    "beginAt": null,
+    "endAt": null,
+    "startAt": null,
+    "productDetailss": [
       {
-        "id": "24255",
-        "name": "内部配件",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/24255/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/24255/banner.jpg?v=10",
-      },
-      {
-        "id": "20676",
-        "name": "厨房壁式储物装置",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20676/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20676/banner.jpg?v=10",
-      },
-      {
-        "id": "10471",
-        "name": "推车和岛台",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10471/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10471/banner.jpg?v=10",
-      },
-      {
-        "id": "22957",
-        "name": "标配厨房",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/22957/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/22957/banner.jpg?v=10",
-      },
-      {
-        "id": "ka002",
-        "name": "厨房电器",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/ka002/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/ka002/banner.jpg?v=10",
-      },
-      {
-        "id": "24254",
-        "name": "厨房橱柜和前板",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/24254/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/24254/banner.jpg?v=10",
-      },
-      {
-        "id": "24261",
-        "name": "厨房水龙头和水槽",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/24261/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/24261/banner.jpg?v=10",
-      },
-      {
-        "id": "24264",
-        "name": "厨房操作台面",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/24264/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/24264/banner.jpg?v=10",
-      },
-      {
-        "id": "16298",
-        "name": "拉手和拉钮",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16298/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16298/banner.jpg?v=10",
-      },
-      {
-        "id": "19121",
-        "name": "墙面板",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/19121/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/19121/banner.jpg?v=10",
-      },
-      {
-        "id": "16282",
-        "name": "厨房照明",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16282/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16282/banner.jpg?v=10",
-      },
-      {
-        "id": "16200",
-        "name": "食品贮藏室",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16200/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16200/banner.jpg?v=10",
-      },
-      {
-        "id": "ka003",
-        "name": "厨房厨柜系列",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/ka003/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/ka003/banner.jpg?v=10",
+        "id": "7125",
+        "skuId": 1263,
+        "title": "Ace2",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202004/202004151104325e96805085531.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 99,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 3999,
+        "originalPrice": null,
+        "categoryId": 1,
+        "link": "https://store.oppo.com/cn/app/product/index?skuId=1263",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [
+          {"type": 1, "activityInfo": "6期免息"},
+          {"type": 5, "activityInfo": "积分抵200"}
+        ],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       }
-    ]
+    ],
+    "link": null,
+    "isLogin": null,
+    "moreLink": null,
+    "moreIsLogin": null
   },
   {
-    "id": "st001",
-    "name": "储物和收纳",
-    "icon":
-        "https://res-qa.app.ikea.cn/static/public/catalog/st001/thumbnail.png?v=10",
-    "bannerImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/st001/banner.jpg?v=10",
-    "iconImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/st001/icon.svg?v=10",
-    "children": [
+    "id": "980",
+    "name": "realme GT 系列",
+    "showName": 1,
+    "seq": 5000,
+    "configKey": 10,
+    "url": "",
+    "jsonUrl": "",
+    "moreText": "",
+    "isShowButton": 0,
+    "buttonDesc": "",
+    "buttonFontColor": "",
+    "buttonBackColor": "",
+    "rows": 0,
+    "cols": 0,
+    "maxProductNum": 0,
+    "moduleCode": "010227",
+    "beginAt": null,
+    "endAt": null,
+    "startAt": null,
+    "productDetailss": [
       {
-        "id": "46052",
-        "name": "储物系统",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/46052/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/46052/banner.jpg?v=10",
-      },
-      {
-        "id": "19053",
-        "name": "衣柜",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/19053/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/19053/banner.jpg?v=10",
-      },
-      {
-        "id": "st004",
-        "name": "抽屉柜和抽屉框架",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/st004/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/st004/banner.jpg?v=10",
-      },
-      {
-        "id": "st002",
-        "name": "书柜和搁架单元",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/st002/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/st002/banner.jpg?v=10",
-      },
-      {
-        "id": "st003",
-        "name": "橱柜和展示柜",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/st003/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/st003/banner.jpg?v=10",
-      },
-      {
-        "id": "10475",
-        "name": "电视柜及视听类家具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10475/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10475/banner.jpg?v=10",
-      },
-      {
-        "id": "30454",
-        "name": "餐边柜和长几",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/30454/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/30454/banner.jpg?v=10",
-      },
-      {
-        "id": "st005",
-        "name": "鞋柜和衣帽架",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/st005/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/st005/banner.jpg?v=10",
-      },
-      {
-        "id": "st006",
-        "name": "挂钩和墙面收纳件",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/st006/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/st006/banner.jpg?v=10",
-      },
-      {
-        "id": "st007",
-        "name": "小型储物产品",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/st007/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/st007/banner.jpg?v=10",
-      },
-      {
-        "id": "fu005",
-        "name": "推车",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/fu005/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/fu005/banner.jpg?v=10",
-      },
-      {
-        "id": "16248",
-        "name": "包袋",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16248/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16248/banner.jpg?v=10",
-      },
-      {
-        "id": "46078",
-        "name": "搬家用品",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/46078/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/46078/banner.jpg?v=10",
+        "id": "10639",
+        "skuId": 3419,
+        "title": "真我GT",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202103/20210304010356604073246f3b5.png?_w_=320&_h_=320",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 5000,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 1,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 2799,
+        "originalPrice": 2899,
+        "categoryId": 2,
+        "link":
+            "https://store.oppo.com/cn/app/product/index?skuId=3419&us=fenleiye&um=gezi&uc=GTxilie",
+        "isLogin": 0,
+        "marketPrice": null,
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [
+          {"type": 1, "activityInfo": "3期免息"}
+        ],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": [
+          {
+            "id": "17249",
+            "name": "新品",
+            "configKey": "201",
+            "pigment": "",
+            "beginAt": 1577808000000,
+            "endAt": 1893340800000
+          }
+        ]
       }
-    ]
+    ],
+    "link": null,
+    "isLogin": null,
+    "moreLink": null,
+    "moreIsLogin": null
   },
   {
-    "id": "bm001",
-    "name": "床和床垫",
-    "icon":
-        "https://res-qa.app.ikea.cn/static/public/catalog/bm001/thumbnail.png?v=10",
-    "bannerImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/bm001/banner.jpg?v=10",
-    "iconImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/bm001/icon.svg?v=10",
-    "children": [
+    "id": "568",
+    "name": "数码周边",
+    "showName": 1,
+    "seq": 2,
+    "configKey": 10,
+    "url": "",
+    "jsonUrl": "",
+    "moreText": "",
+    "isShowButton": 0,
+    "buttonDesc": "",
+    "buttonFontColor": "",
+    "buttonBackColor": "",
+    "rows": null,
+    "cols": null,
+    "maxProductNum": null,
+    "moduleCode": "010233",
+    "beginAt": null,
+    "endAt": null,
+    "startAt": null,
+    "productDetailss": [
       {
-        "id": "bm003",
-        "name": "床",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/bm003/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/bm003/banner.jpg?v=10",
+        "id": "8335",
+        "skuId": 2477,
+        "title": "游戏装备",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202011/202011010211155f9da7971a993.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 1100,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 1,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 159,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "oppostore://www.opposhop.cn/app/store/goodslist?code=010524&title=分类&tab=690&us=fenleiye",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       },
       {
-        "id": "bm002",
-        "name": "床垫",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/bm002/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/bm002/banner.jpg?v=10",
+        "id": "7357",
+        "skuId": 1748,
+        "title": "数据线",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202007/202007300207595f22630b42146.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 1000,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 59,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "oppostore://www.opposhop.cn/app/store/goodslist?code=010524&title=分类&tab=614&us=fenleiye",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       },
       {
-        "id": "19064",
-        "name": "床头板",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/19064/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/19064/banner.jpg?v=10",
+        "id": "7358",
+        "skuId": 2020,
+        "title": "手机支架",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202009/202009030609365f50c554a4e86.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 990,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 9.9,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "oppostore://www.opposhop.cn/app/store/goodslist?code=010524&title=分类&tab=576&us=fenleiye",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       },
       {
-        "id": "20656",
-        "name": "床头柜",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20656/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20656/banner.jpg?v=10",
+        "id": "7359",
+        "skuId": 1746,
+        "title": "汽车装饰",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202007/202007300107485f225f04d592b.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 950,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 89,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "oppostore://www.opposhop.cn/app/store/goodslist?code=010524&title=分类&tab=610&us=fenleiye",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [
+          {"type": 5, "activityInfo": "积分抵100%"}
+        ],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       },
       {
-        "id": "24827",
-        "name": "床板条",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/24827/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/24827/banner.jpg?v=10",
+        "id": "8339",
+        "skuId": 2531,
+        "title": "云台",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202011/202011090211435fa8decbeae7e.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 900,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 1,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 169,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "oppostore://www.opposhop.cn/app/store/goodslist?code=010524&title=分类&tab=689&us=fenleiye",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       },
       {
-        "id": "19059",
-        "name": "床底收纳",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/19059/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/19059/banner.jpg?v=10",
-      },
-      {
-        "id": "tl004",
-        "name": "卧室纺织品",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/tl004/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/tl004/banner.jpg?v=10",
+        "id": "8340",
+        "skuId": 2639,
+        "title": "充电器",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202011/202011210611045fb8f1ccddbf3.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 800,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 1,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 19.9,
+        "originalPrice": 39,
+        "categoryId": 2,
+        "link": "https://store.oppo.com/cn/app/product/index?skuId=2639",
+        "isLogin": 0,
+        "marketPrice": null,
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       }
-    ]
+    ],
+    "link": null,
+    "isLogin": null,
+    "moreLink": null,
+    "moreIsLogin": null
   },
   {
-    "id": "tl001",
-    "name": "纺织品",
-    "icon":
-        "https://res-qa.app.ikea.cn/static/public/catalog/tl001/thumbnail.png?v=10",
-    "bannerImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/tl001/banner.jpg?v=10",
-    "iconImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/tl001/icon.svg?v=10",
-    "children": [
+    "id": "567",
+    "name": "日用百货",
+    "showName": 1,
+    "seq": 1,
+    "configKey": 10,
+    "url": "",
+    "jsonUrl": "",
+    "moreText": "",
+    "isShowButton": 0,
+    "buttonDesc": "",
+    "buttonFontColor": "",
+    "buttonBackColor": "",
+    "rows": null,
+    "cols": null,
+    "maxProductNum": null,
+    "moduleCode": "010236",
+    "beginAt": null,
+    "endAt": null,
+    "startAt": null,
+    "productDetailss": [
       {
-        "id": "tl004",
-        "name": "卧室纺织品",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/tl004/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/tl004/banner.jpg?v=10",
+        "id": "7241",
+        "skuId": 1754,
+        "title": "办公设备",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202007/202007300407505f2286a2e4cf1.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 1000,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 599,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "oppostore://www.opposhop.cn/app/store/goodslist?code=010525&title=分类&tab=654&us=fenleiye",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [
+          {"type": 5, "activityInfo": "积分抵100%"}
+        ],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       },
       {
-        "id": "tl003",
-        "name": "浴室纺织品",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/tl003/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/tl003/banner.jpg?v=10",
+        "id": "7762",
+        "skuId": 1646,
+        "title": "箱包",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202007/202007080207285f056c7844c36.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 990,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 159,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "oppostore://www.opposhop.cn/app/store/goodslist?code=010525&title=分类&tab=658&us=fenleiye",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       },
       {
-        "id": "tl002",
-        "name": "窗帘和卷帘",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/tl002/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/tl002/banner.jpg?v=10",
+        "id": "7242",
+        "skuId": 2399,
+        "title": "灯饰照明",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202010/202010270310355f97c6fb80f29.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 970,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 39.9,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "oppostore://www.opposhop.cn/app/store/goodslist?code=010525&title=分类&tab=557&us=fenleiye",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       },
       {
-        "id": "10655",
-        "name": "布料和缝纫用品",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10655/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10655/banner.jpg?v=10",
+        "id": "7243",
+        "skuId": 3044,
+        "title": "清洁纸品",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202101/2021011611010360030a7758b1e.jpg",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 960,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 39.9,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "oppostore://www.opposhop.cn/app/store/goodslist?code=010525&title=分类&tab=558&us=fenleiye",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       },
       {
-        "id": "10659",
-        "name": "靠垫和靠垫套",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10659/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10659/banner.jpg?v=10",
+        "id": "7350",
+        "skuId": 1537,
+        "title": "清洁工具",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202005/202005291005585ed075c20ee0b.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 930,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 399,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "oppostore://www.opposhop.cn/app/store/goodslist?code=010525&title=分类&tab=653&us=fenleiye",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [
+          {"type": 5, "activityInfo": "积分抵100%"}
+        ],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       },
       {
-        "id": "18850",
-        "name": "厨房纺织品",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/18850/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/18850/banner.jpg?v=10",
+        "id": "7352",
+        "skuId": 1694,
+        "title": "五金工具",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202007/202007171007295f11aefd0278d.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 900,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 59,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "oppostore://www.opposhop.cn/app/store/goodslist?code=010525&title=分类&tab=655&us=fenleiye",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [
+          {"type": 5, "activityInfo": "积分抵100%"}
+        ],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       },
       {
-        "id": "18690",
-        "name": "婴儿纺织品",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/18690/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/18690/banner.jpg?v=10",
+        "id": "8337",
+        "skuId": 2904,
+        "title": "生活小物",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202012/202012130812115fd60dc75177c.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 800,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 1,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 169,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "oppostore://www.opposhop.cn/app/store/goodslist?code=010525&title=分类&tab=656&us=fenleiye",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [
+          {"type": 5, "activityInfo": "积分抵100%"}
+        ],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       },
       {
-        "id": "18730",
-        "name": "儿童纺织品",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/18730/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/18730/banner.jpg?v=10",
-      },
-      {
-        "id": "20538",
-        "name": "餐桌用纺织品",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20538/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20538/banner.jpg?v=10",
-      },
-      {
-        "id": "17893",
-        "name": "户外靠垫",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/17893/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/17893/banner.jpg?v=10",
+        "id": "10687",
+        "skuId": 2133,
+        "title": "雨伞",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202009/202009201009295f67625d0c0d2.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 700,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 1,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 69,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "oppostore://www.opposhop.cn/app/store/goodslist?code=010525&title=分类&tab=651&us=fenleiye",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [
+          {"type": 5, "activityInfo": "积分抵100%"}
+        ],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       }
-    ]
+    ],
+    "link": null,
+    "isLogin": null,
+    "moreLink": null,
+    "moreIsLogin": null
   },
   {
-    "id": "bc001",
-    "name": "婴儿和儿童",
-    "icon":
-        "https://res-qa.app.ikea.cn/static/public/catalog/bc001/thumbnail.png?v=10",
-    "bannerImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/bc001/banner.jpg?v=10",
-    "iconImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/bc001/icon.svg?v=10",
-    "children": [
+    "id": "569",
+    "name": "个护健康",
+    "showName": 1,
+    "seq": 3,
+    "configKey": 10,
+    "url": "",
+    "jsonUrl": "",
+    "moreText": "",
+    "isShowButton": 0,
+    "buttonDesc": "",
+    "buttonFontColor": "",
+    "buttonBackColor": "",
+    "rows": null,
+    "cols": null,
+    "maxProductNum": null,
+    "moduleCode": "010234",
+    "beginAt": null,
+    "endAt": null,
+    "startAt": null,
+    "productDetailss": [
       {
-        "id": "bc002",
-        "name": "婴儿",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/bc002/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/bc002/banner.jpg?v=10",
+        "id": "7247",
+        "skuId": 2409,
+        "title": "美容仪/洁面仪",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202010/202010280410545f992ad61c749.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 1000,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 149,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "oppostore://www.opposhop.cn/app/store/goodslist?code=010523&title=分类&tab=545&us=fenleiye",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       },
       {
-        "id": "bc003",
-        "name": "儿童",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/bc003/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/bc003/banner.jpg?v=10",
+        "id": "8334",
+        "skuId": 2700,
+        "title": "美容工具",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202011/202011251111195fbdd2d7c7fe3.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 990,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 1,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 229,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "oppostore://www.opposhop.cn/app/store/goodslist?code=010523&title=分类&tab=652&us=fenleiye",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
+      },
+      {
+        "id": "7740",
+        "skuId": 2512,
+        "title": "剃须刀",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202011/202011040811165fa299383b553.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 990,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 69,
+        "originalPrice": 89,
+        "categoryId": 2,
+        "link":
+            "oppostore://www.opposhop.cn/app/store/goodslist?code=010523&title=分类&tab=546&us=fenleiye",
+        "isLogin": 0,
+        "marketPrice": null,
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
+      },
+      {
+        "id": "7754",
+        "skuId": 1757,
+        "title": "按摩器械",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202007/202007300407545f228a2a8dd44.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 980,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 339,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "oppostore://www.opposhop.cn/app/store/goodslist?code=010523&title=分类&tab=547&us=fenleiye",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
+      },
+      {
+        "id": "7741",
+        "skuId": 1130,
+        "title": "吹风机",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202008/202008281008105f486ce62ab6b.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 970,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 129,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "oppostore://www.opposhop.cn/app/store/goodslist?code=010523&title=分类&tab=560&us=fenleiye",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [
+          {"type": 5, "activityInfo": "积分抵100%"}
+        ],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
+      },
+      {
+        "id": "7747",
+        "skuId": 901,
+        "title": "口腔护理",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202012/202012080712055fcf5e1de84c8.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 910,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 229,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "oppostore://www.opposhop.cn/app/store/goodslist?code=010523&title=分类&tab=549&us=fenleiye",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [
+          {"type": 5, "activityInfo": "积分抵100%"}
+        ],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
+      },
+      {
+        "id": "7748",
+        "skuId": 2933,
+        "title": "日常护理",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202012/202012131112485fd63858e7e7d.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 890,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 36.9,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "oppostore://www.opposhop.cn/app/store/goodslist?code=010523&title=分类&tab=550&us=fenleiye",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
+      },
+      {
+        "id": "7749",
+        "skuId": 3078,
+        "title": "运动健康",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202012/202012230712045fe32604c282c.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 870,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 0,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 109,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "oppostore://www.opposhop.cn/app/store/goodslist?code=010523&title=分类&tab=647&us=fenleiye",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [
+          {"type": 5, "activityInfo": "积分抵50%"}
+        ],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
+      },
+      {
+        "id": "10720",
+        "skuId": 2555,
+        "title": "卷/直发器",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202011/202011161011205fb28cc020cb7.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 860,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 1,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 159,
+        "originalPrice": null,
+        "categoryId": 2,
+        "link":
+            "oppostore://www.opposhop.cn/app/store/goodslist?code=010523&title=分类&tab=991&us=fenleiye",
+        "isLogin": 0,
+        "marketPrice": "",
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [
+          {"type": 5, "activityInfo": "积分抵100%"}
+        ],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
+      },
+      {
+        "id": "10721",
+        "skuId": 2679,
+        "title": "理发器",
+        "secondTitle": "",
+        "thirdTitle": "",
+        "url":
+            "https://dsfs.oppo.com/archives/202011/202011230611465fbb8ea20f0ea.png",
+        "jsonUrl": "",
+        "video": "",
+        "seq": 850,
+        "configKeyLattice": 0,
+        "latticeIndex": 0,
+        "configProductType": 601,
+        "isShowIcon": 0,
+        "topIcon": "",
+        "cardType": 1,
+        "backColor": "",
+        "liveInfoJson": null,
+        "businessInfoJson": null,
+        "price": 69,
+        "originalPrice": 89,
+        "categoryId": 2,
+        "link":
+            "oppostore://www.opposhop.cn/app/store/goodslist?code=010523&title=分类&tab=990&us=fenleiye",
+        "isLogin": 0,
+        "marketPrice": null,
+        "nameLabel": null,
+        "imageLabel": null,
+        "extendList": null,
+        "heytapInfo": null,
+        "activityList": [],
+        "nameLabelWidth": null,
+        "nameLabelHeight": null,
+        "pricePrefix": null,
+        "priceSuffix": null,
+        "cardInfoType": null,
+        "liveUrl": null,
+        "storage": null,
+        "seckill": null,
+        "businessLink": "",
+        "productDetailLabelss": []
       }
-    ]
-  },
-  {
-    "id": "ba001",
-    "name": "浴室产品",
-    "icon":
-        "https://res-qa.app.ikea.cn/static/public/catalog/ba001/thumbnail.png?v=10",
-    "bannerImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/ba001/banner.jpg?v=10",
-    "iconImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/ba001/icon.svg?v=10",
-    "children": [
-      {
-        "id": "46079",
-        "name": "浴室家具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/46079/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/46079/banner.jpg?v=10",
-      },
-      {
-        "id": "20719",
-        "name": "洗脸池",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20719/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20719/banner.jpg?v=10",
-      },
-      {
-        "id": "20802",
-        "name": "浴室用柜",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20802/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20802/banner.jpg?v=10",
-      },
-      {
-        "id": "20490",
-        "name": "浴室镜",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20490/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20490/banner.jpg?v=10",
-      },
-      {
-        "id": "10555",
-        "name": "浴室配件",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10555/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10555/banner.jpg?v=10",
-      },
-      {
-        "id": "20859",
-        "name": "浴室脚凳和长凳",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20859/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20859/banner.jpg?v=10",
-      },
-      {
-        "id": "40690",
-        "name": "花洒",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/40690/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/40690/banner.jpg?v=10",
-      },
-      {
-        "id": "20724",
-        "name": "浴室水龙头",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20724/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20724/banner.jpg?v=10",
-      },
-      {
-        "id": "20723",
-        "name": "浴室水槽",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20723/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20723/banner.jpg?v=10",
-      },
-      {
-        "id": "tl003",
-        "name": "浴室纺织品",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/tl003/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/tl003/banner.jpg?v=10",
-      },
-      {
-        "id": "10736",
-        "name": "浴室照明",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10736/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10736/banner.jpg?v=10",
-      },
-      {
-        "id": "ba002",
-        "name": "浴室储物",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/ba002/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/ba002/banner.jpg?v=10",
-      },
-      {
-        "id": "ba003",
-        "name": "浴室衣物洗涤及晾晒",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/ba003/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/ba003/banner.jpg?v=10",
-      }
-    ]
-  },
-  {
-    "id": "kt001",
-    "name": "餐具和厨具",
-    "icon":
-        "https://res-qa.app.ikea.cn/static/public/catalog/kt001/thumbnail.png?v=10",
-    "bannerImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/kt001/banner.jpg?v=10",
-    "iconImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/kt001/icon.svg?v=10",
-    "children": [
-      {
-        "id": "kt003",
-        "name": "锅具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/kt003/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/kt003/banner.jpg?v=10",
-      },
-      {
-        "id": "kt002",
-        "name": "烹饪用具和烘培工具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/kt002/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/kt002/banner.jpg?v=10",
-      },
-      {
-        "id": "15934",
-        "name": "刀具和砧板",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/15934/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/15934/banner.jpg?v=10",
-      },
-      {
-        "id": "18860",
-        "name": "餐具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/18860/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/18860/banner.jpg?v=10",
-      },
-      {
-        "id": "18865",
-        "name": "刀叉餐具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/18865/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/18865/banner.jpg?v=10",
-      },
-      {
-        "id": "18868",
-        "name": "玻璃器皿和水壶",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/18868/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/18868/banner.jpg?v=10",
-      },
-      {
-        "id": "16043",
-        "name": "上菜用具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16043/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16043/banner.jpg?v=10",
-      },
-      {
-        "id": "18714",
-        "name": "儿童厨具和餐具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/18714/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/18714/banner.jpg?v=10",
-      },
-      {
-        "id": "16044",
-        "name": "咖啡和茶",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16044/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16044/banner.jpg?v=10",
-      },
-      {
-        "id": "20538",
-        "name": "餐桌用纺织品",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20538/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20538/banner.jpg?v=10",
-      },
-      {
-        "id": "18850",
-        "name": "厨房纺织品",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/18850/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/18850/banner.jpg?v=10",
-      },
-      {
-        "id": "15937",
-        "name": "食品收纳与储存罐",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/15937/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/15937/banner.jpg?v=10",
-      },
-      {
-        "id": "20560",
-        "name": "餐巾纸和纸巾架",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20560/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20560/banner.jpg?v=10",
-      },
-      {
-        "id": "15938",
-        "name": "洗碗用具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/15938/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/15938/banner.jpg?v=10",
-      },
-      {
-        "id": "20636",
-        "name": "烘焙器具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20636/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20636/banner.jpg?v=10",
-      }
-    ]
-  },
-  {
-    "id": "li001",
-    "name": "灯具照明",
-    "icon":
-        "https://res-qa.app.ikea.cn/static/public/catalog/li001/thumbnail.png?v=10",
-    "bannerImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/li001/banner.jpg?v=10",
-    "iconImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/li001/icon.svg?v=10",
-    "children": [
-      {
-        "id": "14971",
-        "name": "装饰性灯具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/14971/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/14971/banner.jpg?v=10",
-      },
-      {
-        "id": "li002",
-        "name": "灯具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/li002/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/li002/banner.jpg?v=10",
-      },
-      {
-        "id": "36812",
-        "name": "智能照明",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/36812/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/36812/banner.jpg?v=10",
-      },
-      {
-        "id": "10744",
-        "name": "LED照明灯泡",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10744/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10744/banner.jpg?v=10",
-      },
-      {
-        "id": "17897",
-        "name": "户外照明",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/17897/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/17897/banner.jpg?v=10",
-      },
-      {
-        "id": "16280",
-        "name": "内置灯具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16280/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16280/banner.jpg?v=10",
-      }
-    ]
-  },
-  {
-    "id": "de001",
-    "name": "装饰品",
-    "icon":
-        "https://res-qa.app.ikea.cn/static/public/catalog/de001/thumbnail.png?v=10",
-    "bannerImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/de001/banner.jpg?v=10",
-    "iconImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/de001/icon.svg?v=10",
-    "children": [
-      {
-        "id": "10760",
-        "name": "蜡烛和蜡台",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10760/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10760/banner.jpg?v=10",
-      },
-      {
-        "id": "10757",
-        "name": "图片和框架",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10757/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10757/banner.jpg?v=10",
-      },
-      {
-        "id": "pp003",
-        "name": "人造植物和人造花",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/pp003/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/pp003/banner.jpg?v=10",
-      },
-      {
-        "id": "pp004",
-        "name": "花盆",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/pp004/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/pp004/banner.jpg?v=10",
-      },
-      {
-        "id": "42926",
-        "name": "家用香氛",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/42926/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/42926/banner.jpg?v=10",
-      },
-      {
-        "id": "25227",
-        "name": "纸品屋",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/25227/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/25227/banner.jpg?v=10",
-      },
-      {
-        "id": "24924",
-        "name": "装饰配件",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/24924/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/24924/banner.jpg?v=10",
-      },
-      {
-        "id": "10759",
-        "name": "时钟",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10759/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10759/banner.jpg?v=10",
-      },
-      {
-        "id": "20489",
-        "name": "镜子",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20489/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20489/banner.jpg?v=10",
-      },
-      {
-        "id": "10550",
-        "name": "储物盒和储物篮",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10550/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10550/banner.jpg?v=10",
-      },
-      {
-        "id": "10574",
-        "name": "布告板",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10574/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10574/banner.jpg?v=10",
-      }
-    ]
-  },
-  {
-    "id": "od001",
-    "name": "户外产品",
-    "icon":
-        "https://res-qa.app.ikea.cn/static/public/catalog/od001/thumbnail.png?v=10",
-    "bannerImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/od001/banner.jpg?v=10",
-    "iconImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/od001/icon.svg?v=10",
-    "children": [
-      {
-        "id": "od003",
-        "name": "户外家具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/od003/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/od003/banner.jpg?v=10",
-      },
-      {
-        "id": "24898",
-        "name": "烧烤",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/24898/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/24898/banner.jpg?v=10",
-      },
-      {
-        "id": "17887",
-        "name": "遮阳伞&亭子",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/17887/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/17887/banner.jpg?v=10",
-      },
-      {
-        "id": "34204",
-        "name": "户外地毯",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/34204/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/34204/banner.jpg?v=10",
-      },
-      {
-        "id": "31787",
-        "name": "户外花盆和植物",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/31787/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/31787/banner.jpg?v=10",
-      },
-      {
-        "id": "34203",
-        "name": "户外配件",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/34203/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/34203/banner.jpg?v=10",
-      },
-      {
-        "id": "17893",
-        "name": "户外靠垫",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/17893/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/17893/banner.jpg?v=10",
-      },
-      {
-        "id": "17897",
-        "name": "户外照明",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/17897/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/17897/banner.jpg?v=10",
-      },
-      {
-        "id": "21957",
-        "name": "户外地板",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/21957/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/21957/banner.jpg?v=10",
-      }
-    ]
-  },
-  {
-    "id": "pt001",
-    "name": "宠物用品",
-    "icon":
-        "https://res-qa.app.ikea.cn/static/public/catalog/pt001/thumbnail.png?v=10",
-    "bannerImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/pt001/banner.jpg?v=10",
-    "iconImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/pt001/icon.svg?v=10",
-    "children": [
-      {
-        "id": "39569",
-        "name": "猫",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/39569/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/39569/banner.jpg?v=10",
-      },
-      {
-        "id": "39570",
-        "name": "狗",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/39570/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/39570/banner.jpg?v=10",
-      }
-    ]
-  },
-  {
-    "id": "rm001",
-    "name": "地毯, 门垫和地板",
-    "icon":
-        "https://res-qa.app.ikea.cn/static/public/catalog/rm001/thumbnail.png?v=10",
-    "bannerImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/rm001/banner.jpg?v=10",
-    "iconImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/rm001/icon.svg?v=10",
-    "children": [
-      {
-        "id": "10653",
-        "name": "地毯",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10653/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10653/banner.jpg?v=10",
-      },
-      {
-        "id": "20519",
-        "name": "浴室垫子",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20519/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20519/banner.jpg?v=10",
-      },
-      {
-        "id": "10698",
-        "name": "门垫",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10698/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/10698/banner.jpg?v=10",
-      },
-      {
-        "id": "21957",
-        "name": "户外地板",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/21957/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/21957/banner.jpg?v=10",
-      }
-    ]
-  },
-  {
-    "id": "he001",
-    "name": "家用电子产品",
-    "icon":
-        "https://res-qa.app.ikea.cn/static/public/catalog/he001/thumbnail.png?v=10",
-    "bannerImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/he001/banner.jpg?v=10",
-    "iconImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/he001/icon.svg?v=10",
-    "children": [
-      {
-        "id": "he002",
-        "name": "智能家居",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/he002/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/he002/banner.jpg?v=10",
-      },
-      {
-        "id": "ka002",
-        "name": "厨房电器",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/ka002/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/ka002/banner.jpg?v=10",
-      },
-      {
-        "id": "40845",
-        "name": "电线和充电器",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/40845/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/40845/banner.jpg?v=10",
-      },
-      {
-        "id": "40842",
-        "name": "扬声器",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/40842/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/40842/banner.jpg?v=10",
-      },
-      {
-        "id": "40843",
-        "name": "手机/平板配件",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/40843/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/40843/banner.jpg?v=10",
-      }
-    ]
-  },
-  {
-    "id": "lc001",
-    "name": "清洁及晾晒用品",
-    "icon":
-        "https://res-qa.app.ikea.cn/static/public/catalog/lc001/thumbnail.png?v=10",
-    "bannerImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/lc001/banner.jpg?v=10",
-    "iconImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/lc001/icon.svg?v=10",
-    "children": [
-      {
-        "id": "20609",
-        "name": "清洁配件",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20609/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20609/banner.jpg?v=10",
-      },
-      {
-        "id": "20602",
-        "name": "晾衣架",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20602/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20602/banner.jpg?v=10",
-      },
-      {
-        "id": "20601",
-        "name": "洗衣篮",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20601/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20601/banner.jpg?v=10",
-      },
-      {
-        "id": "20608",
-        "name": "烫衣板",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20608/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20608/banner.jpg?v=10",
-      },
-      {
-        "id": "15938",
-        "name": "洗碗用具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/15938/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/15938/banner.jpg?v=10",
-      },
-      {
-        "id": "16213",
-        "name": "废纸篓和储物袋",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16213/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16213/banner.jpg?v=10",
-      }
-    ]
-  },
-  {
-    "id": "pp001",
-    "name": "花盆和植物",
-    "icon":
-        "https://res-qa.app.ikea.cn/static/public/catalog/pp001/thumbnail.png?v=10",
-    "bannerImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/pp001/banner.jpg?v=10",
-    "iconImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/pp001/icon.svg?v=10",
-    "children": [
-      {
-        "id": "pp004",
-        "name": "花盆",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/pp004/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/pp004/banner.jpg?v=10",
-      },
-      {
-        "id": "pp003",
-        "name": "人造植物和人造花",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/pp003/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/pp003/banner.jpg?v=10",
-      },
-      {
-        "id": "20494",
-        "name": "植物支撑架和移动用具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20494/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20494/banner.jpg?v=10",
-      },
-      {
-        "id": "20493",
-        "name": "浇水壶",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20493/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/20493/banner.jpg?v=10",
-      },
-      {
-        "id": "24887",
-        "name": "园艺配件",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/24887/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/24887/banner.jpg?v=10",
-      }
-    ]
-  },
-  {
-    "id": "lt001",
-    "name": "休闲和旅游",
-    "icon":
-        "https://res-qa.app.ikea.cn/static/public/catalog/lt001/thumbnail.png?v=10",
-    "bannerImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/lt001/banner.jpg?v=10",
-    "iconImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/lt001/icon.svg?v=10",
-    "children": [
-      {
-        "id": "16248",
-        "name": "包袋",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16248/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16248/banner.jpg?v=10",
-      },
-      {
-        "id": "24847",
-        "name": "游戏/休闲",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/24847/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/24847/banner.jpg?v=10",
-      },
-      {
-        "id": "25227",
-        "name": "纸品屋",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/25227/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/25227/banner.jpg?v=10",
-      }
-    ]
-  },
-  {
-    "id": "sp001",
-    "name": "安全产品",
-    "icon":
-        "https://res-qa.app.ikea.cn/static/public/catalog/sp001/thumbnail.png?v=10",
-    "bannerImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/sp001/banner.jpg?v=10",
-    "iconImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/sp001/icon.svg?v=10",
-    "children": [
-      {
-        "id": "16257",
-        "name": "儿童安全",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16257/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16257/banner.jpg?v=10",
-      },
-      {
-        "id": "16256",
-        "name": "居家安全",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16256/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16256/banner.jpg?v=10",
-      }
-    ]
-  },
-  {
-    "id": "hi001",
-    "name": "家居修缮",
-    "icon":
-        "https://res-qa.app.ikea.cn/static/public/catalog/hi001/thumbnail.png?v=10",
-    "bannerImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/hi001/banner.jpg?v=10",
-    "iconImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/hi001/icon.svg?v=10",
-    "children": [
-      {
-        "id": "16298",
-        "name": "拉手和拉钮",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16298/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16298/banner.jpg?v=10",
-      },
-      {
-        "id": "42948",
-        "name": "护理油/着色剂/产品保养",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/42948/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/42948/banner.jpg?v=10",
-      },
-      {
-        "id": "21957",
-        "name": "户外地板",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/21957/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/21957/banner.jpg?v=10",
-      },
-      {
-        "id": "46077",
-        "name": "吸音板",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/46077/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/46077/banner.jpg?v=10",
-      },
-      {
-        "id": "46078",
-        "name": "搬家用品",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/46078/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/46078/banner.jpg?v=10",
-      },
-      {
-        "id": "16292",
-        "name": "工具和安装件",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16292/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16292/banner.jpg?v=10",
-      },
-      {
-        "id": "16249",
-        "name": "安全产品",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16249/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/16249/banner.jpg?v=10",
-      },
-      {
-        "id": "19121",
-        "name": "墙面板",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/19121/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/19121/banner.jpg?v=10",
-      }
-    ]
-  },
-  {
-    "id": "wt001",
-    "name": "冬季节日",
-    "icon":
-        "https://res-qa.app.ikea.cn/static/public/catalog/wt001/thumbnail.png?v=10",
-    "bannerImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/wt001/banner.jpg?v=10",
-    "iconImg":
-        "https://res-qa.app.ikea.cn/static/public/catalog/wt001/icon.svg?v=10",
-    "children": [
-      {
-        "id": "18734",
-        "name": "玩具和玩耍",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/18734/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/18734/banner.jpg?v=10",
-      },
-      {
-        "id": "14971",
-        "name": "装饰性灯具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/14971/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/14971/banner.jpg?v=10",
-      },
-      {
-        "id": "49227",
-        "name": "假日美味",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/49227/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/49227/banner.jpg?v=10",
-      },
-      {
-        "id": "49154",
-        "name": "冬季烹饪和烘焙",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/49154/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/49154/banner.jpg?v=10",
-      },
-      {
-        "id": "49150",
-        "name": "冬季照明",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/49150/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/49150/banner.jpg?v=10",
-      },
-      {
-        "id": "49152",
-        "name": "冬季纺织品",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/49152/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/49152/banner.jpg?v=10",
-      },
-      {
-        "id": "49151",
-        "name": "冬季花盆和绿植",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/49151/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/49151/banner.jpg?v=10",
-      },
-      {
-        "id": "49149",
-        "name": "冬季装饰",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/49149/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/49149/banner.jpg?v=10",
-      },
-      {
-        "id": "49153",
-        "name": "冬季餐具",
-        "icon":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/49153/thumbnail.png?v=10",
-        "bannerImg":
-            "https://res-qa.app.ikea.cn/static/public/subcatalog/49153/banner.jpg?v=10",
-      }
-    ]
+    ],
+    "link": null,
+    "isLogin": null,
+    "moreLink": null,
+    "moreIsLogin": null
   }
 ];

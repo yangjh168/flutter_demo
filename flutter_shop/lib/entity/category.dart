@@ -1,6 +1,6 @@
 //实体生成网站：https://javiercbk.github.io/json_to_dart/
 
-import 'package:flutter_shop/pages/cart_page.dart';
+import 'package:flutter_shop/pages/demo/provider_demo.dart';
 
 class Category {
   String id;

@@ -74,43 +74,46 @@ class DioUtils {
 
       var defaultOptions = Options(
         method: MethodValues[method],
-        sendTimeout: (options != null && options['sendTimeout'])
+        sendTimeout: (options != null && options['sendTimeout'] != null)
             ? options['sendTimeout']
             : null,
-        receiveTimeout: (options != null && options['receiveTimeout'])
+        receiveTimeout: (options != null && options['receiveTimeout'] != null)
             ? options['receiveTimeout']
             : null,
-        extra: (options != null && options['extra']) ? options['extra'] : null,
-        headers:
-            (options != null && options['headers']) ? options['headers'] : null,
-        responseType: (options != null && options['responseType'])
+        extra: (options != null && options['extra'] != null)
+            ? options['extra']
+            : null,
+        headers: (options != null && options['headers'] != null)
+            ? options['headers']
+            : null,
+        responseType: (options != null && options['responseType'] != null)
             ? options['responseType']
             : null,
-        contentType: (options != null && options['contentType'])
+        contentType: (options != null && options['contentType'] != null)
             ? options['contentType']
             : null,
-        validateStatus: (options != null && options['validateStatus'])
+        validateStatus: (options != null && options['validateStatus'] != null)
             ? options['validateStatus']
             : null,
         receiveDataWhenStatusError:
-            (options != null && options['receiveDataWhenStatusError'])
+            (options != null && options['receiveDataWhenStatusError'] != null)
                 ? options['receiveDataWhenStatusError']
                 : null,
-        followRedirects: (options != null && options['followRedirects'])
+        followRedirects: (options != null && options['followRedirects'] != null)
             ? options['followRedirects']
             : null,
-        maxRedirects: (options != null && options['maxRedirects'])
+        maxRedirects: (options != null && options['maxRedirects'] != null)
             ? options['maxRedirects']
             : null,
         // requestEncoder: requestEncoder,
-        responseDecoder: (options != null && options['responseDecoder'])
+        responseDecoder: (options != null && options['responseDecoder'] != null)
             ? options['responseDecoder']
             : null,
       );
-      var queryParameters;
+      Map<String, dynamic> queryParameters;
       // get请求处理
-      if (method != null && MethodValues[method] == 'get') {
-        queryParameters = data;
+      if (method != null && MethodValues[method] == 'get' && data != null) {
+        queryParameters = new Map<String, dynamic>.from(data);
       }
       print('''
 =======================================

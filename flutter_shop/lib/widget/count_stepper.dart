@@ -41,7 +41,8 @@ class _CountStepperState extends State<CountStepper> {
             child: Container(
               width: 32.0,
               alignment: Alignment.center,
-              child: Text('-'),
+              child: Icon(Icons.remove_rounded,
+                  color: currentNum == 0 ? Colors.black12 : Colors.black),
             ),
           ),
           Container(
@@ -64,7 +65,7 @@ class _CountStepperState extends State<CountStepper> {
             child: Container(
               width: 32.0,
               alignment: Alignment.center,
-              child: Text('+'),
+              child: Icon(Icons.add),
             ),
           ),
         ],

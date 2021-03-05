@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_shop/pages/cart_page.dart';
-import 'package:flutter_shop/pages/category_page.dart';
-import 'package:flutter_shop/pages/home_page.dart';
-import 'package:flutter_shop/pages/member_page.dart';
+import 'package:flutter_shop/pages/index/cart_page.dart';
+import 'package:flutter_shop/pages/index/category_page.dart';
+import 'package:flutter_shop/pages/index/home_page.dart';
+import 'package:flutter_shop/pages/index/member_page.dart';
 
 class IndexPage extends StatefulWidget {
   @override
@@ -17,7 +17,7 @@ class _IndexPageState extends State<IndexPage> {
     BottomNavigationBarItem(
         icon: Icon(CupertinoIcons.shopping_cart), label: '购物车'),
     BottomNavigationBarItem(
-        icon: Icon(CupertinoIcons.profile_circled), label: '会员中心'),
+        icon: Icon(CupertinoIcons.profile_circled), label: '我的'),
   ];
 
   final List<Widget> tabBodies = [
@@ -40,7 +40,6 @@ class _IndexPageState extends State<IndexPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(245, 245, 245, 1.0),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: bottomTabs,

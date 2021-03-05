@@ -9,7 +9,10 @@ Future getHomePageSwiper([data, options]) async {
 
 //获取热门商品
 Future getHotGoodsList([data, options]) async {
-  return HttpUtils.get('/', data, options);
+  return HttpUtils.get(
+      'https://www.heytap.com/cn/oapi/goods/web/info/search/keyword/040110?keyword=%E6%89%8B%E6%9C%BA&currentPage=4&pageSize=10',
+      data,
+      options);
 }
 
 //获取商品分类
@@ -24,4 +27,12 @@ Future getCateGoryList([data, options]) async {
 Future getGoodsDetail([data, options]) async {
   return HttpUtils.get(
       'https://www.heytap.com/cn/oapi/goods/web/info/skuId', data, options);
+}
+
+//获取我的功能菜单
+Future getMemberMenuList([data, options]) async {
+  return HttpUtils.get(
+      'https://www.heytap.com/cn/oapi/goods/web/products/040401',
+      data,
+      options);
 }
