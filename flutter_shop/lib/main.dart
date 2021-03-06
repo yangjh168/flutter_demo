@@ -46,13 +46,15 @@ class MyApp extends StatelessWidget {
         //生成路由的回调函数，当导航的命名路由的时候，会使用这个来生成界面
         onGenerateRoute: Routes.router.generator,
         theme: ThemeData(
-            // brightness: Brightness.dark, //黑色主题
-            primaryColor: Color(0xFFf1503B),
-            fontFamily: 'Montserrat',
-            scaffoldBackgroundColor: Color(0xFFf5f5f5), //Scaffold底色
-            textTheme: TextTheme(
-              bodyText2: TextStyle(fontSize: 24.0.sp), //Material 的默认文本样式。
-            )),
+          // brightness: Brightness.dark, //黑色主题
+          primaryColor: Color(0xFFf1503B),
+          fontFamily: 'Montserrat',
+          scaffoldBackgroundColor: Color(0xFFf5f5f5), //Scaffold底色
+          // 文本主题
+          textTheme: TextTheme(
+            bodyText2: TextStyle(fontSize: 24.0.sp), //Material 的默认文本样式。
+          ),
+        ),
         home: IndexPage(),
         builder: EasyLoading.init(), //初始化EasyLoading
       ),

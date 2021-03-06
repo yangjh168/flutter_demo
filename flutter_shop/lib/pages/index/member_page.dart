@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_shop/dio/api.dart';
 import 'package:flutter_shop/routers/routers.dart';
@@ -23,7 +24,7 @@ class _MemberPageState extends State<MemberPage>
       'headers': {'source_type': '504'}
     });
     setState(() {
-      menuList.addAll(list);
+      menuList = list;
     });
   }
 
@@ -34,11 +35,13 @@ class _MemberPageState extends State<MemberPage>
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-        appBar: AppBar(
-          title: Text('我的'),
-          elevation: 0, //默认是4， 0为没有阴影
-        ),
-        body: Stack(
+      appBar: AppBar(
+        title: Text('我的'),
+        elevation: 0, //默认是4， 0为没有阴影
+      ),
+      body: EasyRefresh(
+        header: MaterialHeader(),
+        child: Stack(
           overflow: Overflow.visible,
           children: [
             ClipPath(
@@ -49,19 +52,22 @@ class _MemberPageState extends State<MemberPage>
               ),
             ),
             Container(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    _userInfo(),
-                    _headGrid(),
-                    _orderCard(),
-                    _menuCard(),
-                  ],
-                ),
+              child: Column(
+                children: [
+                  _userInfo(),
+                  _headGrid(),
+                  _orderCard(),
+                  _menuCard(),
+                ],
               ),
             ),
           ],
-        ));
+        ),
+        onRefresh: () async {
+          _getMenuList();
+        },
+      ),
+    );
   }
 
   // 用户信息
@@ -138,49 +144,47 @@ class _MemberPageState extends State<MemberPage>
   Widget _orderCard() {
     return Container(
         margin: EdgeInsets.only(left: 20.0.w, right: 20.0.w, bottom: 20.0.w),
-        child: Ink(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(15.0.w)),
-              color: Colors.white),
-          child: Column(
-            children: [
-              Container(
-                padding:
-                    EdgeInsets.symmetric(vertical: 14.0.h, horizontal: 20.0.w),
-                decoration: BoxDecoration(
-                    border: Border(
-                        bottom:
-                            BorderSide(width: 0.5, color: Color(0xFFf5f5f5)))),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('我的订单', style: TextStyle(fontWeight: FontWeight.bold)),
-                    Row(
-                      children: [
-                        Text('全部订单', style: TextStyle(color: Colors.black38)),
-                        Icon(Icons.arrow_forward_ios_outlined,
-                            color: Colors.black38, size: 24.sp)
-                      ],
-                    )
-                  ],
-                ),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(15.0.w)),
+            color: Colors.white),
+        child: Column(
+          children: [
+            Container(
+              padding:
+                  EdgeInsets.symmetric(vertical: 14.0.h, horizontal: 20.0.w),
+              decoration: BoxDecoration(
+                  border: Border(
+                      bottom:
+                          BorderSide(width: 0.5, color: Color(0xFFf5f5f5)))),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('我的订单', style: TextStyle(fontWeight: FontWeight.bold)),
+                  Row(
+                    children: [
+                      Text('全部订单', style: TextStyle(color: Colors.black38)),
+                      Icon(Icons.arrow_forward_ios_outlined,
+                          color: Colors.black38, size: 24.sp)
+                    ],
+                  )
+                ],
               ),
-              Container(
-                child: GridView.count(
-                  shrinkWrap: true,
-                  crossAxisCount: 5,
-                  physics: NeverScrollableScrollPhysics(), //关闭滚动
-                  children: [
-                    _orderItem(icon: Icons.account_balance_wallet, name: '待付款'),
-                    _orderItem(icon: Icons.all_inbox, name: '待发货'),
-                    _orderItem(icon: Icons.airport_shuttle, name: '已发货'),
-                    _orderItem(icon: Icons.comment, name: '待评论'),
-                    _orderItem(icon: Icons.cached_sharp, name: '退款/售后'),
-                  ],
-                ),
-              )
-            ],
-          ),
+            ),
+            Container(
+              child: GridView.count(
+                shrinkWrap: true,
+                crossAxisCount: 5,
+                physics: NeverScrollableScrollPhysics(), //关闭滚动
+                children: [
+                  _orderItem(icon: Icons.account_balance_wallet, name: '待付款'),
+                  _orderItem(icon: Icons.all_inbox, name: '待发货'),
+                  _orderItem(icon: Icons.airport_shuttle, name: '已发货'),
+                  _orderItem(icon: Icons.comment, name: '待评论'),
+                  _orderItem(icon: Icons.cached_sharp, name: '退款/售后'),
+                ],
+              ),
+            )
+          ],
         ));
   }
 
@@ -257,7 +261,7 @@ class _MemberPageState extends State<MemberPage>
     return InkWell(
       onTap: () {
         // 打开wenview页面
-        Routes.navigateTo(context, Routes.webviewPage,
+        Routes.navigateTo(context, '/webviewPage',
                 params: {'url': item['link'], 'title': item['title']})
             .then((result) {});
         // print('点击了菜单');

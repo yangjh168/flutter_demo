@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_shop/dio/api.dart';
 import 'package:flutter_shop/widget/empty.dart';
@@ -26,6 +27,7 @@ class _CartPageState extends State<CartPage>
     var data = await getGoodsDetail({'skuId': id});
     //设置
     setState(() {
+      goodsList.clear();
       goodsList.add(data);
     });
   }
@@ -37,23 +39,28 @@ class _CartPageState extends State<CartPage>
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-        appBar: AppBar(title: Text('购物车'), elevation: 0),
-        body: Stack(
-          overflow: Overflow.visible,
-          fit: StackFit.expand,
-          children: [
-            Container(
-              child: SingleChildScrollView(
-                child: _goodsList(),
-              ),
+      appBar: AppBar(title: Text('购物车'), elevation: 0),
+      body: Stack(
+        overflow: Overflow.visible,
+        fit: StackFit.expand,
+        children: [
+          Container(
+            child: EasyRefresh(
+              header: MaterialHeader(),
+              child: _goodsList(),
+              onRefresh: () async {
+                _getGoodsInfo(3013);
+              },
             ),
-            Positioned(
-              left: 0,
-              bottom: 0,
-              child: _footAction(),
-            ),
-          ],
-        ));
+          ),
+          Positioned(
+            left: 0,
+            bottom: 0,
+            child: _footAction(),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _goodsList() {

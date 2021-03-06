@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CountStepper extends StatefulWidget {
-  final double height;
   final int num;
   final ValueChanged<int> onValueChanged;
 
-  CountStepper({Key key, this.height = 60.0, this.num = 0, this.onValueChanged})
-      : super(key: key);
+  CountStepper({Key key, this.num = 0, this.onValueChanged}) : super(key: key);
 
   @override
   _CountStepperState createState() {
@@ -28,7 +26,7 @@ class _CountStepperState extends State<CountStepper> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: widget.height.h,
+      height: 60.0.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(2.0)),
         border: Border.all(color: Colors.grey, width: 0.5),
@@ -39,33 +37,34 @@ class _CountStepperState extends State<CountStepper> {
           GestureDetector(
             onTap: _minusNum,
             child: Container(
-              width: 32.0,
+              width: 50.0.w,
               alignment: Alignment.center,
               child: Icon(Icons.remove_rounded,
-                  color: currentNum == 0 ? Colors.black12 : Colors.black),
+                  color: currentNum == 0 ? Colors.black12 : Colors.black,
+                  size: 24.sp),
             ),
           ),
           Container(
-            width: 0.5,
+            width: 0.5.w,
             color: Colors.grey,
           ),
           Container(
-            width: 90.0.w,
+            width: 80.0.w,
             alignment: Alignment.center,
             child: Text('$currentNum',
                 maxLines: 1,
-                style: TextStyle(fontSize: 34.0.sp, color: Colors.black)),
+                style: TextStyle(fontSize: 32.0.sp, color: Colors.black)),
           ),
           Container(
-            width: 0.5,
+            width: 0.5.w,
             color: Colors.grey,
           ),
           GestureDetector(
             onTap: _addNum,
             child: Container(
-              width: 32.0,
+              width: 50.0.w,
               alignment: Alignment.center,
-              child: Icon(Icons.add),
+              child: Icon(Icons.add, size: 24.sp),
             ),
           ),
         ],

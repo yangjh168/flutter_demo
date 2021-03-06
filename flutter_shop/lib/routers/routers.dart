@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter_shop/routers/handlers.dart';
+import 'package:flutter_shop/routers/index.dart';
 
 //封装一个Routes 类
 class Routes {
@@ -10,8 +11,6 @@ class Routes {
   static FluroRouter router;
 
   //定义路由路径
-  static String goodsDetailPage = "/goodsDetailPage";
-
   static String webviewPage = "/webviewPage";
 
   //全局路由配置
@@ -27,11 +26,11 @@ class Routes {
       );
     });
 
-    //这里可以依次添加多个跳转的路由页面
-
     //定义一个路由路径与Handler,
-    router.define(goodsDetailPage, handler: goodsDetailHandler);
-    router.define(webviewPage, handler: webviewPageHandler);
+    routers.forEach((item) {
+      router.define(item['path'],
+          handler: pageHandler(keys: item['keys'], builder: item['builder']));
+    });
   }
 
   // 需要页面返回值的跳转

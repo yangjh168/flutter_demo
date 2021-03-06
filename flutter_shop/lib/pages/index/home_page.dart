@@ -37,7 +37,51 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-      appBar: AppBar(title: Text('首页'), elevation: 0),
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColor,
+        automaticallyImplyLeading: false, //隐藏返回箭头
+        elevation: 0,
+        title: Container(
+          decoration: new BoxDecoration(
+            border:
+                Border.all(color: Theme.of(context).primaryColor, width: 1.0),
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(50.0.w)),
+          ),
+          alignment: Alignment.center,
+          height: 76.0.h,
+          child: GestureDetector(
+            onTap: () {
+              // print('点击搜索');
+              Routes.navigateTo(context, '/searchPage',
+                  params: {"query": '11111'}).then((result) {});
+            },
+            child: TextField(
+              /// 键盘类型
+              keyboardType: TextInputType.text,
+              //控制键盘的功能键 指enter键，比如此处设置为next时，enter键
+              textInputAction: TextInputAction.search,
+              maxLines: 1,
+              decoration: InputDecoration(
+                enabled: false, //禁用
+                border: InputBorder.none,
+                prefixIcon: GestureDetector(
+                  onTap: () {},
+                  child: Icon(Icons.search),
+                ),
+                prefixStyle: TextStyle(fontSize: 24.sp),
+                suffixIcon: GestureDetector(
+                  onTap: () {},
+                  child: Icon(Icons.camera_alt_outlined),
+                ),
+                suffixStyle: TextStyle(fontSize: 24.sp),
+                hintText: "搜索商品",
+                hintStyle: TextStyle(fontSize: 26.sp, color: Colors.black54),
+              ),
+            ),
+          ),
+        ),
+      ),
       body: FutureBuilder(
         future: _getTaskAsync,
         builder: (context, snapshot) {
@@ -47,7 +91,7 @@ class _HomePageState extends State<HomePage>
             // List<Map> swiper = (data['data']['carouselList'] as List).cast();
             return EasyRefresh(
               header: SpaceHeader(),
-              footer: BallPulseFooter(),
+              footer: BezierBounceFooter(),
               // footer: ClassicalFooter(
               //   enableHapticFeedback: false,
               //   bgColor: Colors.white,
@@ -181,7 +225,7 @@ class _HomePageState extends State<HomePage>
             ),
             onTap: () {
               // 跳转到详情页
-              Routes.navigateTo(context, Routes.goodsDetailPage,
+              Routes.navigateTo(context, '/goodsDetailPage',
                   params: {"skuId": val['skuId']}).then((result) {});
             },
           ),

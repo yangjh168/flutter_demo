@@ -4,10 +4,10 @@ import 'package:flutter_shop/dio/api.dart';
 // import 'package:flutter_shop/entity/category.dart';
 // import 'package:flutter_shop/mock/category.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_shop/widget/LinkImage.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_shop/provider/category_store.dart';
 import 'package:flutter_shop/routers/routers.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class CategoryPage extends StatefulWidget {
   @override
@@ -133,20 +133,16 @@ class __RightSubMenuState extends State<_RightSubMenu> {
     List subMenuList = cateGoryStore.categoryList;
     return Expanded(
       child: Container(
-        color: Color(0xFFf5f5f5),
-        child: ListView.builder(
-            itemCount: subMenuList.length,
-            itemBuilder: (content, index) {
-              return _subItemContent(subMenuList);
-            }),
-      ),
+          color: Color(0xFFf5f5f5),
+          alignment: Alignment.topLeft,
+          child: SingleChildScrollView(child: _subItemContent(subMenuList))),
     );
   }
 
   List<Widget> _itemList(List list) {
     return list.map((item) {
       return Container(
-        width: 270.w,
+        width: 269.w,
         margin: EdgeInsets.only(right: 10.0.w, bottom: 10.0.w),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(5.0)),
@@ -158,22 +154,13 @@ class __RightSubMenuState extends State<_RightSubMenu> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CachedNetworkImage(
-                  imageUrl: "${item['url']}",
-                  placeholder: (context, url) => Container(
-                    width: 130,
-                    height: 80,
-                    child: Center(
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                      ),
-                    ),
-                  ),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+                Container(
+                  height: 250.0.w,
+                  child: LinkImage(url: item['url']),
                 ),
                 Container(
                   padding: EdgeInsets.only(left: 5.0.w, right: 5.0.w),
-                  height: 60.h,
+                  height: 65.h,
                   child: Text(item['title'],
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -187,7 +174,7 @@ class __RightSubMenuState extends State<_RightSubMenu> {
             ),
           ),
           onTap: () {
-            Routes.navigateTo(context, Routes.goodsDetailPage,
+            Routes.navigateTo(context, '/goodsDetailPage',
                 params: {"skuId": item['skuId']}).then((result) {
               // if (result != null) {
               //   print(result);

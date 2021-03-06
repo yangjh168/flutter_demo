@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_shop/dio/api.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -76,19 +77,24 @@ class _GoodsDetailState extends State<GoodsDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("商品详情"), elevation: 0),
-        body: Stack(
-          children: [
-            SingleChildScrollView(
-              child: _renderBody(),
-            ),
-            Positioned(
-              left: 0,
-              bottom: 0,
-              child: _footerAction(),
-            )
-          ],
-        ));
+      appBar: AppBar(title: Text("商品详情"), elevation: 0),
+      body: Stack(
+        children: [
+          EasyRefresh(
+            header: MaterialHeader(),
+            child: _renderBody(),
+            onRefresh: () async {
+              _getGoodsInfo(widget.skuId);
+            },
+          ),
+          Positioned(
+            left: 0,
+            bottom: 0,
+            child: _footerAction(),
+          )
+        ],
+      ),
+    );
   }
 
   //渲染主体内容
@@ -275,7 +281,7 @@ class _GoodsDetailState extends State<GoodsDetail> {
                 margin: EdgeInsets.only(right: 20.0.w),
                 child: FlatButton(
                   onPressed: () {},
-                  child: Text('加入购物车'),
+                  child: Text('加入购物车', style: TextStyle(fontSize: 28.sp)),
                   color: Color(0xFFFF722C),
                   textColor: Colors.white,
                   shape: RoundedRectangleBorder(
@@ -287,7 +293,7 @@ class _GoodsDetailState extends State<GoodsDetail> {
                 child: Container(
               child: FlatButton(
                 onPressed: () {},
-                child: Text('立即购买'),
+                child: Text('立即购买', style: TextStyle(fontSize: 28.sp)),
                 color: Color(0xFFF63434),
                 textColor: Colors.white,
                 shape: RoundedRectangleBorder(
