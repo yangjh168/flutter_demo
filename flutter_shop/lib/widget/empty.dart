@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 const Color _kDefaultTitleColor = const Color.fromARGB(255, 93, 100, 110);
 const Color _kDefaultTitleColorLight = const Color.fromARGB(255, 247, 247, 247);
@@ -72,7 +73,7 @@ class FLEmptyContainerState extends State<EmptyContainer> {
     if (widget.title != null && widget.title.isNotEmpty) {
       TextStyle textStyle = widget.titleStyle ??
           TextStyle(
-              fontSize: 14.0,
+              fontSize: 28.0.sp,
               color:
                   isDarkMode ? _kDefaultTitleColorLight : _kDefaultTitleColor);
       Widget title =
@@ -83,7 +84,7 @@ class FLEmptyContainerState extends State<EmptyContainer> {
     if (widget.detailText != null && widget.detailText.isNotEmpty) {
       TextStyle textStyle = widget.detailTextStyle ??
           TextStyle(
-              fontSize: 14.0,
+              fontSize: 28.0.sp,
               color: isDarkMode
                   ? _kDefaultDetailColorLight
                   : _kDefaultDetailColor);

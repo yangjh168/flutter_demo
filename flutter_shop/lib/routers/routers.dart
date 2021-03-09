@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
+import 'package:flutter_shop/provider/index_store.dart';
 import 'package:flutter_shop/routers/handlers.dart';
 import 'package:flutter_shop/routers/index.dart';
+import 'package:provider/provider.dart';
 
 //封装一个Routes 类
 class Routes {
@@ -87,5 +89,17 @@ class Routes {
     path = path + query;
     return router.navigateTo(context, path,
         clearStack: clearStack, transition: transition);
+  }
+
+  //返回
+  static void pop<T>(BuildContext context, [T result]) {
+    return router.pop(context, result);
+  }
+
+  // 返回顶层
+  static void switchPop<T>(BuildContext context, int index, [T result]) {
+    IndexStore indexStore = Provider.of<IndexStore>(context, listen: false);
+    indexStore.setCurrentIndex(index);
+    return Navigator.of(context).popUntil(ModalRoute.withName('/'));
   }
 }

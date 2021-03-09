@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_shop/dio/api.dart';
+import 'package:flutter_shop/provider/cart_store.dart';
 import 'package:flutter_shop/widget/empty.dart';
+import 'package:provider/provider.dart';
 
 class CartPage extends StatefulWidget {
   @override
@@ -11,25 +13,18 @@ class CartPage extends StatefulWidget {
 
 class _CartPageState extends State<CartPage>
     with AutomaticKeepAliveClientMixin {
-  List goodsList;
   bool _allSelected = true; //维护复选框状态
 
   @override
   void initState() {
     super.initState();
-    setState(() {
-      goodsList = [];
-    });
     _getGoodsInfo(3013);
   }
 
   void _getGoodsInfo(int id) async {
     var data = await getGoodsDetail({'skuId': id});
-    //设置
-    setState(() {
-      goodsList.clear();
-      goodsList.add(data);
-    });
+    CartStore cartStore = Provider.of<CartStore>(context, listen: false);
+    cartStore.addGoodsToCart(data);
   }
 
   @override
@@ -38,6 +33,7 @@ class _CartPageState extends State<CartPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+
     return Scaffold(
       appBar: AppBar(title: Text('购物车'), elevation: 0),
       body: Stack(
@@ -47,7 +43,10 @@ class _CartPageState extends State<CartPage>
           Container(
             child: EasyRefresh(
               header: MaterialHeader(),
-              child: _goodsList(),
+              child: Container(
+                margin: EdgeInsets.only(top: 20.0.h),
+                child: _goodsList(),
+              ),
               onRefresh: () async {
                 _getGoodsInfo(3013);
               },
@@ -64,7 +63,9 @@ class _CartPageState extends State<CartPage>
   }
 
   Widget _goodsList() {
-    if (goodsList.length > 0) {
+    CartStore cartStore = Provider.of<CartStore>(context);
+    List goodsList = cartStore.goosList;
+    if (goodsList != null && goodsList.isNotEmpty) {
       return Column(
         children: goodsList.map((item) {
           return GoodsCard(cardItem: item);

@@ -6,9 +6,13 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_shop/dio/api.dart';
+import 'package:flutter_shop/provider/cart_store.dart';
+import 'package:flutter_shop/routers/routers.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_shop/widget/count_stepper.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 
 class GoodsDetail extends StatefulWidget {
   //参数
@@ -264,6 +268,10 @@ class _GoodsDetailState extends State<GoodsDetail> {
                   ],
                 ),
               ),
+              onTap: () {
+                //返回首页
+                Routes.switchPop(context, 0);
+              },
             ),
             InkWell(
               child: Container(
@@ -275,29 +283,59 @@ class _GoodsDetailState extends State<GoodsDetail> {
                   ],
                 ),
               ),
+              onTap: () {
+                //返回购物车
+                Routes.switchPop(context, 2);
+              },
             ),
             Expanded(
               child: Container(
                 margin: EdgeInsets.only(right: 20.0.w),
                 child: FlatButton(
-                  onPressed: () {},
                   child: Text('加入购物车', style: TextStyle(fontSize: 28.sp)),
                   color: Color(0xFFFF722C),
                   textColor: Colors.white,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0)),
+                  onPressed: () {
+                    // 加入购物车
+                    CartStore cartStore =
+                        Provider.of<CartStore>(context, listen: false);
+                    goodsInfo['amount'] = 1;
+                    cartStore.addGoodsToCart(goodsInfo);
+
+                    Fluttertoast.showToast(
+                      msg: "添加成功",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.CENTER,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.red,
+                      textColor: Colors.white,
+                      fontSize: 26.0.sp,
+                    );
+                  },
                 ),
               ),
             ),
             Expanded(
                 child: Container(
               child: FlatButton(
-                onPressed: () {},
                 child: Text('立即购买', style: TextStyle(fontSize: 28.sp)),
                 color: Color(0xFFF63434),
                 textColor: Colors.white,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
+                onPressed: () {
+                  Fluttertoast.showToast(
+                    msg: "你太穷了，你买不起！",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.CENTER,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                    fontSize: 26.0.sp,
+                  );
+                },
               ),
             )),
           ],

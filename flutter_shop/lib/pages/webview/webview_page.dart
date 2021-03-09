@@ -16,17 +16,36 @@ class _WebViewPageState extends State<WebViewPage> {
   WebViewController _controller;
   double _height = 100;
   // double _width = 100;
-  String htmlStr = """<p>ListView中的webview_flutter要放在SizedBox中，指定并指定sizedbox的高度，
-                      否则会出错。<span style="color:#e74c3c">实际高度可以调用js来获得返回的高度
-                      </span></p>
+  double lineProgress = 0.0;
 
-                      <p><img alt="" src="http://10.0.2.2:8000/media/imgs/2019-12-05.png"  /></p>""";
+  @override
+  void initState() {
+    super.initState();
+    // PageLoadingCallback(progress){
+    //   print(progress);
+    //     setState(() {
+    //       lineProgress = progress;
+    //     });
+    // }
+  }
+
+  Widget _progressBar(double progress, BuildContext context) {
+    return LinearProgressIndicator(
+      backgroundColor: Colors.white70.withOpacity(0),
+      value: progress == 1.0 ? 0 : progress,
+      valueColor: new AlwaysStoppedAnimation<Color>(Colors.blue),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text("${widget.title}"),
+          bottom: PreferredSize(
+            child: _progressBar(lineProgress, context),
+            preferredSize: Size.fromHeight(3.0),
+          ),
         ),
         body: WebView(
           // 要显示的url

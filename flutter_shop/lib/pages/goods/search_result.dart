@@ -1,37 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_shop/dio/api.dart';
 import 'package:flutter_shop/routers/routers.dart';
+import 'package:flutter_shop/widget/linkImage.dart';
 
-class SearchPage extends StatefulWidget {
-  final String query;
+class SearchResultPage extends StatefulWidget {
+  final String keyword;
 
-  SearchPage({Key key, this.query}) : super(key: key);
+  SearchResultPage({Key key, this.keyword}) : super(key: key);
 
   @override
   _SearchPageState createState() => _SearchPageState();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _SearchPageState extends State<SearchResultPage> {
   TextEditingController _queryTextController = TextEditingController();
   FocusNode _focusNode = FocusNode();
-  String query;
-  List hotList;
+  String keyword = '';
+  List resultList = [];
+  int page = 1;
+  int pageSize = 10;
 
   @override
   void initState() {
     super.initState();
-    _getHotSearchList();
     setState(() {
-      query = widget.query ?? '';
-    });
-  }
-
-  //获取热门搜索列表
-  void _getHotSearchList() async {
-    var res = await getHotSearchList();
-    setState(() {
-      hotList = res;
+      keyword = widget.keyword ?? '';
+      _queryTextController.text = keyword;
+      _getResultData(keyword);
     });
   }
 
@@ -39,20 +36,32 @@ class _SearchPageState extends State<SearchPage> {
   void showResults(BuildContext context) {
     _focusNode?.unfocus();
     // _currentBody = _SearchBody.results;
-    String keyword = _queryTextController.text;
-    // 跳转到搜索结果页
-    Routes.navigateTo(context, '/searchResultPage',
-        params: {"keyword": keyword}).then((result) {});
+    String query = _queryTextController.text;
+    setState(() {
+      keyword = query;
+      page = 1;
+      resultList = [];
+      _getResultData(keyword);
+    });
+  }
+
+  //获取搜索结果
+  void _getResultData(String keyword) async {
+    var res = await getSearchResultList(
+        {'keyword': keyword, 'currentPage': page, 'pageSize': pageSize});
+    setState(() {
+      resultList.addAll((res[0]['productDetailss'] as List).cast());
+      page++;
+    });
   }
 
   //关闭搜索
   void close(BuildContext context, dynamic result) {
     // _currentBody = null;
     _focusNode?.unfocus();
-    Routes.pop(context, result);
-    // Navigator.of(context)
-    //   // ..popUntil((Route<dynamic> route) => route == _route)
-    //   ..pop(result);
+    Navigator.of(context)
+      // ..popUntil((Route<dynamic> route) => route == _route)
+      ..pop(result);
   }
 
   @override
@@ -130,95 +139,74 @@ class _SearchPageState extends State<SearchPage> {
             ),
           ],
         ),
-        body: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 300),
-          child: _searchBody(context),
+        body: EasyRefresh(
+          footer: BezierBounceFooter(),
+          child: buildResultList(context),
+          onLoad: () async {
+            _getResultData(keyword);
+          },
         ),
       ),
     );
   }
 
-  Widget _searchBody(BuildContext context) {
-    if (hotList != null && hotList.isNotEmpty) {
-      return Container(
-        color: Colors.white,
-        child: _hotWrapList(),
-      );
-    } else {
-      return KeyedSubtree(
-        // key: const ValueKey<_SearchBody>(_SearchBody.suggestions),
-        child: buildSuggestions(context),
-      );
-    }
-  }
-
-  //热门搜索列表
-  Widget _hotWrapList() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          padding: EdgeInsets.all(20.0.w),
-          alignment: Alignment.centerLeft,
-          child: Text('热门搜索', style: TextStyle(color: Color(0xFF666666))),
-        ),
-        Container(
-          padding: EdgeInsets.only(left: 20.0.w, right: 20.0.w, bottom: 20.0.w),
-          alignment: Alignment.centerLeft,
+  Widget buildResultList(BuildContext context) {
+    if (resultList != null && resultList.isNotEmpty) {
+      return SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.only(top: 20.0.w, left: 20.0.w),
           child: Wrap(
-            spacing: 20.0.w,
-            runSpacing: 20.0.w,
-            crossAxisAlignment: WrapCrossAlignment.center,
-            children: hotList.map((item) {
-              return GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _queryTextController.text = item['title'];
-                    showResults(context);
-                  });
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).scaffoldBackgroundColor,
-                      borderRadius: BorderRadius.all(Radius.circular(10.0.w))),
-                  padding: EdgeInsets.symmetric(
-                      vertical: 10.0.w, horizontal: 20.0.w),
-                  child: Text(
-                    '${item['title']}',
-                    style:
-                        TextStyle(fontSize: 24.0.sp, color: Color(0xFF666666)),
+            children: resultList.map((item) {
+              return Container(
+                width: 344.w,
+                margin: EdgeInsets.only(right: 20.0.w, bottom: 20.0.w),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                    color: Colors.white),
+                child: InkWell(
+                  child: Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.all(10.0.w),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: 250.0.w,
+                          child: LinkImage(url: item['url']),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 5.0.w, right: 5.0.w),
+                          height: 65.h,
+                          child: Text(item['title'],
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center),
+                        ),
+                        Text(
+                          '￥${item["price"] == 99999 ? item["marketPrice"] : item["price"]}',
+                          style: TextStyle(color: Colors.red),
+                        )
+                      ],
+                    ),
                   ),
+                  onTap: () {
+                    Routes.navigateTo(context, '/goodsDetailPage',
+                        params: {"skuId": item['skuId']}).then((result) {
+                      // if (result != null) {
+                      //   print(result);
+                      // }
+                    });
+                  },
                 ),
               );
             }).toList(),
           ),
         ),
-      ],
-    );
-  }
-
-  Widget buildSuggestions(BuildContext context) {
-    // final suggestionList = query.isEmpty
-    //     ? recentSuggest
-    //     : searchList.where((input) => input.startsWith(query)).toList();
-    // return ListView.builder(
-    //     itemCount: suggestionList.length,
-    //     itemBuilder: (context, index) => ListTile(
-    //           title: RichText(
-    //             text: TextSpan(
-    //                 text: suggestionList[index].substring(0, query.length),
-    //                 style: TextStyle(
-    //                     color: Colors.black, fontWeight: FontWeight.bold),
-    //                 children: [
-    //                   TextSpan(
-    //                       text: suggestionList[index].substring(query.length),
-    //                       style: TextStyle(color: Colors.grey))
-    //                 ]),
-    //           ),
-    //         ));
-    return Center(
-      child: Text('搜索内容'),
-    );
+      );
+    } else {
+      return Center(
+        child: Text('搜索内容'),
+      );
+    }
   }
 }

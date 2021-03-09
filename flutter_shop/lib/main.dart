@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/screenutil_init.dart';
 import 'package:flutter_shop/pages/index_page.dart';
+import 'package:flutter_shop/provider/cart_store.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_shop/provider/category_store.dart';
+import 'package:flutter_shop/provider/index_store.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter_shop/routers/routers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,7 +14,13 @@ void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) {
       return CateGoryStore();
-    })
+    }),
+    ChangeNotifierProvider(create: (context) {
+      return IndexStore();
+    }),
+    ChangeNotifierProvider(create: (context) {
+      return CartStore();
+    }),
   ], child: MyApp()));
 }
 
@@ -52,7 +60,8 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Color(0xFFf5f5f5), //Scaffold底色
           // 文本主题
           textTheme: TextTheme(
-            bodyText2: TextStyle(fontSize: 24.0.sp), //Material 的默认文本样式。
+            bodyText2: TextStyle(
+                fontSize: 24.0.sp, color: Colors.black), //Material 的默认文本样式。
           ),
         ),
         home: IndexPage(),

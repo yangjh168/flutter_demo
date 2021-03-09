@@ -4,6 +4,8 @@ import 'package:flutter_shop/pages/index/cart_page.dart';
 import 'package:flutter_shop/pages/index/category_page.dart';
 import 'package:flutter_shop/pages/index/home_page.dart';
 import 'package:flutter_shop/pages/index/member_page.dart';
+import 'package:flutter_shop/provider/index_store.dart';
+import 'package:provider/provider.dart';
 
 class IndexPage extends StatefulWidget {
   @override
@@ -30,7 +32,7 @@ class _IndexPageState extends State<IndexPage> {
   // 方式二
   final pageController = PageController();
 
-  int currentIndex = 0;
+  int viewIndex = 0;
 
   @override
   void initState() {
@@ -39,6 +41,14 @@ class _IndexPageState extends State<IndexPage> {
 
   @override
   Widget build(BuildContext context) {
+    IndexStore indexStore = Provider.of<IndexStore>(context);
+    int currentIndex = indexStore.currentIndex;
+    if (viewIndex != currentIndex) {
+      pageController.jumpToPage(currentIndex);
+      setState(() {
+        viewIndex = currentIndex;
+      });
+    }
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -48,8 +58,10 @@ class _IndexPageState extends State<IndexPage> {
           // setState(() {
           //   currentIndex = index;
           // });
+          // 更新状态管理器里的数据(不需要监听的listen必须要写false, 否则会报错)
+          // IndexStore indexStore = Provider.of<IndexStore>(context, listen: false);
           if (currentIndex != index) {
-            pageController.jumpToPage(index);
+            indexStore.setCurrentIndex(index);
           }
         },
       ),

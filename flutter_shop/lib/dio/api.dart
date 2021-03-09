@@ -4,7 +4,10 @@ import 'http_utils.dart';
 
 // 获取首页轮播图数据
 Future getHomePageSwiper([data, options]) async {
-  return HttpUtils.get('/sysParams/homeParamList', data, options);
+  return HttpUtils.get(
+      'https://www.heytap.com/cn/oapi/configs/web/banners/040101,040201',
+      data,
+      options);
 }
 
 //获取热门商品
@@ -33,6 +36,20 @@ Future getGoodsDetail([data, options]) async {
 Future getMemberMenuList([data, options]) async {
   return HttpUtils.get(
       'https://www.heytap.com/cn/oapi/goods/web/products/040401',
+      data,
+      options);
+}
+
+//获取热门搜索列表
+Future getHotSearchList([data, options]) async {
+  return HttpUtils.get(
+      'https://www.heytap.com/cn/oapi/configs/web/icons/040109', data, options);
+}
+
+//获取搜索结果列表
+Future getSearchResultList([data, options]) async {
+  return HttpUtils.get(
+      'https://www.heytap.com/cn/oapi/goods/web/info/search/keyword/040110',
       data,
       options);
 }

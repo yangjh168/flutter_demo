@@ -5,6 +5,7 @@ import 'package:flutter_shop/dio/api.dart';
 // import 'package:flutter_shop/mock/category.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_shop/widget/LinkImage.dart';
+import 'package:flutter_shop/widget/empty.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_shop/provider/category_store.dart';
 import 'package:flutter_shop/routers/routers.dart';
@@ -16,30 +17,10 @@ class CategoryPage extends StatefulWidget {
 
 class _CategoryPageState extends State<CategoryPage>
     with AutomaticKeepAliveClientMixin {
+  List menuList = [];
+
   @override
   bool get wantKeepAlive => true;
-
-  @override
-  Widget build(BuildContext context) {
-    super.build(context);
-    return Scaffold(
-      appBar: AppBar(title: Text('分类'), elevation: 0),
-      body: Container(
-          child: Row(
-        children: [LeftMenu(), _RightSubMenu()],
-      )),
-    );
-  }
-}
-
-class LeftMenu extends StatefulWidget {
-  @override
-  _LeftMenuState createState() => _LeftMenuState();
-}
-
-class _LeftMenuState extends State<LeftMenu> {
-  int activeIndex = 0;
-  List menuList = [];
 
   @override
   void initState() {
@@ -57,16 +38,59 @@ class _LeftMenuState extends State<LeftMenu> {
     // print(categoryList);
     setState(() {
       menuList.addAll(categoryList);
+      print(menuList);
       // menuList.addAll(categoryList);
     });
-    // 组件创建完成的回调通知方法,直接调用会报（setState() or markNeedsBuild() called during build）错；
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      var childList = menuList[activeIndex]['productDetailss'];
-      // 更新状态管理器里的数据(不需要监听的listen必须要写false, 否则会报错)
-      CateGoryStore cateGoryStore =
-          Provider.of<CateGoryStore>(context, listen: false);
-      cateGoryStore.setChildCategory(childList);
-    });
+    if (menuList != null && menuList.isNotEmpty) {
+      // 组件创建完成的回调通知方法,直接调用会报（setState() or markNeedsBuild() called during build）错；
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        var childList = menuList[0]['productDetailss'];
+        // 更新状态管理器里的数据(不需要监听的listen必须要写false, 否则会报错)
+        CateGoryStore cateGoryStore =
+            Provider.of<CateGoryStore>(context, listen: false);
+        cateGoryStore.setChildCategory(childList);
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return Scaffold(
+        appBar: AppBar(title: Text('分类'), elevation: 0),
+        body: _categoryContene());
+  }
+
+  Widget _categoryContene() {
+    if (menuList != null && menuList.isNotEmpty) {
+      return Container(
+          child: Row(
+        children: [LeftMenu(menuList: menuList), _RightSubMenu()],
+      ));
+    } else {
+      return EmptyContainer(
+        image: Image.asset('assets/image/nodata.png'),
+        title: '暂无数据',
+      );
+    }
+  }
+}
+
+class LeftMenu extends StatefulWidget {
+  final List menuList;
+
+  const LeftMenu({Key key, this.menuList}) : super(key: key);
+
+  @override
+  _LeftMenuState createState() => _LeftMenuState();
+}
+
+class _LeftMenuState extends State<LeftMenu> {
+  int activeIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -75,7 +99,7 @@ class _LeftMenuState extends State<LeftMenu> {
       width: 180.w,
       // decoration: BoxDecoration(border: Border(right: BorderSide(width: 0.5, color: Colors.black12))),
       child: ListView.builder(
-          itemCount: menuList.length,
+          itemCount: widget.menuList.length,
           itemBuilder: (content, index) {
             return _leftItem(index);
           }),
@@ -95,7 +119,7 @@ class _LeftMenuState extends State<LeftMenu> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              menuList[index]['name'],
+              widget.menuList[index]['name'],
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -111,7 +135,7 @@ class _LeftMenuState extends State<LeftMenu> {
         setState(() {
           activeIndex = index;
         });
-        var childList = menuList[index]['productDetailss'];
+        var childList = widget.menuList[index]['productDetailss'];
         // 更新状态管理器里的数据(不需要监听的listen必须要写false, 否则会报错)
         CateGoryStore cateGoryStore =
             Provider.of<CateGoryStore>(context, listen: false);
@@ -197,7 +221,9 @@ class __RightSubMenuState extends State<_RightSubMenu> {
         ),
       );
     } else {
-      return Text('暂无数据');
+      return Center(
+        child: Text('暂无数据', style: TextStyle(color: Colors.black26)),
+      );
     }
   }
 }

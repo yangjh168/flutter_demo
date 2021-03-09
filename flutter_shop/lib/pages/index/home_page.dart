@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage>
             borderRadius: BorderRadius.all(Radius.circular(50.0.w)),
           ),
           alignment: Alignment.center,
-          height: 76.0.h,
+          constraints: BoxConstraints(maxHeight: 34),
           child: GestureDetector(
             onTap: () {
               // print('点击搜索');
@@ -57,12 +57,15 @@ class _HomePageState extends State<HomePage>
                   params: {"query": '11111'}).then((result) {});
             },
             child: TextField(
-              /// 键盘类型
+              style: TextStyle(fontSize: 26.0.sp), //垂直居中重点
+              textAlign: TextAlign.center,
+              // 键盘类型
               keyboardType: TextInputType.text,
               //控制键盘的功能键 指enter键，比如此处设置为next时，enter键
               textInputAction: TextInputAction.search,
               maxLines: 1,
               decoration: InputDecoration(
+                contentPadding: EdgeInsets.all(2),
                 enabled: false, //禁用
                 border: InputBorder.none,
                 prefixIcon: GestureDetector(
@@ -86,9 +89,9 @@ class _HomePageState extends State<HomePage>
         future: _getTaskAsync,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            // var data = snapshot.data;
-            // print(data);
-            // List<Map> swiper = (data['data']['carouselList'] as List).cast();
+            var data = snapshot.data;
+            List<Map> bannerList = (data as List).cast();
+            // print(bannerList);
             return EasyRefresh(
               header: SpaceHeader(),
               footer: BezierBounceFooter(),
@@ -131,7 +134,7 @@ class _HomePageState extends State<HomePage>
             );
           } else {
             return Center(
-              child: Text('加载中'),
+              child: Text('加载中...'),
             );
           }
         },
@@ -266,7 +269,8 @@ class SwiperDiy extends StatelessWidget {
       child: Swiper(
         itemCount: swiperDataList.length,
         itemBuilder: (BuildContext context, int index) {
-          return Image.network('${swiperDataList[index]}', fit: BoxFit.fill);
+          return Image.network('${swiperDataList[index]['url']}',
+              fit: BoxFit.fill);
         },
         pagination: SwiperPagination(),
         autoplay: true,
