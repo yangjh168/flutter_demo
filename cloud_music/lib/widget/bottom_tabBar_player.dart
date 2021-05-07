@@ -1,6 +1,8 @@
 // import 'dart:js';
 
 // import 'package:cloud_music/music_player/widget/player.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_music/entity/music.dart';
 import 'package:cloud_music/provider/player_store.dart';
 import 'package:cloud_music/routers/routers.dart';
 import 'package:flutter/material.dart';
@@ -55,6 +57,7 @@ class _AnimationPlayer extends State<AnimationPlayer>
   @override
   Widget build(BuildContext context) {
     PlayerStore player = PlayerStore.of(context);
+    Music music = player.music;
     if (player.isPlaying) {
       //开始动画
       _animationController.forward();
@@ -67,14 +70,39 @@ class _AnimationPlayer extends State<AnimationPlayer>
         children: [
           RotationTransition(
             turns: _animation,
-            child: new Container(
-              height: 45,
-              width: 45,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(image: AssetImage('images/icon_cd.jpg')),
-              ),
-            ),
+            child: player.isPlaying
+                ? CachedNetworkImage(
+                    //用法 https://www.cnblogs.com/maqingyuan/p/13717437.html
+                    imageUrl: music.album.coverImageUrl,
+                    imageBuilder: (context, url) => Container(
+                      height: 45,
+                      width: 45,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(image: url, fit: BoxFit.cover),
+                      ),
+                    ),
+                    placeholder: (context, url) => Container(
+                      width: 45,
+                      height: 45,
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                        ),
+                      ),
+                    ),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    fit: BoxFit.fitWidth,
+                  )
+                : new Container(
+                    height: 45,
+                    width: 45,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                          image: AssetImage('images/icon_cd.jpg')),
+                    ),
+                  ),
           ),
           !player.isPlaying
               ? (Positioned(

@@ -1,3 +1,4 @@
+import 'package:cloud_music/entity/song_menu.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:async/async.dart';
@@ -73,7 +74,6 @@ class _LoadDataBuilderState<T> extends State<LoadDataBuilder> {
   ///refresh data
   // force: true在加载过程中强制刷新
   Future<void> refresh({bool force: false}) async {
-    print("刷新");
     _loadData(widget.api, force: false);
   }
 
@@ -89,9 +89,9 @@ class _LoadDataBuilderState<T> extends State<LoadDataBuilder> {
     _loadingTask = CancelableOperation<T>.fromFuture(_future)
       ..value.then((result) {
         assert(result != null, "result can not be null");
-        baseResult = BaseResult.success(result);
+        baseResult = BaseResult.success<T>(result);
       }).catchError((e, StackTrace stack) {
-        baseResult = BaseResult.error();
+        baseResult = BaseResult.error<T>(code: e.code, msg: e.msg);
         _onError(e, stack);
       }).whenComplete(() {
         _loadingTask = null;
@@ -121,14 +121,18 @@ class _LoadDataBuilderState<T> extends State<LoadDataBuilder> {
       return (widget.loadingBuilder ??
           LoadDataBuilder.buildSimpleLoadingWidget)(context);
     }
-    if (baseResult != null && baseResult.isSuccess == true) {
-      return widget.builder(context, baseResult.data);
+    if (baseResult != null) {
+      if (baseResult.isSuccess == true) {
+        return widget.builder(context, baseResult.data);
+      } else {
+        return LoadErrorWidget(
+          errorBuilder:
+              widget.errorBuilder ?? LoadDataBuilder.buildSimpleFailedWidget,
+          result: baseResult,
+        );
+      }
     } else {
-      return LoadErrorWidget(
-        errorBuilder:
-            widget.errorBuilder ?? LoadDataBuilder.buildSimpleFailedWidget,
-        result: baseResult,
-      );
+      return Text("");
     }
   }
 }

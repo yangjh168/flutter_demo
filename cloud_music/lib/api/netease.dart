@@ -1,15 +1,20 @@
+import 'package:cloud_music/entity/song_menu.dart';
 import 'package:dio/dio.dart';
 import '../dio/http_utils.dart';
 
 NeteaseApi neteaseApi = new NeteaseApi();
 
 class NeteaseApi {
-  // 获取首页轮播图数据
-  Future getHomePageSwiper([data, options]) async {
-    return HttpUtils.get(
-        'https://www.heytap.com/cn/oapi/configs/web/banners/040101,040201',
-        data,
-        options);
+  // 获取推荐歌单
+  Future<List<SongMenu>> getRecommendPlaylist(
+      [Map data, Options options, bool capture]) async {
+    final response =
+        await HttpUtils.get('/netease/recommend', data, options, capture);
+    final list = (response as List)
+        .cast<Map>()
+        .map((item) => SongMenu.fromJson(item))
+        .toList();
+    return list;
   }
 
   // 获取推荐的新歌（10首）

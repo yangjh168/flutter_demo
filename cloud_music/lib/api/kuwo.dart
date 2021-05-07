@@ -2,14 +2,14 @@ import 'package:cloud_music/entity/song_menu.dart';
 import 'package:dio/dio.dart';
 import '../dio/http_utils.dart';
 
-CommonApi commonApi = new CommonApi();
+KuwoApi kuwoApi = new KuwoApi();
 
-class CommonApi {
+class KuwoApi {
   // 获取推荐歌单
   Future<List<SongMenu>> getRecommendPlaylist(
       [Map data, Options options, bool capture]) async {
     final response =
-        await HttpUtils.get('/netease/recommend', data, options, capture);
+        await HttpUtils.get('/kuwo/homedata', data, options, capture);
     final list = (response as List)
         .cast<Map>()
         .map((item) => SongMenu.fromJson(item))
@@ -17,8 +17,8 @@ class CommonApi {
     return list;
   }
 
-  // 获取推荐的新歌（10首）
-  Future getNewMusicList([Map data, Options options, bool capture]) async {
-    return HttpUtils.get('/personalized/newsong', data, options, capture);
+  //获取搜索结果列表
+  Future getSearchResultList([Map data, Options options, bool capture]) async {
+    return HttpUtils.get('/kuwo/search', data, options, capture);
   }
 }

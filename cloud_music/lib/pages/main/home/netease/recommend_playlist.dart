@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_music/api/common.dart';
+import 'package:cloud_music/api/netease.dart';
+import 'package:cloud_music/entity/song_menu.dart';
 import 'package:cloud_music/widget/load_data_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,8 +36,8 @@ class RecommendPlaylist extends StatelessWidget {
                 ],
               ),
             ),
-            LoadDataBuilder(
-                api: commonApi.getRecommendPlaylist,
+            LoadDataBuilder<List<SongMenu>>(
+                api: neteaseApi.getRecommendPlaylist,
                 builder: (context, data) {
                   return Container(
                     padding: EdgeInsets.only(left: 20.w, right: 20.w),
@@ -71,7 +72,7 @@ class RecommendPlaylist extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
               child: CachedNetworkImage(
-                imageUrl: item['picUrl'],
+                imageUrl: item.picUrl,
                 placeholder: (context, url) => Container(
                   width: 130,
                   height: 100,
@@ -86,7 +87,7 @@ class RecommendPlaylist extends StatelessWidget {
               ),
             ),
           ),
-          Text('${item['name']}',
+          Text(item.name,
               softWrap: true,
               textAlign: TextAlign.left,
               overflow: TextOverflow.ellipsis,

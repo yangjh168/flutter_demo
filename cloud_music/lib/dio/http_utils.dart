@@ -4,17 +4,17 @@ import 'dio_utils.dart';
 
 class HttpUtils {
   //get 请求
-  static Future get<T>(String url, [Map data, Options options, bool capture]) {
+  static Future get(String url, [Map data, Options options, bool capture]) {
     return _request(Method.GET, url, data, options, capture);
   }
 
   //post 请求
-  static Future post<T>(String url, [Map data, Options options, bool capture]) {
+  static Future post(String url, [Map data, Options options, bool capture]) {
     return _request(Method.POST, url, data, options, capture);
   }
 
   //_request 请求
-  static Future _request<T>(Method method, String url,
+  static Future _request(Method method, String url,
       [Map data, Options options, bool capture]) {
     /// restful 请求处理
     /// /base/search/hist/:user_id        user_id=27

@@ -6,11 +6,11 @@ class BaseResult<T> {
 
   BaseResult(this.isSuccess, this.code, this.msg, this.data);
 
-  static BaseResult success(result) {
-    return new BaseResult(true, 200, '操作成功', result);
+  static BaseResult success<T>(result) {
+    return new BaseResult<T>(true, 200, '操作成功', result);
   }
 
-  static BaseResult error() {
-    return new BaseResult(false, 400, '操作失败', null);
+  static BaseResult error<T>({int code = 400, String msg = '操作失败'}) {
+    return new BaseResult<T>(false, code, msg, null);
   }
 }

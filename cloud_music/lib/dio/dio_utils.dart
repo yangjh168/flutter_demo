@@ -55,13 +55,13 @@ class DioUtils {
     _dio = null;
   }
 
-  /// 请求，返回参数为 T
+  /// 请求
   /// method：请求方法，Method.POST等
   /// path：请求url
   /// data：请求参数
   /// options：请求配置项
   /// capture：是否自定义捕获请求异常处理程序
-  static Future request<T>(Method method, String path,
+  static Future request(Method method, String path,
       [dynamic data, Options options, bool capture = false]) async {
     if (capture == null) {
       capture = false;
@@ -92,16 +92,20 @@ class DioUtils {
       Response response = await _dio.request(path,
           queryParameters: queryParameters, data: data, options: options);
       if (response != null) {
-        var data = response.data;
-        print('请求结果：' + data.toString());
-        if (data != null && data['code'] == 200) {
-          if (data['result'] != null) {
-            return data['result'];
+        if (response.statusCode == 200) {
+          var data = response.data;
+          print('请求结果：' + data.toString());
+          if (data != null && data['code'] == 200) {
+            if (data['result'] != null) {
+              return data['result'];
+            } else {
+              return data;
+            }
           } else {
-            return data;
+            _onError(ExceptionHandle.unknown_error, data['msg'], capture);
           }
         } else {
-          _onError(ExceptionHandle.unknown_error, data['message'], capture);
+          _onError(response.statusCode, '服务器异常', capture);
         }
       } else {
         _onError(ExceptionHandle.unknown_error, '未知错误', capture);
@@ -116,6 +120,7 @@ class DioUtils {
 
 //异常处理
 void _onError(int code, String msg, bool capture) {
+  print('请求失败：($code)' + msg);
   if (code == null) {
     code = ExceptionHandle.unknown_error;
     msg = '未知异常';

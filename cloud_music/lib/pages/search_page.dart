@@ -1,5 +1,7 @@
+import 'package:cloud_music/api/kuwo.dart';
 import 'package:cloud_music/entity/music.dart';
 import 'package:cloud_music/provider/player_store.dart';
+import 'package:cloud_music/provider/search_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,38 +17,60 @@ class SearchPage extends StatefulWidget {
   _SearchPageState createState() => _SearchPageState();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _SearchPageState extends State<SearchPage>
+    with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   TextEditingController _queryTextController = TextEditingController();
   FocusNode _focusNode = FocusNode();
+  TabController _controller;
   String query; //搜索关键字
-  List hotList; //热门搜索列表
   List<Music> resultList; //搜索结果集
+  //搜索历史仓库
+  SearchStore _searchHistory = SearchStore();
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
     super.initState();
-    _getHotSearchList();
+    _controller = TabController(length: 3, vsync: this);
+    // _getHotSearchList();
     setState(() {
       query = widget.query ?? '';
     });
   }
 
   //获取热门搜索列表
-  void _getHotSearchList() async {
-    var res = await neteaseApi.getHotSearchList();
-    setState(() {
-      hotList = res['hots'];
-    });
-  }
+  // void _getHotSearchList() async {
+  //   var res = await neteaseApi.getHotSearchList();
+  //   setState(() {
+  //     hotList = res['hots'];
+  //   });
+  // }
 
   // 显示搜索结果
-  void showResults(BuildContext context) async {
+  void _search(BuildContext context) async {
     _focusNode?.unfocus();
     // _currentBody = _SearchBody.results;
     String keyword = _queryTextController.text;
-    var res = await neteaseApi.getSearchResultList({'keywords': keyword});
-    List<Music> songs =
-        (res as List).cast<Map>().map((item) => Music.fromMap(item)).toList();
+    if (keyword.isEmpty) {
+      return;
+    }
+    _searchHistory.insertSearchHistory(keyword);
+    var res;
+    print("平台==================");
+    print(_controller.index);
+    if (_controller.index == 0) {
+      res = await neteaseApi.getSearchResultList({'keywords': keyword});
+    } else if (_controller.index == 2) {
+      res = await kuwoApi.getSearchResultList({'keyword': keyword});
+    } else {
+      res = await neteaseApi.getSearchResultList({'keywords': keyword});
+    }
+    List<Music> songs = (res['list'] as List)
+        .cast<Map>()
+        .map((item) => Music.fromMap(item))
+        .toList();
     setState(() {
       resultList = songs;
     });
@@ -64,6 +88,7 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Semantics(
       explicitChildNodes: true,
       scopesRoute: true,
@@ -72,9 +97,9 @@ class _SearchPageState extends State<SearchPage> {
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: Colors.white,
-          iconTheme: IconThemeData(color: Colors.black),
-          textTheme: Theme.of(context).primaryTextTheme,
+          backgroundColor: Color(0xFFf1503B),
+          // iconTheme: IconThemeData(color: Colors.black),
+          // textTheme: Theme.of(context).primaryTextTheme,
           brightness: Theme.of(context).primaryColorBrightness,
           leading: GestureDetector(
             child: Icon(
@@ -98,7 +123,7 @@ class _SearchPageState extends State<SearchPage> {
               focusNode: _focusNode,
               onSubmitted: (String _) {
                 ////同样是点击键盘完成按钮时触发的回调，该回调有参数，参数即为当前输入框中的值。(String){}
-                showResults(context);
+                _search(context);
               },
               onChanged: (val) {},
               style: TextStyle(fontSize: 26.0.sp),
@@ -128,14 +153,25 @@ class _SearchPageState extends State<SearchPage> {
               padding: EdgeInsets.only(right: 20.0.w),
               child: Center(
                 child: GestureDetector(
-                  child: Text("搜索", style: TextStyle(color: Colors.black)),
+                  child: Text("搜索",
+                      style: TextStyle(color: Colors.white, fontSize: 16.0)),
                   onTap: () {
-                    showResults(context);
+                    _search(context);
                   },
                 ),
               ),
             ),
           ],
+          bottom: TabBar(
+            controller: _controller,
+            indicatorColor: Colors.white,
+            indicatorSize: TabBarIndicatorSize.label,
+            tabs: [
+              Tab(child: Text('网易')),
+              Tab(child: Text('酷狗')),
+              Tab(child: Text('酷我')),
+            ],
+          ),
         ),
         body: AnimatedSwitcher(
           duration: const Duration(milliseconds: 300),
@@ -146,15 +182,15 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   Widget _searchBody(BuildContext context) {
-    print('_focusNode.hasFocus');
-    print(_focusNode.hasFocus);
+    List<String> searchHistory =
+        SearchStore.of(context, listen: true).searchHistory;
     if (resultList != null && resultList.isNotEmpty) {
       return SearchResultPage(resultList: resultList);
     } else {
-      if (hotList != null && hotList.isNotEmpty) {
+      if (searchHistory != null && searchHistory.isNotEmpty) {
         return Container(
           color: Colors.white,
-          child: _hotWrapList(),
+          child: _hotWrapList(searchHistory),
         );
       } else {
         return KeyedSubtree(
@@ -166,7 +202,8 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   //热门搜索列表
-  Widget _hotWrapList() {
+  Widget _hotWrapList(searchHistory) {
+    print(searchHistory);
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -174,7 +211,7 @@ class _SearchPageState extends State<SearchPage> {
         Container(
           padding: EdgeInsets.all(20.0.w),
           alignment: Alignment.centerLeft,
-          child: Text('热门搜索', style: TextStyle(color: Color(0xFF666666))),
+          child: Text('搜索历史', style: TextStyle(color: Color(0xFF666666))),
         ),
         Container(
           padding: EdgeInsets.only(left: 20.0.w, right: 20.0.w, bottom: 20.0.w),
@@ -183,13 +220,12 @@ class _SearchPageState extends State<SearchPage> {
             spacing: 20.0.w,
             runSpacing: 20.0.w,
             crossAxisAlignment: WrapCrossAlignment.center,
-            children: hotList.map((item) {
-              String name = item['first'];
+            children: searchHistory.map<Widget>((name) {
               return GestureDetector(
                 onTap: () {
                   setState(() {
                     _queryTextController.text = name;
-                    showResults(context);
+                    _search(context);
                   });
                 },
                 child: Container(

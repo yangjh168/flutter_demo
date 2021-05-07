@@ -1,6 +1,7 @@
 import 'package:cloud_music/pages/splash/page_splash.dart';
 import 'package:cloud_music/pages/splash_page.dart';
 import 'package:cloud_music/provider/player_store.dart';
+import 'package:cloud_music/provider/search_store.dart';
 import 'package:cloud_music/provider/settings.dart';
 import 'package:cloud_music/provider/user_account.dart';
 import 'package:flutter/material.dart';
@@ -74,6 +75,9 @@ class GlobalProvider extends StatelessWidget {
       }),
       ChangeNotifierProvider(create: (context) {
         return PlayerStore();
+      }),
+      ChangeNotifierProvider(create: (context) {
+        return SearchStore();
       }),
     ], child: MyApp(setting: setting, user: user));
   }
