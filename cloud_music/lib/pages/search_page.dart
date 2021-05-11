@@ -7,6 +7,7 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cloud_music/api/netease.dart';
 import 'package:cloud_music/routers/routers.dart';
+import 'package:cloud_music/widget/platform_logo.dart';
 
 class SearchPage extends StatefulWidget {
   final String query;
@@ -21,7 +22,7 @@ class _SearchPageState extends State<SearchPage>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   TextEditingController _queryTextController = TextEditingController();
   FocusNode _focusNode = FocusNode();
-  TabController _controller;
+  TabController _tabController;
   String query; //搜索关键字
   List<Music> resultList; //搜索结果集
   //搜索历史仓库
@@ -33,23 +34,20 @@ class _SearchPageState extends State<SearchPage>
   @override
   void initState() {
     super.initState();
-    _controller = TabController(length: 3, vsync: this);
-    // _getHotSearchList();
+    _tabController = TabController(length: 3, vsync: this);
+    _tabController.addListener(() {
+      print(_tabController.index);
+      if (_tabController.index.toDouble() == _tabController.animation.value) {
+        _search();
+      }
+    });
     setState(() {
       query = widget.query ?? '';
     });
   }
 
-  //获取热门搜索列表
-  // void _getHotSearchList() async {
-  //   var res = await neteaseApi.getHotSearchList();
-  //   setState(() {
-  //     hotList = res['hots'];
-  //   });
-  // }
-
   // 显示搜索结果
-  void _search(BuildContext context) async {
+  void _search() async {
     _focusNode?.unfocus();
     // _currentBody = _SearchBody.results;
     String keyword = _queryTextController.text;
@@ -59,10 +57,10 @@ class _SearchPageState extends State<SearchPage>
     _searchHistory.insertSearchHistory(keyword);
     var res;
     print("平台==================");
-    print(_controller.index);
-    if (_controller.index == 0) {
+    print(_tabController.index);
+    if (_tabController.index == 0) {
       res = await neteaseApi.getSearchResultList({'keywords': keyword});
-    } else if (_controller.index == 2) {
+    } else if (_tabController.index == 2) {
       res = await kuwoApi.getSearchResultList({'keyword': keyword});
     } else {
       res = await neteaseApi.getSearchResultList({'keywords': keyword});
@@ -77,7 +75,7 @@ class _SearchPageState extends State<SearchPage>
   }
 
   //关闭搜索
-  void close(BuildContext context, dynamic result) {
+  void _closeSearch(BuildContext context, dynamic result) {
     // _currentBody = null;
     _focusNode?.unfocus();
     Routes.pop(context, result);
@@ -106,8 +104,7 @@ class _SearchPageState extends State<SearchPage>
               Icons.arrow_back_ios_outlined,
             ),
             onTap: () {
-              print('点击返回');
-              close(context, null);
+              _closeSearch(context, null);
             },
           ),
           leadingWidth: 50.0.w,
@@ -123,7 +120,7 @@ class _SearchPageState extends State<SearchPage>
               focusNode: _focusNode,
               onSubmitted: (String _) {
                 ////同样是点击键盘完成按钮时触发的回调，该回调有参数，参数即为当前输入框中的值。(String){}
-                _search(context);
+                _search();
               },
               onChanged: (val) {},
               style: TextStyle(fontSize: 26.0.sp),
@@ -156,14 +153,14 @@ class _SearchPageState extends State<SearchPage>
                   child: Text("搜索",
                       style: TextStyle(color: Colors.white, fontSize: 16.0)),
                   onTap: () {
-                    _search(context);
+                    _search();
                   },
                 ),
               ),
             ),
           ],
           bottom: TabBar(
-            controller: _controller,
+            controller: _tabController,
             indicatorColor: Colors.white,
             indicatorSize: TabBarIndicatorSize.label,
             tabs: [
@@ -225,7 +222,7 @@ class _SearchPageState extends State<SearchPage>
                 onTap: () {
                   setState(() {
                     _queryTextController.text = name;
-                    _search(context);
+                    _search();
                   });
                 },
                 child: Container(
@@ -248,6 +245,7 @@ class _SearchPageState extends State<SearchPage>
     );
   }
 
+  //搜索建议
   Widget buildSuggestions(BuildContext context) {
     // final suggestionList = query.isEmpty
     //     ? recentSuggest
@@ -275,7 +273,7 @@ class _SearchPageState extends State<SearchPage>
 
 //搜索结果
 class SearchResultPage extends StatelessWidget {
-  final List resultList;
+  final List<Music> resultList;
 
   const SearchResultPage({Key key, this.resultList}) : super(key: key);
 
@@ -343,17 +341,21 @@ class SearchResultPage extends StatelessWidget {
   Widget _playItem(item, context) {
     return InkWell(
       onTap: () async {
-        var playable = await neteaseApi.checkMusic({'id': item.id});
+        //点击音乐
+        var playable = await neteaseApi
+            .checkMusic({'id': item.id, 'platform': item.platform});
         if (!playable) {
           print("音乐不可用");
           // showDialog(context: context, builder: (context) => DialogNoCopyRight());
           return;
         }
-        final res = await neteaseApi.getMusicDetail({'ids': item.id});
-        Music song = Music.fromMap(res);
+
+        final res = await neteaseApi
+            .getMusicDetail({'id': item.id, 'platform': item.platform});
+        Music music = Music.fromMap(res);
         PlayerStore player = PlayerStore.of(context, listen: false);
-        if (player.music == null || player.music.id != song.id) {
-          player.play(music: song, playList: []);
+        if (player.music == null || player.music.id != music.id) {
+          player.play(music: music, playList: []);
         }
       },
       child: Container(
@@ -364,17 +366,33 @@ class SearchResultPage extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('${item.title}',
-                      style: TextStyle(
-                          color: Color(0XFF666666), fontSize: 24.0.sp)),
-                  Text('${item.subTitle}',
-                      style: TextStyle(
-                          color: Color(0XFF666666), fontSize: 24.0.sp)),
-                ],
+              child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('${item.title}',
+                        style: TextStyle(
+                            color: Color(0XFF666666), fontSize: 24.0.sp)),
+                    Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(right: 5),
+                          child: PlatformLogo(platform: item.platform),
+                        ),
+                        Expanded(
+                          child: Text(
+                            '${item.subTitle}',
+                            style: TextStyle(
+                                color: Color(0XFF666666), fontSize: 24.0.sp),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
             Container(

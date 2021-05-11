@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_music/api/netease.dart';
 import 'package:cloud_music/entity/song_menu.dart';
+import 'package:cloud_music/routers/routers.dart';
 import 'package:cloud_music/widget/load_data_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -48,7 +49,7 @@ class RecommendPlaylist extends StatelessWidget {
                       crossAxisCount: 3,
                       physics: NeverScrollableScrollPhysics(), //关闭滚动
                       children: data.map<Widget>((item) {
-                        return _playItem(item);
+                        return _playItem(item, context);
                       }).toList(),
                     ),
                   );
@@ -57,10 +58,10 @@ class RecommendPlaylist extends StatelessWidget {
         ));
   }
 
-  Widget _playItem(item) {
+  Widget _playItem(item, context) {
     return InkWell(
       onTap: () {
-        print('点击了菜单');
+        Routes.navigateTo(context, '/songlistPage', params: {'id': item.id});
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

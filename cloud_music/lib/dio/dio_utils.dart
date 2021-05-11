@@ -62,7 +62,7 @@ class DioUtils {
   /// options：请求配置项
   /// capture：是否自定义捕获请求异常处理程序
   static Future request(Method method, String path,
-      [dynamic data, Options options, bool capture = false]) async {
+      [Map data, Options options, bool capture = false]) async {
     if (capture == null) {
       capture = false;
     }

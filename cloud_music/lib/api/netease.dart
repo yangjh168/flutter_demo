@@ -1,3 +1,4 @@
+import 'package:cloud_music/entity/playlist_detail.dart';
 import 'package:cloud_music/entity/song_menu.dart';
 import 'package:dio/dio.dart';
 import '../dio/http_utils.dart';
@@ -45,5 +46,20 @@ class NeteaseApi {
   //获取歌曲详情
   Future getMusicDetail([Map data, Options options, bool capture]) async {
     return HttpUtils.get('/song/detail', data, options, capture);
+  }
+
+  //获取播放链接
+  Future<String> getMediaLink([Map data, Options options, bool capture]) async {
+    print(data.toString());
+    final link = await HttpUtils.get('/media/link', data, options, capture);
+    return link;
+  }
+
+  // 获取歌单详情
+  Future<PlaylistDetail> getSonglistDetail(
+      [Map data, Options options, bool capture]) async {
+    final res = await HttpUtils.get('/songlist/detail', data, options, capture);
+    PlaylistDetail playlistDetail = PlaylistDetail.fromJson(res);
+    return playlistDetail;
   }
 }

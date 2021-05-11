@@ -3,6 +3,7 @@ import 'package:cloud_music/entity/music_metadata.dart';
 
 class Music {
   Music({
+    this.platform,
     this.id,
     this.title,
     this.url,
@@ -10,6 +11,8 @@ class Music {
     this.artist,
     int mvId,
   }) : this.mvId = mvId ?? 0;
+
+  final int platform;
 
   final int id;
 
@@ -30,7 +33,7 @@ class Music {
 
   MusicMetadata get metadata {
     if (_metadata != null) return _metadata;
-    _metadata = MusicMetadata(
+    _metadata = new MusicMetadata(
       mediaId: id.toString(),
       title: title,
       subtitle: subTitle,
@@ -51,14 +54,15 @@ class Music {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) || other is Music && id == other.id;
+      identical(this, other) ||
+      other is Music && platform == other.platform && id == other.id;
 
   @override
   int get hashCode => id.hashCode;
 
   @override
   String toString() {
-    return 'Music{id: $id, title: $title, url: $url, album: $album, artist: $artist}';
+    return 'Music{platform: $platform, id: $id, title: $title, url: $url, album: $album, artist: $artist}';
   }
 
   factory Music.fromMetadata(MusicMetadata metadata) {
@@ -73,6 +77,7 @@ class Music {
       return null;
     }
     return Music(
+        platform: map["platform"],
         id: map["id"],
         title: map["title"],
         url: map["url"],
@@ -81,11 +86,32 @@ class Music {
         artist:
             (map["artist"] as List).cast<Map>().map(Artist.fromMap).toList());
   }
+
+  Music merge({
+    int platform,
+    int id,
+    String title,
+    String url,
+    Album album,
+    List<Artist> artist,
+    int mvId,
+  }) {
+    return Music(
+      platform: platform ?? this.platform,
+      id: id ?? this.id,
+      title: title ?? this.title,
+      url: url ?? this.url,
+      album: album ?? this.album,
+      artist: artist ?? this.artist,
+      mvId: mvId ?? this.mvId,
+    );
+  }
 }
 
 extension MusicExt on Music {
   Map toMap() {
     return {
+      "platform": platform,
       "id": id,
       "title": title,
       "url": url,

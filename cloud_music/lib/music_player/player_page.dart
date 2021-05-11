@@ -148,31 +148,33 @@ class PlayerPageState extends State<PlayerPage> with TickerProviderStateMixin {
     PlayerStore player = PlayerStore.of(context, listen: false);
     if (player.music != null) {
       var id = player.music.id;
-      //先从文件缓存中查找，没有再发送请求获取
-      final lyricCache = await LyricCache.initLyricCache();
-      final key = LyricCacheKey(id);
-      String cached = await lyricCache.get(key);
-      String lrcString;
-      // String tlyricString;
-      if (cached != null) {
-        lrcString = cached;
-      } else {
-        var result = await neteaseApi.loadLyric({'id': id});
-        Map lyc = result["lrc"];
-        if (lyc != null) {
-          lrcString = lyc['lyric'];
-          //存入文件缓存
-          await lyricCache.update(key, lrcString);
+      if (player.music.platform == 1) {
+        //先从文件缓存中查找，没有再发送请求获取
+        final lyricCache = await LyricCache.initLyricCache();
+        final key = LyricCacheKey(id);
+        String cached = await lyricCache.get(key);
+        String lrcString;
+        // String tlyricString;
+        if (cached != null) {
+          lrcString = cached;
+        } else {
+          var result = await neteaseApi.loadLyric({'id': id});
+          Map lyc = result["lrc"];
+          if (lyc != null) {
+            lrcString = lyc['lyric'];
+            //存入文件缓存
+            await lyricCache.update(key, lrcString);
+          }
+          // Map tlyric = result["tlyric"];
+          // if (tlyric != null) {
+          //   tlyricString = tlyric['lyric'];
+          // }
         }
-        // Map tlyric = result["tlyric"];
-        // if (tlyric != null) {
-        //   tlyricString = tlyric['lyric'];
-        // }
+        Lyric lyric = LyricUtil.formatLyric(lrcString);
+        setState(() {
+          panel = new LyricPanel(lyric);
+        });
       }
-      Lyric lyric = LyricUtil.formatLyric(lrcString);
-      setState(() {
-        panel = new LyricPanel(lyric);
-      });
     }
   }
 
