@@ -14,6 +14,7 @@ Music mapJsonToMusic(Map song,
   }).toList();
 
   return Music(
+      platform: song["platform"],
       id: song["id"],
       title: song["name"],
       mvId: song['mv'] ?? 0,

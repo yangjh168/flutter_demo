@@ -1,42 +1,52 @@
+import 'dart:ui';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_music/api/netease.dart';
 import 'package:cloud_music/entity/music.dart';
 import 'package:cloud_music/entity/playlist_detail.dart';
 import 'package:cloud_music/provider/player_store.dart';
+import 'package:cloud_music/utils/numbers.dart';
 import 'package:cloud_music/widget/load_data_builder.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:cloud_music/widget/platform_logo.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SonglistPage extends StatelessWidget {
+class SonglistPage extends StatefulWidget {
   //参数
   final int id;
 
   const SonglistPage({Key key, this.id}) : super(key: key);
 
   @override
+  _SonglistPageState createState() => _SonglistPageState();
+}
+
+class _SonglistPageState extends State<SonglistPage> {
+  @override
   Widget build(BuildContext context) {
+    const double HEIGHT_HEADER = 280 + kToolbarHeight;
+
     return Scaffold(
-      body: SingleChildScrollView(
+      body: Container(
           child: LoadDataBuilder<PlaylistDetail>(
               api: neteaseApi.getSonglistDetail,
-              params: {'id': id},
+              params: {'id': widget.id},
               builder: (context, data) {
                 return CustomScrollView(
                   slivers: <Widget>[
-                    SliverPersistentHeader(
+                    // CustomSliverAppBar(headInfo: data),
+                    SliverAppBar(
+                      title: Text('歌单'),
                       pinned: true,
-                      delegate: SliverCustomHeaderDelegate(
-                        title: data.name,
-                        collapsedHeight: 40,
-                        expandedHeight: 300,
-                        paddingTop: MediaQuery.of(context).padding.top,
-                        playlistDetail: data,
+                      expandedHeight: HEIGHT_HEADER,
+                      //空间大小可变的组件
+                      flexibleSpace: FlexibleSpaceBar(
+                        background: SongListHeader(headInfo: data),
                       ),
+                      bottom: MusicListHeader(data.trackCount),
                     ),
-                    SliverFillRemaining(
-                      child: SongListBuild(songList: data.musicList),
-                    )
+                    SliverList(
+                        delegate: SliverChildListDelegate(
+                            [SongListBuild(songList: data.musicList)]))
                   ],
                 );
               })),
@@ -44,141 +54,66 @@ class SonglistPage extends StatelessWidget {
   }
 }
 
-class SliverCustomHeaderDelegate extends SliverPersistentHeaderDelegate {
-  final double collapsedHeight;
-  final double expandedHeight;
-  final double paddingTop;
-  final PlaylistDetail playlistDetail;
-  final String title;
-  String statusBarMode = 'dark';
+class SongListHeader extends StatelessWidget {
+  final PlaylistDetail headInfo;
 
-  SliverCustomHeaderDelegate({
-    this.collapsedHeight,
-    this.expandedHeight,
-    this.paddingTop,
-    this.playlistDetail,
-    this.title,
-  });
-
+  const SongListHeader({Key key, this.headInfo}) : super(key: key);
   @override
-  double get minExtent => this.collapsedHeight + this.paddingTop;
+  Widget build(BuildContext context) {
+    final FlexibleSpaceBarSettings settings =
+        context.dependOnInheritedWidgetOfExactType<FlexibleSpaceBarSettings>();
+    final double deltaExtent = settings.maxExtent - settings.minExtent;
+    // print('currentExtent:' + settings.currentExtent.toString());
+    // print('minExtent:' + settings.minExtent.toString());
+    // print('maxExtent:' + settings.maxExtent.toString());
+    // 0.0 -> Expanded
+    // 1.0 -> Collapsed to toolbar
+    final double opacity =
+        (1.0 - (settings.currentExtent - settings.minExtent) / deltaExtent)
+            .clamp(0.0, 1.0);
 
-  @override
-  double get maxExtent => this.expandedHeight;
-
-  @override
-  bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {
-    return true;
-  }
-
-  void updateStatusBarBrightness(shrinkOffset) {
-    if (shrinkOffset > 50 && this.statusBarMode == 'dark') {
-      this.statusBarMode = 'light';
-      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarBrightness: Brightness.light,
-        statusBarIconBrightness: Brightness.light,
-      ));
-    } else if (shrinkOffset <= 50 && this.statusBarMode == 'light') {
-      this.statusBarMode = 'dark';
-      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarBrightness: Brightness.dark,
-        statusBarIconBrightness: Brightness.dark,
-      ));
+    //为content 添加 底部的 padding
+    double bottomPadding = 0;
+    SliverAppBar sliverBar =
+        context.findAncestorWidgetOfExactType<SliverAppBar>();
+    if (sliverBar != null && sliverBar.bottom != null) {
+      bottomPadding = sliverBar.bottom.preferredSize.height;
     }
-  }
-
-  Color makeStickyHeaderBgColor(shrinkOffset) {
-    final int alpha = (shrinkOffset / (this.maxExtent - this.minExtent) * 255)
-        .clamp(0, 255)
-        .toInt();
-    return Color.fromARGB(alpha, 255, 255, 255);
-  }
-
-  Color makeStickyHeaderTextColor(shrinkOffset, isIcon) {
-    if (shrinkOffset <= 50) {
-      return isIcon ? Colors.white : Colors.transparent;
-    } else {
-      final int alpha = (shrinkOffset / (this.maxExtent - this.minExtent) * 255)
-          .clamp(0, 255)
-          .toInt();
-      return Color.fromARGB(alpha, 0, 0, 0);
-    }
-  }
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    this.updateStatusBarBrightness(shrinkOffset);
     return Container(
-      height: this.maxExtent,
-      width: MediaQuery.of(context).size.width,
       child: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          SongListInfo(headInfo: playlistDetail),
+        children: [
           Positioned(
+            top: -Tween<double>(begin: 0.0, end: deltaExtent / 4.0)
+                .transform(opacity),
             left: 0,
-            top: this.maxExtent / 2,
             right: 0,
-            bottom: 0,
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0x00000000),
-                    Color(0x90000000),
-                  ],
+            height: settings.maxExtent,
+            child: Stack(
+              fit: StackFit.passthrough,
+              children: <Widget>[
+                CachedNetworkImage(
+                    imageUrl: headInfo.coverUrl,
+                    fit: BoxFit.cover,
+                    width: 120,
+                    height: 1),
+                BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 24, sigmaY: 24),
+                  child: Container(color: Colors.black.withOpacity(0.3)),
                 ),
-              ),
+                Container(color: Colors.black.withOpacity(0.3))
+              ],
             ),
           ),
           Positioned(
+            top: settings.currentExtent - settings.maxExtent,
             left: 0,
             right: 0,
-            top: 0,
-            child: Container(
-              color: this.makeStickyHeaderBgColor(shrinkOffset),
-              child: SafeArea(
-                bottom: false,
-                child: Container(
-                  height: this.collapsedHeight,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      IconButton(
-                        icon: Icon(
-                          Icons.arrow_back_ios,
-                          color: this
-                              .makeStickyHeaderTextColor(shrinkOffset, true),
-                        ),
-                        onPressed: () => Navigator.pop(context),
-                      ),
-                      Expanded(
-                        child: Text(
-                          this.title,
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
-                            color: this
-                                .makeStickyHeaderTextColor(shrinkOffset, false),
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      IconButton(
-                        icon: Icon(
-                          Icons.share,
-                          color: this
-                              .makeStickyHeaderTextColor(shrinkOffset, true),
-                        ),
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                ),
+            height: settings.maxExtent,
+            child: Opacity(
+              opacity: 1 - opacity,
+              child: Padding(
+                padding: EdgeInsets.only(bottom: bottomPadding),
+                child: SongListInfo(headInfo: headInfo),
               ),
             ),
           ),
@@ -188,14 +123,249 @@ class SliverCustomHeaderDelegate extends SliverPersistentHeaderDelegate {
   }
 }
 
+//播放全部action
+class MusicListHeader extends StatelessWidget implements PreferredSizeWidget {
+  MusicListHeader(this.count, {this.tail});
+
+  final int count;
+
+  final Widget tail;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      child: Material(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        elevation: 0,
+        child: InkWell(
+          onTap: () {
+            // final list = MusicTileConfiguration.of(context);
+            // if (context.player.queue.queueId == list.token && context.player.playbackState.isPlaying) {
+            //   //open playing page
+            //   Navigator.pushNamed(context, pagePlaying);
+            // } else {
+            //   context.player.playWithQueue(PlayQueue(queue: list.queue, queueId: list.token, queueTitle: list.token));
+            // }
+          },
+          child: SizedBox.fromSize(
+            size: preferredSize,
+            child: Row(
+              children: <Widget>[
+                Padding(padding: EdgeInsets.only(left: 16)),
+                Icon(
+                  Icons.play_circle_outline,
+                  color: Theme.of(context).iconTheme.color,
+                ),
+                Padding(padding: EdgeInsets.only(left: 4)),
+                Text(
+                  "播放全部",
+                  style: Theme.of(context).textTheme.bodyText2,
+                ),
+                Padding(padding: EdgeInsets.only(left: 2)),
+                Text(
+                  "(共$count首)",
+                  style: Theme.of(context).textTheme.caption,
+                ),
+                Spacer(),
+                tail,
+              ]..removeWhere((v) => v == null),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(50);
+}
+
+//歌单信息
 class SongListInfo extends StatelessWidget {
   final PlaylistDetail headInfo;
 
   const SongListInfo({Key key, this.headInfo}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Image.network(headInfo.coverUrl, fit: BoxFit.cover));
+    return Stack(children: <Widget>[
+      Material(
+        color: Colors.transparent,
+        child: Container(
+          padding: EdgeInsets.only(
+              top: MediaQuery.of(context).padding.top + kToolbarHeight),
+          child: Column(
+            children: <Widget>[
+              Container(
+                height: 146,
+                padding: EdgeInsets.only(top: 20),
+                child: Row(
+                  children: <Widget>[
+                    SizedBox(width: 16),
+                    AspectRatio(
+                      aspectRatio: 1,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(3)),
+                        child: Stack(
+                          children: <Widget>[
+                            Hero(
+                              tag: headInfo.heroTag,
+                              child: CachedNetworkImage(
+                                  imageUrl: headInfo.coverUrl),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(4),
+                              decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [
+                                    Colors.black54,
+                                    Colors.black26,
+                                    Colors.transparent,
+                                    Colors.transparent,
+                                  ])),
+                              child: Align(
+                                alignment: Alignment.topRight,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    Icon(Icons.headset,
+                                        color: Theme.of(context)
+                                            .primaryIconTheme
+                                            .color,
+                                        size: 12),
+                                    Text(getFormattedNumber(headInfo.playCount),
+                                        style: Theme.of(context)
+                                            .primaryTextTheme
+                                            .bodyText2
+                                            .copyWith(fontSize: 11))
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 16),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          SizedBox(height: 10),
+                          Text(
+                            headInfo.name,
+                            style: Theme.of(context)
+                                .primaryTextTheme
+                                .headline6
+                                .copyWith(fontSize: 17),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          SizedBox(height: 10),
+                          InkWell(
+                            onTap: () {
+                              // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                              //   return UserDetailPage(userId: creator['userId']);
+                              // }));
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 4, bottom: 4),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  SizedBox(
+                                    height: 24,
+                                    width: 24,
+                                    child: ClipOval(
+                                      child: CachedNetworkImage(
+                                          imageUrl:
+                                              headInfo.creator["avatarUrl"]),
+                                    ),
+                                  ),
+                                  Padding(padding: EdgeInsets.only(left: 4)),
+                                  Text(
+                                    headInfo.creator["nickname"],
+                                    style: Theme.of(context)
+                                        .primaryTextTheme
+                                        .bodyText2,
+                                  ),
+                                  Icon(
+                                    Icons.chevron_right,
+                                    color: Theme.of(context)
+                                        .primaryIconTheme
+                                        .color,
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(width: 16),
+                  ],
+                ),
+              ),
+              SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  _HeaderAction(
+                      Icons.comment,
+                      headInfo.commentCount > 0
+                          ? headInfo.commentCount.toString()
+                          : "评论"),
+                  _HeaderAction(
+                      Icons.share,
+                      headInfo.shareCount > 0
+                          ? headInfo.shareCount.toString()
+                          : "分享"),
+                  _HeaderAction(Icons.file_download, '下载'),
+                  // _HeaderAction(Icons.check_box, "多选", onSelectionTap),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    ] //..removeWhere((v) => v == null),
+        );
+  }
+}
+
+class _HeaderAction extends StatelessWidget {
+  _HeaderAction(this.icon, this.action);
+
+  final IconData icon;
+
+  final String action;
+
+  @override
+  Widget build(BuildContext context) {
+    var textTheme = Theme.of(context).primaryTextTheme;
+
+    return InkResponse(
+      onTap: () {},
+      splashColor: textTheme.bodyText2.color,
+      child: Opacity(
+        opacity: 0.5,
+        child: Column(
+          children: <Widget>[
+            Icon(
+              icon,
+              color: textTheme.bodyText2.color,
+            ),
+            const Padding(padding: EdgeInsets.only(top: 4)),
+            Text(
+              action,
+              style: textTheme.caption.copyWith(fontSize: 13),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
 
