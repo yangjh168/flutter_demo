@@ -342,20 +342,24 @@ class SearchResultPage extends StatelessWidget {
     return InkWell(
       onTap: () async {
         //点击音乐
-        var playable = await neteaseApi
-            .checkMusic({'id': item.id, 'platform': item.platform});
-        if (!playable) {
-          print("音乐不可用");
-          // showDialog(context: context, builder: (context) => DialogNoCopyRight());
-          return;
-        }
+        // var playable = await neteaseApi
+        //     .checkMusic({'id': item.id, 'platform': item.platform});
+        // if (!playable) {
+        //   print("音乐不可用");
+        //   // showDialog(context: context, builder: (context) => DialogNoCopyRight());
+        //   return;
+        // }
 
-        final res = await neteaseApi
-            .getMusicDetail({'id': item.id, 'platform': item.platform});
-        Music music = Music.fromMap(res);
+        // final res = await neteaseApi
+        //     .getMusicDetail({'id': item.id, 'platform': item.platform});
+        // Music music = Music.fromMap(res);
+        // PlayerStore player = PlayerStore.of(context, listen: false);
+        // if (player.music == null || player.music.id != music.id) {
+        //   player.play(music: music, playList: []);
+        // }
         PlayerStore player = PlayerStore.of(context, listen: false);
-        if (player.music == null || player.music.id != music.id) {
-          player.play(music: music, playList: []);
+        if (player.music == null || player.music.id != item.id) {
+          player.play(id: item.id, platform: item.platform);
         }
       },
       child: Container(

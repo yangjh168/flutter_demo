@@ -50,14 +50,11 @@ class GlobalProvider extends StatelessWidget {
 
   final Map user;
 
-  // final Box<Map> player;
+  final PlayerStore player;
 
-  const GlobalProvider({
-    Key key,
-    @required this.setting,
-    @required this.user,
-    /*this.player*/
-  }) : super(key: key);
+  const GlobalProvider(
+      {Key key, @required this.setting, @required this.user, this.player})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MultiProvider(providers: [
@@ -88,14 +85,11 @@ class MyApp extends StatelessWidget {
 
   final Map user;
 
-  // final Box<Map> player;
+  final PlayerStore player;
 
-  const MyApp({
-    Key key,
-    @required this.setting,
-    @required this.user,
-    /*this.player*/
-  }) : super(key: key);
+  const MyApp(
+      {Key key, @required this.setting, @required this.user, this.player})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     //创建路由对象

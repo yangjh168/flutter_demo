@@ -1,5 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:cloud_music/api/netease.dart';
 import 'package:cloud_music/entity/music.dart';
+import 'package:cloud_music/music_player/play_mode.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,14 +23,14 @@ class PlayerStore extends ChangeNotifier {
   Duration position;
   // 播放队列
   List<Music> playList;
-
-  /// 音量
+  // 音量
   final double volume = 1.0;
-
-  /// 是否是本地资源
+  // 是否是本地资源
   final bool isLocal = false;
   // 当前是否播放状态
   bool get isPlaying => (status == AudioPlayerState.PLAYING);
+  // 播放模式
+  PlayMode playMode;
 
   // 构造函数
   PlayerStore() {
@@ -38,44 +40,59 @@ class PlayerStore extends ChangeNotifier {
   void initAudioPlayer() {
     audioPlayer
       //音频播放完毕事件
-      // ..onPlayerCompletion.listen((void s) {
-      //   // completedEvents.forEach((fn) => fn());
-      //   notifyListeners();
-      // })
+      ..onPlayerCompletion.listen((void s) {
+        next();
+        notifyListeners();
+      })
       // 改变状态事件
       ..onPlayerStateChanged.listen((AudioPlayerState state) {
         print("播放器状态改变");
         this.status = state;
         notifyListeners();
-        // statusChangedEvents.forEach((fn) => fn(state));
       })
       // 播放错误事件
       ..onPlayerError.listen((String e) {
         notifyListeners();
-        // errorEvents.forEach((fn) => fn(e));
       })
       //持续时间事件
       ..onDurationChanged.listen((value) {
         this.duration = value;
         notifyListeners();
-        // durationChangedEvents.forEach((fn) => fn(duration));
       })
       //更新音频的当前位置事件
       ..onAudioPositionChanged.listen((value) {
         this.position = value;
         notifyListeners();
-        // audioPositionChangedEvents.forEach((fn) => fn(position));
       });
+
+    //初始默认播放模式
+    this.playMode = PlayMode.sequence;
     //初始化完audioPlayer，触发更新
     notifyListeners();
   }
 
   //播放
-  play({Music music, List<Music> playList}) {
-    print("播放音乐");
-    print(music);
+  play({int id, int platform, List<Music> playList}) async {
+    print("播放音乐：" + id.toString() + platform.toString());
+
+    var playable =
+        await neteaseApi.checkMusic({'id': id, 'platform': platform});
+    if (!playable) {
+      print("音乐不可用");
+      // showDialog(context: context, builder: (context) => DialogNoCopyRight());
+      return;
+    }
+
+    final res =
+        await neteaseApi.getMusicDetail({'id': id, 'platform': platform});
+    Music music = Music.fromMap(res);
+
     if (playList != null) {
       this.playList = playList;
+    } else {
+      if (this.playList.indexOf(music) == -1) {
+        this.playList.add(music);
+      }
     }
     if (music != null) {
       this.music = music;
@@ -118,6 +135,7 @@ class PlayerStore extends ChangeNotifier {
 
   //处理上一首按钮事件
   previous() {
+    print("上一首");
     if (playList == null) {
       return;
     }
@@ -129,11 +147,12 @@ class PlayerStore extends ChangeNotifier {
     if (i < 0) {
       i = playList.length - 1;
     }
-    play(music: playList[i]);
+    play(id: playList[i].id, platform: playList[i].platform);
   }
 
   //处理下一首按钮事件
   next() {
+    print("下一首");
     if (playList == null) {
       return;
     }
@@ -145,11 +164,16 @@ class PlayerStore extends ChangeNotifier {
     if (i >= playList.length) {
       i = 0;
     }
-    play(music: playList[i]);
+    play(id: playList[i].id, platform: playList[i].platform);
   }
-  // Music currentMusic;
-  // setCurrentMusic(Music music) {
-  //   currentMusic = music;
-  //   notifyListeners();
-  // }
+
+  //设置播放模式
+  setPlayMode(PlayMode mode) {
+    this.playMode = mode;
+  }
+
+  //播放歌单列表删除某首歌曲
+  removeMusicItem(Music music) {
+    this.playList.remove(music);
+  }
 }

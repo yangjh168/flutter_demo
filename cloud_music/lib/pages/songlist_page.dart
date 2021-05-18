@@ -401,7 +401,7 @@ class SongListBuild extends StatelessWidget {
             ),
             Wrap(
               children: songList.map((item) {
-                return _playItem(item, context);
+                return _playItem(item, context, songList);
               }).toList(),
             )
           ],
@@ -410,24 +410,28 @@ class SongListBuild extends StatelessWidget {
     );
   }
 
-  Widget _playItem(item, context) {
+  Widget _playItem(item, context, List songList) {
     return InkWell(
       onTap: () async {
         //点击音乐
-        var playable = await neteaseApi
-            .checkMusic({'id': item.id, 'platform': item.platform});
-        if (!playable) {
-          print("音乐不可用");
-          // showDialog(context: context, builder: (context) => DialogNoCopyRight());
-          return;
-        }
+        // var playable = await neteaseApi
+        //     .checkMusic({'id': item.id, 'platform': item.platform});
+        // if (!playable) {
+        //   print("音乐不可用");
+        //   // showDialog(context: context, builder: (context) => DialogNoCopyRight());
+        //   return;
+        // }
 
-        final res = await neteaseApi
-            .getMusicDetail({'id': item.id, 'platform': item.platform});
-        Music music = Music.fromMap(res);
+        // final res = await neteaseApi
+        //     .getMusicDetail({'id': item.id, 'platform': item.platform});
+        // Music music = Music.fromMap(res);
+        // PlayerStore player = PlayerStore.of(context, listen: false);
+        // if (player.music == null || player.music.id != music.id) {
+        //   player.play(music: music, playList: songList);
+        // }
         PlayerStore player = PlayerStore.of(context, listen: false);
-        if (player.music == null || player.music.id != music.id) {
-          player.play(music: music, playList: []);
+        if (player.music == null || player.music.id != item.id) {
+          player.play(id: item.id, platform: item.platform, playList: songList);
         }
       },
       child: Container(

@@ -2,6 +2,7 @@ import 'package:cloud_music/Cache/lyric_cache.dart';
 import 'package:cloud_music/api/netease.dart';
 import 'package:cloud_music/entity/music.dart';
 import 'package:cloud_music/model/lyric.dart';
+import 'package:cloud_music/music_player/playing_list.dart';
 import 'package:cloud_music/music_player/utils/lyric.dart';
 import 'package:cloud_music/music_player/widget/lyricPannel.dart';
 import 'package:cloud_music/provider/player_store.dart';
@@ -234,6 +235,8 @@ class PlayerPageState extends State<PlayerPage> with TickerProviderStateMixin {
     //进度
     double sliderValue =
         (player.position.inSeconds / player.duration.inSeconds);
+    //播放模式
+    final playMode = player.playMode;
     final List<Widget> list = [
       const Divider(color: Colors.transparent),
       const Divider(
@@ -247,6 +250,16 @@ class PlayerPageState extends State<PlayerPage> with TickerProviderStateMixin {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
+            new IconButton(
+              onPressed: () {
+                player.setPlayMode(player.playMode.next);
+              },
+              icon: new Icon(
+                playMode.icon,
+                size: 32.0,
+                color: widget.color,
+              ),
+            ),
             new IconButton(
               onPressed: () {
                 player.previous();
@@ -272,6 +285,16 @@ class PlayerPageState extends State<PlayerPage> with TickerProviderStateMixin {
               },
               icon: new Icon(
                 Icons.skip_next,
+                size: 32.0,
+                color: widget.color,
+              ),
+            ),
+            new IconButton(
+              onPressed: () {
+                PlayingListDialog.show(context);
+              },
+              icon: new Icon(
+                Icons.menu,
                 size: 32.0,
                 color: widget.color,
               ),

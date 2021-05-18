@@ -58,9 +58,13 @@ class NewMusicList extends StatelessWidget {
   Widget _playItem(item, List<Music> allList, context) {
     return InkWell(
       onTap: () {
+        // PlayerStore player = PlayerStore.of(context, listen: false);
+        // if (player.music == null || player.music.id != item.id) {
+        //   player.play(music: item, playList: allList);
+        // }
         PlayerStore player = PlayerStore.of(context, listen: false);
         if (player.music == null || player.music.id != item.id) {
-          player.play(music: item, playList: allList);
+          player.play(id: item.id, platform: item.platform);
         }
       },
       child: Container(
