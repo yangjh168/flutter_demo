@@ -61,7 +61,9 @@ class RecommendPlaylist extends StatelessWidget {
   Widget _playItem(item, context) {
     return InkWell(
       onTap: () {
-        Routes.navigateTo(context, '/songlistPage', params: {'id': item.id});
+        Routes.navigateTo(context, '/playerView/player',
+            params: {'id': item.id});
+        // Routes.navigateTo(context, '/songlistPage', params: {'id': item.id});
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

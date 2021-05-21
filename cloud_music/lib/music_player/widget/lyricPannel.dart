@@ -5,9 +5,13 @@ import 'package:cloud_music/model/lyric.dart';
 typedef void PositionChangeHandler(int millisecond);
 
 class LyricPanel extends StatefulWidget {
+  final int musicId;
+
+  final int platform;
+
   final Lyric lyric;
 
-  LyricPanel(this.lyric);
+  LyricPanel({this.musicId, this.platform, this.lyric});
 
   @override
   State<StatefulWidget> createState() {
@@ -96,21 +100,23 @@ class LyricState extends State<LyricPanel> {
   }
 
   onAudioPositionChanged(player) {
-    int ms = player.position.inMilliseconds;
-    // ms 在前一个之前或者后一个之后，就需要重新定位index了
-    if ((index > 0 && ms <= widget.lyric.list[index - 1].millisecond) ||
-        (index < widget.lyric.list.length - 1 &&
-            ms >= widget.lyric.list[index + 1].millisecond)) {
-      resetIndex(player);
-      return;
-    }
+    if (player.position != null) {
+      int ms = player.position.inMilliseconds;
+      // ms 在前一个之前或者后一个之后，就需要重新定位index了
+      if ((index > 0 && ms <= widget.lyric.list[index - 1].millisecond) ||
+          (index < widget.lyric.list.length - 1 &&
+              ms >= widget.lyric.list[index + 1].millisecond)) {
+        resetIndex(player);
+        return;
+      }
 
-    LyricModel model = widget.lyric.list[index];
-    if (ms > model.millisecond) {
-      index++;
-      setState(() {
-        currentModel = model;
-      });
+      LyricModel model = widget.lyric.list[index];
+      if (ms > model.millisecond) {
+        index++;
+        setState(() {
+          currentModel = model;
+        });
+      }
     }
   }
 }

@@ -25,7 +25,7 @@ class PlayingListDialogState extends State<PlayingListDialog> {
   void initState() {
     super.initState();
     PlayerStore player = PlayerStore.of(context, listen: false);
-    final playingList = player.playList;
+    final playingList = player.playQueue.queue;
     final music = player.music;
     assert(music != null, '展示播放列表时，当前音乐不能为空！');
     double offset = playingList.indexOf(music) * _HEIGHT_MUSIC_TILE;
@@ -35,9 +35,9 @@ class PlayingListDialogState extends State<PlayingListDialog> {
   @override
   Widget build(BuildContext context) {
     PlayerStore player = PlayerStore.of(context, listen: true);
-    final playingList = player.playList;
+    final playingList = player.playQueue.queue;
     final music = player.music;
-
+    print("test");
     return _PlayingListContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -129,7 +129,7 @@ class _Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final playMode = player.playMode;
-    final count = player.playList.length;
+    final count = player.playQueue.queue.length;
     return Container(
       height: 48,
       child: Row(

@@ -1,5 +1,6 @@
 import 'package:cloud_music/pages/splash/page_splash.dart';
 import 'package:cloud_music/pages/splash_page.dart';
+// import 'package:cloud_music/provider/music_store.dart';
 import 'package:cloud_music/provider/player_store.dart';
 import 'package:cloud_music/provider/search_store.dart';
 import 'package:cloud_music/provider/settings.dart';
@@ -7,9 +8,9 @@ import 'package:cloud_music/provider/user_account.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/screenutil_init.dart';
-import 'package:cloud_music/provider/cart_store.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:cloud_music/provider/category_store.dart';
 import 'package:cloud_music/provider/index_store.dart';
 import 'package:fluro/fluro.dart';
 import 'package:cloud_music/routers/routers.dart';
@@ -28,18 +29,18 @@ void main() {
       //获取用户数据
       UserAccount.getPersistenceUser(),
       //获取上次播放内容
-      // getApplicationDocumentsDirectory().then((dir) {
-      //   // getApplicationDocumentsDirectory获取应用文件目录类似于Ios的NSDocumentDirectory和Android上的 AppData目录
-      //   Hive.init(dir.path);
-      //   return Hive.openBox<Map>("player");
-      // }),
+      getApplicationDocumentsDirectory().then((dir) {
+        // getApplicationDocumentsDirectory获取应用文件目录类似于Ios的NSDocumentDirectory和Android上的 AppData目录
+        Hive.init(dir.path);
+        return Hive.openBox("player");
+      }),
     ],
     builder: (context, data) {
       print(data);
       return GlobalProvider(
         setting: Settings(data[0]),
         user: data[1],
-        // player: data[2],
+        playerBox: data[2],
       );
     },
   ));
@@ -50,46 +51,37 @@ class GlobalProvider extends StatelessWidget {
 
   final Map user;
 
-  final PlayerStore player;
+  final Box playerBox;
 
   const GlobalProvider(
-      {Key key, @required this.setting, @required this.user, this.player})
+      {Key key, @required this.setting, @required this.user, this.playerBox})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MultiProvider(providers: [
       ChangeNotifierProvider(create: (context) {
-        return CateGoryStore();
-      }),
-      ChangeNotifierProvider(create: (context) {
         return IndexStore();
       }),
       ChangeNotifierProvider(create: (context) {
-        return CartStore();
+        return UserAccount(user);
       }),
+      // ChangeNotifierProvider(create: (context) {
+      //   return MusicStore();
+      // }),
       ChangeNotifierProvider(create: (context) {
-        return UserAccount(null);
-      }),
-      ChangeNotifierProvider(create: (context) {
-        return PlayerStore();
+        return PlayerStore(playerBox);
       }),
       ChangeNotifierProvider(create: (context) {
         return SearchStore();
       }),
-    ], child: MyApp(setting: setting, user: user));
+    ], child: MyApp(setting: setting));
   }
 }
 
 class MyApp extends StatelessWidget {
   final Settings setting;
 
-  final Map user;
-
-  final PlayerStore player;
-
-  const MyApp(
-      {Key key, @required this.setting, @required this.user, this.player})
-      : super(key: key);
+  const MyApp({Key key, @required this.setting}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     //创建路由对象

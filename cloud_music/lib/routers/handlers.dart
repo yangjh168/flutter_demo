@@ -5,6 +5,7 @@ import 'package:fluro/fluro.dart';
 Handler pageHandler({Function builder}) {
   return Handler(
     handlerFunc: (BuildContext context, Map<String, List<Object>> params) {
+      print(context.settings.arguments);
       print('页面跳转参数start:' + params.toString());
       Map<String, Object> newParams = {};
       params.forEach((key, value) {
@@ -14,7 +15,11 @@ Handler pageHandler({Function builder}) {
           newParams[key] = value;
         }
       });
-      return builder(newParams);
+      if (context.settings.arguments != null) {
+        return builder(newParams, context.settings.arguments);
+      } else {
+        return builder(newParams);
+      }
     },
   );
 }

@@ -1,5 +1,4 @@
 import 'package:cloud_music/entity/model.dart';
-import 'package:cloud_music/entity/music_metadata.dart';
 
 class Music {
   Music({
@@ -29,21 +28,6 @@ class Music {
 
   String get imageUrl => album.coverImageUrl;
 
-  MusicMetadata _metadata;
-
-  MusicMetadata get metadata {
-    if (_metadata != null) return _metadata;
-    _metadata = new MusicMetadata(
-      mediaId: id.toString(),
-      title: title,
-      subtitle: subTitle,
-      duration: 0,
-      iconUri: imageUrl,
-      extras: MusicExt(this).toMap(),
-    );
-    return _metadata;
-  }
-
   String get artistString => artist.map((e) => e.name).join('/');
 
   String get subTitle {
@@ -63,13 +47,6 @@ class Music {
   @override
   String toString() {
     return 'Music{platform: $platform, id: $id, title: $title, url: $url, album: $album, artist: $artist}';
-  }
-
-  factory Music.fromMetadata(MusicMetadata metadata) {
-    if (metadata == null) {
-      return null;
-    }
-    return fromMap(metadata.extras);
   }
 
   static Music fromMap(Map map) {
@@ -120,18 +97,5 @@ extension MusicExt on Music {
       "album": album.toMap(),
       "artist": artist.map((e) => e.toMap()).toList()
     };
-  }
-}
-
-extension MusicListExt on List<Music> {
-  List<MusicMetadata> toMetadataList() {
-    return map((e) => e.metadata).toList();
-  }
-}
-
-extension MusicBuilder on MusicMetadata {
-  /// convert metadata to [Music]
-  Music toMusic() {
-    return Music.fromMetadata(this);
   }
 }

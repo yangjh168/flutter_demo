@@ -1,5 +1,6 @@
 //参考链接：https://my.oschina.net/u/4602373/blog/4465401
 
+import 'package:cloud_music/pages/layout/player_router_view.dart';
 import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
 import 'package:cloud_music/provider/index_store.dart';
@@ -29,8 +30,12 @@ class Routes {
     });
 
     //定义一个路由路径与Handler,
-    routers.forEach((key, value) {
-      router.define(key, handler: pageHandler(builder: value));
+    // routers.forEach((key, value) {
+    //   router.define(key, handler: pageHandler(builder: value));
+    // });
+    routerConfig.forEach((item) {
+      router.define(item['path'],
+          handler: pageHandler(builder: item['component']));
     });
   }
 
@@ -69,6 +74,7 @@ class Routes {
       bool clearStack = false,
       TransitionType transition = TransitionType.inFromRight}) {
     //FocusScope.of(context).requestFocus(new FocusNode());
+    var routerViewState = PlayerRouterView.of(context);
     String query = "";
     if (params != null) {
       int index = 0;
@@ -85,9 +91,32 @@ class Routes {
       }
     }
     print('navigateTo的参数：$query');
-    path = path + query;
-    return router.navigateTo(context, path,
-        clearStack: clearStack, transition: transition);
+    var currentRouter = router;
+    var pathArray = path.split("/");
+    // print(pathArray);
+    path = '/' + pathArray[1] + query;
+    var routeSettings;
+    //当打开的是二级路由，则默认把路径第二个值当作参数传给router-view作为初始路由
+    if (pathArray.length > 2) {
+      routeSettings = RouteSettings(
+        arguments: pathArray[2] + query, //路由要带上参数，fluro会自动把它转为参数返回给handler
+      );
+      //当在router-view页面上进行路由跳转时，只认最后一个路由名字；
+      if (routerViewState != null) {
+        path = '/' + pathArray[pathArray.length - 1] + query;
+        print("重置fluro");
+        currentRouter = routerViewState.router;
+      }
+    }
+    print("path：" + path);
+    print(currentRouter.notFoundHandler);
+    return currentRouter.navigateTo(
+      context,
+      path,
+      clearStack: clearStack,
+      transition: transition,
+      routeSettings: routeSettings,
+    );
   }
 
   //返回

@@ -29,7 +29,7 @@ class PlayerPageState extends State<PlayerPage> with TickerProviderStateMixin {
     super.initState();
 
     SchedulerBinding.instance.addPostFrameCallback((_) {
-      resetPanelData();
+      // resetPanelData();
       // player.onDurationChanged(this.onDurationChanged);
       // player.onAudioPositionChanged(this.onAudioPositionChanged);
       // player.onStatusChanged(this.onPlayerStatus);
@@ -58,6 +58,19 @@ class PlayerPageState extends State<PlayerPage> with TickerProviderStateMixin {
       return Container();
     }
     bool isPlaying = player.isPlaying;
+    if (panel != null) {
+      if (panel.musicId != music.id || panel.platform != music.platform) {
+        print("重新加载歌词");
+        print(panel.musicId != music.id);
+        print(panel.platform != music.platform);
+        this.onMusicPanelChanged();
+      }
+    } else {
+      if (isPlaying) {
+        print("开始加载歌词");
+        this.onMusicPanelChanged();
+      }
+    }
     return Stack(
       children: <Widget>[
         new Container(
@@ -146,6 +159,7 @@ class PlayerPageState extends State<PlayerPage> with TickerProviderStateMixin {
 
   //初始化数据
   resetPanelData() async {
+    print("加载歌词");
     PlayerStore player = PlayerStore.of(context, listen: false);
     if (player.music != null) {
       var id = player.music.id;
@@ -173,7 +187,10 @@ class PlayerPageState extends State<PlayerPage> with TickerProviderStateMixin {
         }
         Lyric lyric = LyricUtil.formatLyric(lrcString);
         setState(() {
-          panel = new LyricPanel(lyric);
+          panel = new LyricPanel(
+              musicId: player.music.id,
+              platform: player.music.platform,
+              lyric: lyric);
         });
       }
     }
@@ -209,13 +226,13 @@ class PlayerPageState extends State<PlayerPage> with TickerProviderStateMixin {
   //   );
   // }
 
-  // //改变歌曲
-  // onMusicChanged(Music music) {
-  //   setState(() {
-  //     panel = null;
-  //   });
-  //   resetPanelData();
-  // }
+  //改变歌曲
+  onMusicPanelChanged() {
+    setState(() {
+      panel = null;
+    });
+    resetPanelData();
+  }
 
   // // 音频播放完毕事件
   // onPlayerCompleted() {
@@ -233,8 +250,10 @@ class PlayerPageState extends State<PlayerPage> with TickerProviderStateMixin {
 
   List<Widget> buildContent(BuildContext context, PlayerStore player) {
     //进度
-    double sliderValue =
-        (player.position.inSeconds / player.duration.inSeconds);
+    double sliderValue;
+    if (player.position != null && player.duration != null) {
+      sliderValue = (player.position.inSeconds / player.duration.inSeconds);
+    }
     //播放模式
     final playMode = player.playMode;
     final List<Widget> list = [

@@ -1,9 +1,14 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:cloud_music/api/netease.dart';
 import 'package:cloud_music/entity/music.dart';
+import 'package:cloud_music/entity/play_queue.dart';
 import 'package:cloud_music/music_player/play_mode.dart';
+// import 'package:cloud_music/music_player/player_controller.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
+import 'package:cloud_music/hive/extensions.dart';
 
 class PlayerStore extends ChangeNotifier {
   // 根据BuildContext获取 [PlayerStore]
@@ -22,7 +27,7 @@ class PlayerStore extends ChangeNotifier {
   // 音频的当前位置
   Duration position;
   // 播放队列
-  List<Music> playList;
+  PlayQueue playQueue;
   // 音量
   final double volume = 1.0;
   // 是否是本地资源
@@ -32,8 +37,11 @@ class PlayerStore extends ChangeNotifier {
   // 播放模式
   PlayMode playMode;
 
+  Box playerBox;
+
   // 构造函数
-  PlayerStore() {
+  PlayerStore(Box playerBox) {
+    this.playerBox = playerBox;
     this.initAudioPlayer();
   }
   // 初始化播放器的监听事件
@@ -52,6 +60,7 @@ class PlayerStore extends ChangeNotifier {
       })
       // 播放错误事件
       ..onPlayerError.listen((String e) {
+        print("播放错误");
         notifyListeners();
       })
       //持续时间事件
@@ -66,18 +75,26 @@ class PlayerStore extends ChangeNotifier {
       });
 
     //初始默认播放模式
-    this.playMode = PlayMode.sequence;
+    // this.playMode = PlayMode.sequence;
+    this.playMode = this.playerBox.getPlayMode();
+    this.playQueue = this.playerBox.getPlayQueue();
+    this.music = this.playerBox.getCurrentMusic();
+    print("初始化playMode:" + this.playMode.toString());
+    print("初始化playQueue:" + this.playQueue.toString());
+    print("初始化music:" + this.music.toString());
     //初始化完audioPlayer，触发更新
     notifyListeners();
   }
 
-  //播放
-  play({int id, int platform, List<Music> playList}) async {
+  // PlayerController transportControls = PlayerController(this);
+
+  //准备播放
+  play({int id, int platform, PlayQueue playQueue}) async {
     print("播放音乐：" + id.toString() + platform.toString());
 
     var playable =
         await neteaseApi.checkMusic({'id': id, 'platform': platform});
-    if (!playable) {
+    if (playable == null) {
       print("音乐不可用");
       // showDialog(context: context, builder: (context) => DialogNoCopyRight());
       return;
@@ -87,22 +104,30 @@ class PlayerStore extends ChangeNotifier {
         await neteaseApi.getMusicDetail({'id': id, 'platform': platform});
     Music music = Music.fromMap(res);
 
-    if (playList != null) {
-      this.playList = playList;
+    if (playQueue != null) {
+      this.playQueue = playQueue;
     } else {
-      if (this.playList.indexOf(music) == -1) {
-        this.playList.add(music);
+      if (this.playQueue.queue.indexOf(music) == -1) {
+        this.playQueue.queue.add(music);
       }
     }
+    this.playerBox.savePlayQueue(this.playQueue);
     if (music != null) {
       this.music = music;
+      this.playerBox.saveCurrentMusic(music);
     }
-    Music _music = this.music;
-    audioPlayer.play(
-      _music.url,
-      isLocal: isLocal,
-      volume: volume,
-    );
+    start();
+  }
+
+  //开始播放
+  start() {
+    if (this.music != null) {
+      audioPlayer.play(
+        this.music.url,
+        isLocal: this.isLocal,
+        volume: this.volume,
+      );
+    }
   }
 
   //暂停
@@ -124,8 +149,8 @@ class PlayerStore extends ChangeNotifier {
   playHandle() {
     if ((status == AudioPlayerState.STOPPED ||
             status == AudioPlayerState.COMPLETED) &&
-        music != null) {
-      play();
+        this.music != null) {
+      start();
     } else if (status == AudioPlayerState.PLAYING) {
       pause();
     } else if (status == AudioPlayerState.PAUSED) {
@@ -136,44 +161,50 @@ class PlayerStore extends ChangeNotifier {
   //处理上一首按钮事件
   previous() {
     print("上一首");
-    if (playList == null) {
+    if (this.playQueue.queue.isEmpty) {
       return;
     }
-    int index = playList.indexOf(music);
+    int index = this.playQueue.queue.indexOf(music);
     if (index == -1) {
       return;
     }
     int i = index - 1;
     if (i < 0) {
-      i = playList.length - 1;
+      i = this.playQueue.queue.length - 1;
     }
-    play(id: playList[i].id, platform: playList[i].platform);
+    play(
+        id: this.playQueue.queue[i].id,
+        platform: this.playQueue.queue[i].platform);
   }
 
   //处理下一首按钮事件
   next() {
     print("下一首");
-    if (playList == null) {
+    if (this.playQueue.queue == null) {
       return;
     }
-    int index = playList.indexOf(music);
+    int index = this.playQueue.queue.indexOf(music);
     if (index == -1) {
       return;
     }
     int i = index + 1;
-    if (i >= playList.length) {
+    if (i >= this.playQueue.queue.length) {
       i = 0;
     }
-    play(id: playList[i].id, platform: playList[i].platform);
+    play(
+        id: this.playQueue.queue[i].id,
+        platform: this.playQueue.queue[i].platform);
   }
 
   //设置播放模式
   setPlayMode(PlayMode mode) {
     this.playMode = mode;
+    this.playerBox.savePlayMode(mode);
   }
 
   //播放歌单列表删除某首歌曲
   removeMusicItem(Music music) {
-    this.playList.remove(music);
+    this.playQueue.queue.remove(music);
+    this.playerBox.savePlayQueue(this.playQueue);
   }
 }

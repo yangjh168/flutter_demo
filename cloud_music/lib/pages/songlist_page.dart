@@ -1,9 +1,10 @@
 import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_music/api/netease.dart';
-import 'package:cloud_music/entity/music.dart';
+import 'package:cloud_music/entity/play_queue.dart';
 import 'package:cloud_music/entity/playlist_detail.dart';
 import 'package:cloud_music/provider/player_store.dart';
+import 'package:cloud_music/routers/routers.dart';
 import 'package:cloud_music/utils/numbers.dart';
 import 'package:cloud_music/widget/load_data_builder.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,7 @@ class _SonglistPageState extends State<SonglistPage> {
                     ),
                     SliverList(
                         delegate: SliverChildListDelegate(
-                            [SongListBuild(songList: data.musicList)]))
+                            [SongListBuild(songListInfo: data)]))
                   ],
                 );
               })),
@@ -266,6 +267,7 @@ class SongListInfo extends StatelessWidget {
                           SizedBox(height: 10),
                           InkWell(
                             onTap: () {
+                              Routes.navigateTo(context, '/playerView/player');
                               // Navigator.push(context, MaterialPageRoute(builder: (context) {
                               //   return UserDetailPage(userId: creator['userId']);
                               // }));
@@ -371,9 +373,9 @@ class _HeaderAction extends StatelessWidget {
 
 //歌曲列表
 class SongListBuild extends StatelessWidget {
-  final List songList;
+  final PlaylistDetail songListInfo;
 
-  const SongListBuild({Key key, this.songList}) : super(key: key);
+  const SongListBuild({Key key, this.songListInfo}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -400,8 +402,8 @@ class SongListBuild extends StatelessWidget {
               ),
             ),
             Wrap(
-              children: songList.map((item) {
-                return _playItem(item, context, songList);
+              children: songListInfo.musicList.map((item) {
+                return _playItem(item, context, songListInfo);
               }).toList(),
             )
           ],
@@ -410,7 +412,7 @@ class SongListBuild extends StatelessWidget {
     );
   }
 
-  Widget _playItem(item, context, List songList) {
+  Widget _playItem(item, context, PlaylistDetail songListInfo) {
     return InkWell(
       onTap: () async {
         //点击音乐
@@ -431,7 +433,13 @@ class SongListBuild extends StatelessWidget {
         // }
         PlayerStore player = PlayerStore.of(context, listen: false);
         if (player.music == null || player.music.id != item.id) {
-          player.play(id: item.id, platform: item.platform, playList: songList);
+          player.play(
+              id: item.id,
+              platform: item.platform,
+              playQueue: PlayQueue(
+                  queueId: songListInfo.id,
+                  queueTitle: songListInfo.name,
+                  queue: songListInfo.musicList));
         }
       },
       child: Container(

@@ -14,10 +14,6 @@ class AnimationPlayer extends StatefulWidget {
 
 class _AnimationPlayer extends State<AnimationPlayer>
     with SingleTickerProviderStateMixin {
-  Duration duration;
-  Duration position;
-  double sliderValue;
-
   AnimationController _animationController;
   Animation _animation;
 
@@ -70,7 +66,7 @@ class _AnimationPlayer extends State<AnimationPlayer>
         children: [
           RotationTransition(
             turns: _animation,
-            child: player.isPlaying
+            child: (music != null && music.album.coverImageUrl.isNotEmpty)
                 ? CachedNetworkImage(
                     //用法 https://www.cnblogs.com/maqingyuan/p/13717437.html
                     imageUrl: music.album.coverImageUrl,

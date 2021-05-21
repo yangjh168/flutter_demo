@@ -6,16 +6,35 @@ import 'package:cloud_music/pages/songlist_page.dart';
 
 final Map<String, Function> routers = {
   '/slideDrawer': (params) => SlideDrawer(),
-  '/playerView': (params) => PlayerRouterView(),
   // '/player': (params) => PlayingPage(),
   '/playerPage': (params) => PlayerPage(),
   '/searchPage': (params) => SearchPage(),
   '/songlistPage': (params) => SonglistPage(id: int.parse(params['id'])),
 };
 
-final Map<String, Object> routes = {
-  '/slideDrawer': (params) => SlideDrawer(),
-  '/player': {
-    '/player/start': (params) => PlayerRouterView(),
-  }
-};
+final List<Map> routerConfig = [
+  {
+    'path': '/slideDrawer',
+    'name': 'slideDrawer',
+    'component': (params) => SlideDrawer(),
+  },
+  {
+    'path': '/playerPage',
+    'name': 'playerPage',
+    'component': (params) => PlayerPage(),
+  },
+  {
+    'path': '/playerView',
+    'name': 'playerView',
+    'component': (params, path) => PlayerRouterView(path: path, routes: [
+          {
+            'path': '/player',
+            'name': 'player',
+            'component': (params) {
+              print("我进来了");
+              return SonglistPage(id: int.parse(params['id']));
+            },
+          },
+        ]),
+  },
+];
