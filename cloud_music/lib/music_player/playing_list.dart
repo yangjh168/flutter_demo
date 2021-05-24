@@ -37,7 +37,6 @@ class PlayingListDialogState extends State<PlayingListDialog> {
     PlayerStore player = PlayerStore.of(context, listen: true);
     final playingList = player.playQueue.queue;
     final music = player.music;
-    print("test");
     return _PlayingListContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -106,7 +105,6 @@ class _LandscapePlayingListContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 16),
         padding:
             EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         width: 520,
@@ -219,7 +217,7 @@ class _MusicTile extends StatelessWidget {
                 icon: Icon(Icons.close),
                 onPressed: () {
                   PlayerStore player = PlayerStore.of(context, listen: false);
-                  player.removeMusicItem(music);
+                  player.queueRemoveMusic(music);
                 })
           ],
         ),

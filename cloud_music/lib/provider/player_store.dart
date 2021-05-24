@@ -202,8 +202,15 @@ class PlayerStore extends ChangeNotifier {
     this.playerBox.savePlayMode(mode);
   }
 
-  //播放歌单列表删除某首歌曲
-  removeMusicItem(Music music) {
+  //歌单队列添加歌曲
+  queueAddMusic(Music music) {
+    print("添加歌曲到队列");
+    this.playQueue.queue.add(music);
+    this.playerBox.savePlayQueue(this.playQueue);
+  }
+
+  //歌单队列删除歌曲
+  queueRemoveMusic(Music music) {
     this.playQueue.queue.remove(music);
     this.playerBox.savePlayQueue(this.playQueue);
   }

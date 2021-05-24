@@ -43,7 +43,7 @@ class _SonglistPageState extends State<SonglistPage> {
                       flexibleSpace: FlexibleSpaceBar(
                         background: SongListHeader(headInfo: data),
                       ),
-                      bottom: MusicListHeader(data.trackCount),
+                      bottom: MusicListHeader(data),
                     ),
                     SliverList(
                         delegate: SliverChildListDelegate(
@@ -126,11 +126,11 @@ class SongListHeader extends StatelessWidget {
 
 //播放全部action
 class MusicListHeader extends StatelessWidget implements PreferredSizeWidget {
-  MusicListHeader(this.count, {this.tail});
-
-  final int count;
+  final PlaylistDetail headInfo;
 
   final Widget tail;
+
+  MusicListHeader(this.headInfo, {this.tail});
 
   @override
   Widget build(BuildContext context) {
@@ -141,13 +141,16 @@ class MusicListHeader extends StatelessWidget implements PreferredSizeWidget {
         elevation: 0,
         child: InkWell(
           onTap: () {
-            // final list = MusicTileConfiguration.of(context);
-            // if (context.player.queue.queueId == list.token && context.player.playbackState.isPlaying) {
-            //   //open playing page
-            //   Navigator.pushNamed(context, pagePlaying);
-            // } else {
-            //   context.player.playWithQueue(PlayQueue(queue: list.queue, queueId: list.token, queueTitle: list.token));
-            // }
+            PlayerStore player = PlayerStore.of(context, listen: false);
+            if (headInfo.musicList.length > 0) {
+              player.play(
+                  id: headInfo.musicList[0].id,
+                  platform: headInfo.musicList[0].platform,
+                  playQueue: PlayQueue(
+                      queueId: headInfo.id,
+                      queueTitle: headInfo.name,
+                      queue: headInfo.musicList));
+            }
           },
           child: SizedBox.fromSize(
             size: preferredSize,
@@ -165,7 +168,7 @@ class MusicListHeader extends StatelessWidget implements PreferredSizeWidget {
                 ),
                 Padding(padding: EdgeInsets.only(left: 2)),
                 Text(
-                  "(共$count首)",
+                  "(共${headInfo.trackCount}首)",
                   style: Theme.of(context).textTheme.caption,
                 ),
                 Spacer(),
@@ -451,6 +454,13 @@ class SongListBuild extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
         child: Row(
           children: [
+            IconButton(
+              icon: Icon(Icons.add_box_outlined),
+              onPressed: () {
+                PlayerStore player = PlayerStore.of(context, listen: false);
+                player.queueAddMusic(item);
+              },
+            ),
             Expanded(
               child: Container(
                 child: Column(
@@ -481,10 +491,10 @@ class SongListBuild extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              padding: EdgeInsets.only(left: 10),
-              child: Icon(Icons.play_circle_outline),
-            ),
+            // Container(
+            //   padding: EdgeInsets.only(left: 10),
+            //   child: Icon(Icons.play_circle_outline),
+            // ),
             Container(
               padding: EdgeInsets.only(left: 10),
               child: Icon(Icons.more_vert_outlined),

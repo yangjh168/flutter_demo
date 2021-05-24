@@ -1,3 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_music/entity/music.dart';
+import 'package:cloud_music/music_player/playing_list.dart';
+import 'package:cloud_music/provider/player_store.dart';
+import 'package:cloud_music/routers/routers.dart';
 import 'package:flutter/material.dart';
 
 class BottomPlayerBar extends StatefulWidget {
@@ -26,24 +31,25 @@ class BottomControllerBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final music = context.listenPlayerValue.current;
-    // final queue = context.listenPlayerValue.queue;
-    // if (music == null) {
-    //   return Container();
-    // }
+    PlayerStore player = PlayerStore.of(context);
+    Music music = player.music;
+    if (music == null) {
+      return Container();
+    }
     return InkWell(
       onTap: () {
-        // if (music != null) {
-        //   context.rootNavigator.pushNamed(queue.isPlayingFm ? pageFmPlaying : pagePlaying);
-        // }
+        Routes.navigateTo(context, '/playerPage', root: true);
       },
       child: Card(
-        margin: const EdgeInsets.all(0),
+        margin: EdgeInsets.all(0),
         shape: const RoundedRectangleBorder(
             borderRadius: const BorderRadius.only(
                 topLeft: const Radius.circular(4.0),
                 topRight: const Radius.circular(4.0))),
         child: Container(
+          decoration: BoxDecoration(
+              border: Border(
+                  top: BorderSide(width: 0.5, color: Color(0xFFf5f5f5)))),
           height: 56,
           margin: EdgeInsets.only(bottom: bottomPadding),
           child: Row(
@@ -55,14 +61,12 @@ class BottomControllerBar extends StatelessWidget {
                   child: AspectRatio(
                     aspectRatio: 1,
                     child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(3)),
-                        // child: music.imageUrl == null
-                        //     ? Container(color: Colors.grey)
-                        //     : Image(
-                        //         fit: BoxFit.cover,
-                        //         image: CachedImage(music.imageUrl),
-                        //       ),
-                        child: Container(color: Colors.grey)),
+                      borderRadius: BorderRadius.all(Radius.circular(3)),
+                      child: music.imageUrl == null
+                          ? Container(color: Colors.grey)
+                          : CachedNetworkImage(
+                              imageUrl: music.imageUrl, fit: BoxFit.cover),
+                    ),
                   ),
                 ),
               ),
@@ -76,33 +80,44 @@ class BottomControllerBar extends StatelessWidget {
                     children: <Widget>[
                       Spacer(),
                       Text(
-                        "歌曲名称",
+                        music.title,
                         style: Theme.of(context).textTheme.bodyText2,
                       ),
                       Padding(padding: const EdgeInsets.only(top: 2)),
-                      // DefaultTextStyle(
-                      //   child: ProgressTrackingContainer(
-                      //     builder: (context) => _SubTitleOrLyric(music.subTitle),
-                      //     player: context.player,
-                      //   ),
-                      //   maxLines: 1,
-                      //   style: Theme.of(context).textTheme.caption,
-                      // ),
+                      Text(music.subTitle,
+                          style: Theme.of(context).textTheme.caption),
                       Spacer(),
                     ],
                   ),
                 ),
               ),
-              // _PauseButton(),
-              // if (context.player.queue.isPlayingFm)
-              //   LikeButton.current(context)
-              // else
-              //   IconButton(
-              //       tooltip: "当前播放列表",
-              //       icon: Icon(Icons.menu),
-              //       onPressed: () {
-              //         PlayingListDialog.show(context);
-              //       }),
+              new IconButton(
+                onPressed: player.playHandle,
+                padding: const EdgeInsets.all(0.0),
+                icon: new Icon(
+                  player.isPlaying ? Icons.pause : Icons.play_arrow,
+                  size: 32.0,
+                ),
+              ),
+              new IconButton(
+                onPressed: () {
+                  player.next();
+                },
+                icon: new Icon(
+                  Icons.skip_next,
+                  size: 32.0,
+                ),
+              ),
+              new IconButton(
+                tooltip: "当前播放列表",
+                onPressed: () {
+                  PlayingListDialog.show(context);
+                },
+                icon: new Icon(
+                  Icons.menu,
+                  size: 28.0,
+                ),
+              ),
             ],
           ),
         ),
@@ -127,29 +142,3 @@ class QuietHero extends StatelessWidget {
     // return Hero(tag: tag, child: child);
   }
 }
-
-// class _PauseButton extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return PlayingIndicator(
-//       playing: IconButton(
-//           icon: Icon(Icons.pause),
-//           onPressed: () {
-//             context.transportControls.pause();
-//           }),
-//       pausing: IconButton(
-//           icon: Icon(Icons.play_arrow),
-//           onPressed: () {
-//             context.transportControls.play();
-//           }),
-//       buffering: Container(
-//         height: 24,
-//         width: 24,
-//         //to fit  IconButton min width 48
-//         margin: EdgeInsets.only(right: 12),
-//         padding: EdgeInsets.all(4),
-//         child: CircularProgressIndicator(),
-//       ),
-//     );
-//   }
-// }

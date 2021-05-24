@@ -17,10 +17,14 @@ class BaseRouterView extends StatefulWidget {
     @required this.builder,
   }) : super(key: key);
 
-  static _BaseRouterViewState of(BuildContext context) {
+  static _BaseRouterViewState of(BuildContext context, {root = false}) {
     // findAncestorStateOfType()可以从当前节点沿着widget树向上查找指定类型的StatefulWidget对应的State对象。
     // 注意：context必须为LoadDataBuilder子节点的context
-    return context.findAncestorStateOfType<_BaseRouterViewState>();
+    if (root) {
+      return context.findRootAncestorStateOfType<_BaseRouterViewState>();
+    } else {
+      return context.findAncestorStateOfType<_BaseRouterViewState>();
+    }
   }
 
   @override

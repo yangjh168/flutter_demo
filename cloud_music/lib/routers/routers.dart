@@ -6,8 +6,8 @@ import 'package:provider/provider.dart';
 
 //封装一个Routes 类
 class Routes {
-  static findFluroRouter(BuildContext context) {
-    return BaseRouterView.of(context);
+  static findFluroRouter(BuildContext context, {bool root}) {
+    return BaseRouterView.of(context, root: root);
   }
 
   // 需要页面返回值的跳转
@@ -43,7 +43,8 @@ class Routes {
   static Future navigateTo(BuildContext context, String path,
       {Map<String, dynamic> params,
       bool clearStack = false,
-      TransitionType transition = TransitionType.inFromRight}) {
+      TransitionType transition = TransitionType.inFromRight,
+      bool root = false}) {
     //FocusScope.of(context).requestFocus(new FocusNode());
     String query = "";
     if (params != null) {
@@ -61,7 +62,7 @@ class Routes {
       }
     }
     print('navigateTo的参数：$query');
-    var routerView = findFluroRouter(context);
+    var routerView = findFluroRouter(context, root: root);
     var router = routerView.router;
     var rootRoute = routerView.rootRoute;
     var pathArray = path.split("/");

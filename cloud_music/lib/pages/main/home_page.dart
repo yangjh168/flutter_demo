@@ -14,8 +14,6 @@ class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   TabController _controller;
 
-  List menuList = [];
-
   @override
   void initState() {
     super.initState();
@@ -35,6 +33,7 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    print("home build");
     return Scaffold(
         appBar: AppBar(
           // titleSpacing: 10.0,
