@@ -24,14 +24,19 @@ final List<Map> routerConfig = [
     'component': (params) => PlayerPage(),
   },
   {
+    'path': '/searchPage',
+    'name': 'searchPage',
+    'component': (params) => SearchPage(),
+  },
+  {
     'path': '/playerView',
     'name': 'playerView',
-    'component': (params, path) => PlayerRouterView(path: path, routes: [
+    'component': (params, path) =>
+        PlayerRouterView(initialRoute: path, routes: [
           {
-            'path': '/player',
-            'name': 'player',
+            'path': '/songlistPage',
+            'name': 'songlistPage',
             'component': (params) {
-              print("我进来了");
               return SonglistPage(id: int.parse(params['id']));
             },
           },

@@ -1,42 +1,13 @@
-//参考链接：https://my.oschina.net/u/4602373/blog/4465401
-
-import 'package:cloud_music/pages/layout/player_router_view.dart';
+import 'package:cloud_music/pages/layout/base_router_view.dart';
 import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
 import 'package:cloud_music/provider/index_store.dart';
-import 'package:cloud_music/routers/handlers.dart';
-import 'package:cloud_music/routers/index.dart';
 import 'package:provider/provider.dart';
 
 //封装一个Routes 类
 class Routes {
-  //定义Router 对象
-  static FluroRouter router;
-
-  //定义路由路径
-  static String webviewPage = "/webviewPage";
-
-  //全局路由配置
-  static void configureRoutes(FluroRouter router) {
-    //定义找不到路由的回调方法，与显示界面
-    router.notFoundHandler = Handler(
-        handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-      print("route not found!");
-      return Scaffold(
-        body: Center(
-          child: Text("Page not found"),
-        ),
-      );
-    });
-
-    //定义一个路由路径与Handler,
-    // routers.forEach((key, value) {
-    //   router.define(key, handler: pageHandler(builder: value));
-    // });
-    routerConfig.forEach((item) {
-      router.define(item['path'],
-          handler: pageHandler(builder: item['component']));
-    });
+  static findFluroRouter(BuildContext context) {
+    return BaseRouterView.of(context);
   }
 
   // 需要页面返回值的跳转
@@ -60,7 +31,7 @@ class Routes {
       }
     }
     print('我是 navigateTo 传递的参数：$query');
-
+    var router = findFluroRouter(context).router;
     path = path + query;
     T _result = await router.navigateTo(context, path,
         clearStack: clearStack, transition: transition);
@@ -74,7 +45,6 @@ class Routes {
       bool clearStack = false,
       TransitionType transition = TransitionType.inFromRight}) {
     //FocusScope.of(context).requestFocus(new FocusNode());
-    var routerViewState = PlayerRouterView.of(context);
     String query = "";
     if (params != null) {
       int index = 0;
@@ -91,28 +61,25 @@ class Routes {
       }
     }
     print('navigateTo的参数：$query');
-    var currentRouter = router;
+    var routerView = findFluroRouter(context);
+    var router = routerView.router;
+    var rootRoute = routerView.rootRoute;
     var pathArray = path.split("/");
-    // print(pathArray);
-    path = '/' + pathArray[1] + query;
     var routeSettings;
-    //当打开的是二级路由，则默认把路径第二个值当作参数传给router-view作为初始路由
-    if (pathArray.length > 2) {
-      routeSettings = RouteSettings(
-        arguments: pathArray[2] + query, //路由要带上参数，fluro会自动把它转为参数返回给handler
-      );
-      //当在router-view页面上进行路由跳转时，只认最后一个路由名字；
-      if (routerViewState != null) {
-        path = '/' + pathArray[pathArray.length - 1] + query;
-        print("重置fluro");
-        currentRouter = routerViewState.router;
+    var url = path + query;
+    if (('/' + pathArray[1]).indexOf(rootRoute) != -1) {
+      url = '/' + pathArray[1] + query;
+      if (pathArray.length > 2) {
+        routeSettings = RouteSettings(
+          arguments: pathArray[pathArray.length - 1] +
+              query, //路由要带上参数，fluro会自动把它转为参数返回给handler
+        );
       }
     }
-    print("path：" + path);
-    print(currentRouter.notFoundHandler);
-    return currentRouter.navigateTo(
+    print("跳转路径:" + url);
+    return router.navigateTo(
       context,
-      path,
+      url,
       clearStack: clearStack,
       transition: transition,
       routeSettings: routeSettings,
@@ -121,6 +88,7 @@ class Routes {
 
   //返回
   static void pop<T>(BuildContext context, [T result]) {
+    var router = findFluroRouter(context).router;
     return router.pop(context, result);
   }
 

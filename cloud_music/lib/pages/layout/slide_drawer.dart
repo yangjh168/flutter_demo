@@ -48,13 +48,18 @@ class _SlideDrawerState extends State<SlideDrawer> {
               IndexPage(),
               opacity <= 0
                   ? Container(width: 0, height: 0)
-                  : Positioned(
-                      top: 0,
-                      left: 0,
-                      width: MediaQuery.of(context).size.width,
-                      height: height,
-                      child: Container(
-                        color: Color.fromRGBO(0, 0, 0, opacity),
+                  : InkWell(
+                      onTap: () {
+                        _slideKey.currentState.openOrClose();
+                      },
+                      child: Positioned(
+                        top: 0,
+                        left: 0,
+                        width: MediaQuery.of(context).size.width,
+                        height: height,
+                        child: Container(
+                          color: Color.fromRGBO(0, 0, 0, opacity),
+                        ),
                       ),
                     ),
             ],

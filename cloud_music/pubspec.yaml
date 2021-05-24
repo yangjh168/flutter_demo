@@ -36,7 +36,7 @@ dependencies:
   connectivity: ^2.0.2
   flutter_easyrefresh: ^2.1.8
   provider: ^4.3.3
-  fluro: ^1.7.8
+  fluro: ^2.0.3
   flare_flutter: ^1.8.3
   flutter_html: ^1.2.0
   cached_network_image: ^2.5.0

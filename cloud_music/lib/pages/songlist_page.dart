@@ -267,9 +267,11 @@ class SongListInfo extends StatelessWidget {
                           SizedBox(height: 10),
                           InkWell(
                             onTap: () {
-                              Routes.navigateTo(context, '/playerView/player');
-                              // Navigator.push(context, MaterialPageRoute(builder: (context) {
-                              //   return UserDetailPage(userId: creator['userId']);
+                              Routes.navigateTo(context, '/playerView/test');
+                              // Navigator.push(context,
+                              //     MaterialPageRoute(builder: (context) {
+                              //   // return UserDetailPage(userId: creator['userId']);
+                              //   return Container(child: Text("1111111111111"));
                               // }));
                             },
                             child: Padding(
