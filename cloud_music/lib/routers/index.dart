@@ -24,11 +24,6 @@ final List<Map> routerConfig = [
     'component': (params) => PlayerPage(),
   },
   {
-    'path': '/searchPage',
-    'name': 'searchPage',
-    'component': (params) => SearchPage(),
-  },
-  {
     'path': '/playerView',
     'name': 'playerView',
     'component': (params, path) =>
@@ -39,6 +34,11 @@ final List<Map> routerConfig = [
             'component': (params) {
               return SonglistPage(id: int.parse(params['id']));
             },
+          },
+          {
+            'path': '/searchPage',
+            'name': 'searchPage',
+            'component': (params) => SearchPage(),
           },
         ]),
   },

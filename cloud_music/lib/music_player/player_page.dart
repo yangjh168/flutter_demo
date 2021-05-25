@@ -164,34 +164,38 @@ class PlayerPageState extends State<PlayerPage> with TickerProviderStateMixin {
     if (player.music != null) {
       var id = player.music.id;
       if (player.music.platform == 1) {
-        //先从文件缓存中查找，没有再发送请求获取
-        final lyricCache = await LyricCache.initLyricCache();
-        final key = LyricCacheKey(id);
-        String cached = await lyricCache.get(key);
-        String lrcString;
-        // String tlyricString;
-        if (cached != null) {
-          lrcString = cached;
-        } else {
-          var result = await neteaseApi.loadLyric({'id': id});
-          Map lyc = result["lrc"];
-          if (lyc != null) {
-            lrcString = lyc['lyric'];
-            //存入文件缓存
-            await lyricCache.update(key, lrcString);
+        try {
+          //先从文件缓存中查找，没有再发送请求获取
+          final lyricCache = await LyricCache.initLyricCache();
+          final key = LyricCacheKey(id);
+          String cached = await lyricCache.get(key);
+          String lrcString;
+          // String tlyricString;
+          if (cached != null) {
+            lrcString = cached;
+          } else {
+            var result = await neteaseApi.loadLyric({'id': id});
+            Map lyc = result["lrc"];
+            if (lyc != null) {
+              lrcString = lyc['lyric'];
+              //存入文件缓存
+              await lyricCache.update(key, lrcString);
+            }
+            // Map tlyric = result["tlyric"];
+            // if (tlyric != null) {
+            //   tlyricString = tlyric['lyric'];
+            // }
           }
-          // Map tlyric = result["tlyric"];
-          // if (tlyric != null) {
-          //   tlyricString = tlyric['lyric'];
-          // }
+          Lyric lyric = LyricUtil.formatLyric(lrcString);
+          setState(() {
+            panel = new LyricPanel(
+                musicId: player.music.id,
+                platform: player.music.platform,
+                lyric: lyric);
+          });
+        } catch (e) {
+          print("加载歌词失败");
         }
-        Lyric lyric = LyricUtil.formatLyric(lrcString);
-        setState(() {
-          panel = new LyricPanel(
-              musicId: player.music.id,
-              platform: player.music.platform,
-              lyric: lyric);
-        });
       }
     }
   }

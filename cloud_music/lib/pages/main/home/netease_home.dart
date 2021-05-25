@@ -44,7 +44,7 @@ class _NeteaseHomeState extends State<NeteaseHome>
       header: MaterialHeader(),
       bottomBouncing: false, //底部回弹
       child: Stack(
-        overflow: Overflow.visible,
+        clipBehavior: Clip.none,
         children: [
           Container(
             color: Color(0xFFf1503B),

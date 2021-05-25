@@ -88,12 +88,15 @@ class _LoadDataBuilderState<T> extends State<LoadDataBuilder> {
     Future _future = widget.api(widget.params, null, true);
     _loadingTask = CancelableOperation<T>.fromFuture(_future)
       ..value.then((result) {
+        print("加载成功");
         assert(result != null, "result can not be null");
         baseResult = BaseResult.success<T>(result);
       }).catchError((e, StackTrace stack) {
+        assert(e is Map, "未知错误：$e，请检查api是否提供正确，或api中是否存在awiat!");
         baseResult = BaseResult.error<T>(code: e.code, msg: e.msg);
         _onError(e, stack);
       }).whenComplete(() {
+        print("加载完成");
         _loadingTask = null;
         setState(() {});
       });

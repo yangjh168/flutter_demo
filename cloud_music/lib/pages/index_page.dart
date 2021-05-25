@@ -15,13 +15,7 @@ class _IndexPageState extends State<IndexPage> {
   final pageController = PageController();
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    print("index build");
     return Scaffold(
       bottomNavigationBar:
           CustomBottomNavigationBar(pageController: pageController),

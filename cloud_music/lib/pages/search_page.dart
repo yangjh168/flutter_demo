@@ -1,4 +1,5 @@
 import 'package:cloud_music/api/kuwo.dart';
+import 'package:cloud_music/dialog/music_tile_dialog.dart';
 import 'package:cloud_music/entity/music.dart';
 import 'package:cloud_music/provider/player_store.dart';
 import 'package:cloud_music/provider/search_store.dart';
@@ -295,6 +296,8 @@ class SearchResultPage extends StatelessWidget {
       //   showInfo: false,
       //   noMoreText: '我也是有底线的',
       // ),
+      // bottomBouncing: false, //底部回弹
+      topBouncing: false,
       child: ListView(
         children: [
           singleMusicCard(context),
@@ -310,15 +313,14 @@ class SearchResultPage extends StatelessWidget {
   Widget singleMusicCard(context) {
     return Container(
       margin: EdgeInsets.all(20.0.w),
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(5.0)),
-          color: Colors.white),
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5.0))),
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             decoration: BoxDecoration(
+                color: Colors.white,
                 border: Border(
                     bottom: BorderSide(width: 0.5, color: Color(0xFFf5f5f5)))),
             child: Row(
@@ -329,7 +331,7 @@ class SearchResultPage extends StatelessWidget {
             ),
           ),
           Wrap(
-            children: resultList.map((item) {
+            children: resultList.map<Widget>((item) {
               return _playItem(item, context);
             }).toList(),
           )
@@ -339,75 +341,60 @@ class SearchResultPage extends StatelessWidget {
   }
 
   Widget _playItem(item, context) {
-    return InkWell(
-      onTap: () async {
-        //点击音乐
-        // var playable = await neteaseApi
-        //     .checkMusic({'id': item.id, 'platform': item.platform});
-        // if (!playable) {
-        //   print("音乐不可用");
-        //   // showDialog(context: context, builder: (context) => DialogNoCopyRight());
-        //   return;
-        // }
-
-        // final res = await neteaseApi
-        //     .getMusicDetail({'id': item.id, 'platform': item.platform});
-        // Music music = Music.fromMap(res);
-        // PlayerStore player = PlayerStore.of(context, listen: false);
-        // if (player.music == null || player.music.id != music.id) {
-        //   player.play(music: music, playList: []);
-        // }
-        PlayerStore player = PlayerStore.of(context, listen: false);
-        if (player.music == null || player.music.id != item.id) {
-          player.play(id: item.id, platform: item.platform);
-        }
-      },
-      child: Container(
-        decoration: BoxDecoration(
-            border: Border(
-                bottom: BorderSide(width: 0.5, color: Color(0xFFf5f5f5)))),
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-        child: Row(
-          children: [
-            Expanded(
-              child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('${item.title}',
-                        style: TextStyle(
-                            color: Color(0XFF666666), fontSize: 24.0.sp)),
-                    Row(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(right: 5),
-                          child: PlatformLogo(platform: item.platform),
-                        ),
-                        Expanded(
-                          child: Text(
-                            '${item.subTitle}',
-                            style: TextStyle(
-                                color: Color(0XFF666666), fontSize: 24.0.sp),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
+    return Ink(
+      color: Colors.white,
+      child: InkWell(
+        onTap: () {
+          PlayerStore player = PlayerStore.of(context, listen: false);
+          if (player.music == null || player.music.id != item.id) {
+            player.play(id: item.id, platform: item.platform);
+          }
+        },
+        child: Container(
+          decoration: BoxDecoration(
+              border: Border(
+                  bottom: BorderSide(width: 0.5, color: Color(0xFFf5f5f5)))),
+          padding: EdgeInsets.only(left: 15, top: 5, bottom: 5),
+          child: Row(
+            children: [
+              Expanded(
+                child: Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('${item.title}',
+                          style: TextStyle(
+                              color: Color(0XFF666666), fontSize: 24.0.sp)),
+                      Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(right: 5),
+                            child: PlatformLogo(platform: item.platform),
                           ),
-                        ),
-                      ],
-                    )
-                  ],
+                          Expanded(
+                            child: Text(
+                              '${item.subTitle}',
+                              style: TextStyle(
+                                  color: Color(0XFF666666), fontSize: 24.0.sp),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 10),
-              child: Icon(Icons.play_circle_outline),
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 10),
-              child: Icon(Icons.more_vert_outlined),
-            )
-          ],
+              IconButton(
+                icon: Icon(Icons.more_vert_outlined),
+                onPressed: () {
+                  MusicTileDialog.show(context, item);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

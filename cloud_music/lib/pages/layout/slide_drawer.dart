@@ -24,8 +24,8 @@ class _SlideDrawerState extends State<SlideDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    double statusBarHeight = MediaQuery.of(context).padding.top;
-    height = MediaQuery.of(context).size.height - statusBarHeight;
+    // double statusBarHeight = MediaQuery.of(context).padding.top;
+    height = MediaQuery.of(context).size.height; //- statusBarHeight;
     //遮罩层透明度
     final double opacity = position * 0.6;
     //存储
@@ -48,15 +48,15 @@ class _SlideDrawerState extends State<SlideDrawer> {
               IndexPage(),
               opacity <= 0
                   ? Container(width: 0, height: 0)
-                  : InkWell(
-                      onTap: () {
-                        _slideKey.currentState.openOrClose();
-                      },
-                      child: Positioned(
-                        top: 0,
-                        left: 0,
-                        width: MediaQuery.of(context).size.width,
-                        height: height,
+                  : Positioned(
+                      top: 0,
+                      left: 0,
+                      width: MediaQuery.of(context).size.width,
+                      height: height,
+                      child: InkWell(
+                        onTap: () {
+                          _slideKey.currentState.openOrClose();
+                        },
                         child: Container(
                           color: Color.fromRGBO(0, 0, 0, opacity),
                         ),

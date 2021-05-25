@@ -6,8 +6,8 @@ import 'package:provider/provider.dart';
 
 //封装一个Routes 类
 class Routes {
-  static findFluroRouter(BuildContext context, {bool root}) {
-    return BaseRouterView.of(context, root: root);
+  static findFluroRouter(BuildContext context, [bool root]) {
+    return BaseRouterView.of(context, root);
   }
 
   // 需要页面返回值的跳转
@@ -43,8 +43,7 @@ class Routes {
   static Future navigateTo(BuildContext context, String path,
       {Map<String, dynamic> params,
       bool clearStack = false,
-      TransitionType transition = TransitionType.inFromRight,
-      bool root = false}) {
+      TransitionType transition = TransitionType.inFromRight}) {
     //FocusScope.of(context).requestFocus(new FocusNode());
     String query = "";
     if (params != null) {
@@ -62,13 +61,15 @@ class Routes {
       }
     }
     print('navigateTo的参数：$query');
-    var routerView = findFluroRouter(context, root: root);
+    var routerView = findFluroRouter(context);
     var router = routerView.router;
     var rootRoute = routerView.rootRoute;
     var pathArray = path.split("/");
     var routeSettings;
     var url = path + query;
-    if (('/' + pathArray[1]).indexOf(rootRoute) != -1) {
+    var sameRoute = (('/' + pathArray[1]).indexOf(rootRoute) != -1);
+    print("是否同级路由：" + sameRoute.toString());
+    if (sameRoute) {
       url = '/' + pathArray[1] + query;
       if (pathArray.length > 2) {
         routeSettings = RouteSettings(
@@ -76,6 +77,10 @@ class Routes {
               query, //路由要带上参数，fluro会自动把它转为参数返回给handler
         );
       }
+    } else {
+      //非统计路由重新找根router-view的router
+      routerView = findFluroRouter(context, true);
+      router = routerView.router;
     }
     print("跳转路径:" + url);
     return router.navigateTo(
@@ -89,8 +94,9 @@ class Routes {
 
   //返回
   static void pop<T>(BuildContext context, [T result]) {
-    var router = findFluroRouter(context).router;
-    return router.pop(context, result);
+    var routerView = findFluroRouter(context);
+    var router = routerView.router;
+    router.pop(context, result);
   }
 
   // 返回顶层

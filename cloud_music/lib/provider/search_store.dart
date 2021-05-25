@@ -12,6 +12,8 @@ class SearchStore extends ChangeNotifier {
     return Provider.of<SearchStore>(context, listen: listen);
   }
 
+  List<String> searchHistory = [];
+
   //初始化
   SearchStore() {
     scheduleMicrotask(() async {
@@ -20,8 +22,6 @@ class SearchStore extends ChangeNotifier {
       notifyListeners();
     });
   }
-
-  List<String> searchHistory = [];
 
   //清空搜索历史
   void clearSearchHistory() async {
@@ -34,8 +34,9 @@ class SearchStore extends ChangeNotifier {
 
   //插入搜索历史
   void insertSearchHistory(String query) async {
+    print("插入搜索历史：" + query);
     // debugPrint('insert history $query init = $_init , searchHistory = $searchHistory');
-    if (!searchHistory.isNotEmpty) return;
+    // if (!searchHistory.isNotEmpty) return;
     searchHistory.remove(query);
     searchHistory.insert(0, query);
     while (searchHistory.length > 10) {

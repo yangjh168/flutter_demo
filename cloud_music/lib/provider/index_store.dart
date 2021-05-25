@@ -7,6 +7,11 @@ class IndexStore extends ChangeNotifier {
     return Provider.of<IndexStore>(context, listen: listen);
   }
 
+  //初始化
+  IndexStore() {
+    print("初始化搜索栏1");
+  }
+
   int currentIndex = 0;
   setCurrentIndex(int index) {
     currentIndex = index;

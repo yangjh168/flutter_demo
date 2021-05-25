@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_music/api/netease.dart';
+import 'package:cloud_music/dialog/music_tile_dialog.dart';
 import 'package:cloud_music/entity/play_queue.dart';
 import 'package:cloud_music/entity/playlist_detail.dart';
 import 'package:cloud_music/provider/player_store.dart';
@@ -37,6 +38,14 @@ class _SonglistPageState extends State<SonglistPage> {
                     // CustomSliverAppBar(headInfo: data),
                     SliverAppBar(
                       title: Text('歌单'),
+                      leading: GestureDetector(
+                        child: Icon(
+                          Icons.arrow_back_ios_outlined,
+                        ),
+                        onTap: () {
+                          Routes.pop(context);
+                        },
+                      ),
                       pinned: true,
                       expandedHeight: HEIGHT_HEADER,
                       //空间大小可变的组件
@@ -271,11 +280,6 @@ class SongListInfo extends StatelessWidget {
                           InkWell(
                             onTap: () {
                               Routes.navigateTo(context, '/playerView/test');
-                              // Navigator.push(context,
-                              //     MaterialPageRoute(builder: (context) {
-                              //   // return UserDetailPage(userId: creator['userId']);
-                              //   return Container(child: Text("1111111111111"));
-                              // }));
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(top: 4, bottom: 4),
@@ -386,16 +390,14 @@ class SongListBuild extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Container(
-        // margin: EdgeInsets.all(20.0.w),
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5.0)),
-            color: Colors.white),
+        decoration:
+            BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5.0))),
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
               decoration: BoxDecoration(
+                  color: Colors.white,
                   border: Border(
                       bottom:
                           BorderSide(width: 0.5, color: Color(0xFFf5f5f5)))),
@@ -418,88 +420,82 @@ class SongListBuild extends StatelessWidget {
   }
 
   Widget _playItem(item, context, PlaylistDetail songListInfo) {
-    return InkWell(
-      onTap: () async {
-        //点击音乐
-        // var playable = await neteaseApi
-        //     .checkMusic({'id': item.id, 'platform': item.platform});
-        // if (!playable) {
-        //   print("音乐不可用");
-        //   // showDialog(context: context, builder: (context) => DialogNoCopyRight());
-        //   return;
-        // }
+    return Ink(
+      color: Colors.white,
+      child: InkWell(
+        onTap: () async {
+          //点击音乐
+          // var playable = await neteaseApi
+          //     .checkMusic({'id': item.id, 'platform': item.platform});
+          // if (!playable) {
+          //   print("音乐不可用");
+          //   // showDialog(context: context, builder: (context) => DialogNoCopyRight());
+          //   return;
+          // }
 
-        // final res = await neteaseApi
-        //     .getMusicDetail({'id': item.id, 'platform': item.platform});
-        // Music music = Music.fromMap(res);
-        // PlayerStore player = PlayerStore.of(context, listen: false);
-        // if (player.music == null || player.music.id != music.id) {
-        //   player.play(music: music, playList: songList);
-        // }
-        PlayerStore player = PlayerStore.of(context, listen: false);
-        if (player.music == null || player.music.id != item.id) {
-          player.play(
-              id: item.id,
-              platform: item.platform,
-              playQueue: PlayQueue(
-                  queueId: songListInfo.id,
-                  queueTitle: songListInfo.name,
-                  queue: songListInfo.musicList));
-        }
-      },
-      child: Container(
-        decoration: BoxDecoration(
-            border: Border(
-                bottom: BorderSide(width: 0.5, color: Color(0xFFf5f5f5)))),
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-        child: Row(
-          children: [
-            IconButton(
-              icon: Icon(Icons.add_box_outlined),
-              onPressed: () {
-                PlayerStore player = PlayerStore.of(context, listen: false);
-                player.queueAddMusic(item);
-              },
-            ),
-            Expanded(
-              child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('${item.title}',
-                        style: TextStyle(
-                            color: Color(0XFF666666), fontSize: 24.0.sp)),
-                    Row(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(right: 5),
-                          child: PlatformLogo(platform: item.platform),
-                        ),
-                        Expanded(
-                          child: Text(
-                            '${item.subTitle}',
-                            style: TextStyle(
-                                color: Color(0XFF666666), fontSize: 24.0.sp),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
+          // final res = await neteaseApi
+          //     .getMusicDetail({'id': item.id, 'platform': item.platform});
+          // Music music = Music.fromMap(res);
+          // PlayerStore player = PlayerStore.of(context, listen: false);
+          // if (player.music == null || player.music.id != music.id) {
+          //   player.play(music: music, playList: songList);
+          // }
+          PlayerStore player = PlayerStore.of(context, listen: false);
+          if (player.music == null || player.music.id != item.id) {
+            player.play(
+                id: item.id,
+                platform: item.platform,
+                playQueue: PlayQueue(
+                    queueId: songListInfo.id,
+                    queueTitle: songListInfo.name,
+                    queue: songListInfo.musicList));
+          }
+        },
+        child: Container(
+          decoration: BoxDecoration(
+              border: Border(
+                  bottom: BorderSide(width: 0.5, color: Color(0xFFf5f5f5)))),
+          padding: EdgeInsets.only(left: 15, top: 10, bottom: 10),
+          child: Row(
+            children: [
+              Expanded(
+                child: Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('${item.title}',
+                          style: TextStyle(
+                              color: Color(0XFF666666), fontSize: 24.0.sp)),
+                      Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(right: 5),
+                            child: PlatformLogo(platform: item.platform),
                           ),
-                        ),
-                      ],
-                    )
-                  ],
+                          Expanded(
+                            child: Text(
+                              '${item.subTitle}',
+                              style: TextStyle(
+                                  color: Color(0XFF666666), fontSize: 24.0.sp),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-            // Container(
-            //   padding: EdgeInsets.only(left: 10),
-            //   child: Icon(Icons.play_circle_outline),
-            // ),
-            Container(
-              padding: EdgeInsets.only(left: 10),
-              child: Icon(Icons.more_vert_outlined),
-            )
-          ],
+              IconButton(
+                icon: Icon(Icons.more_vert_outlined),
+                onPressed: () {
+                  MusicTileDialog.show(context, item);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

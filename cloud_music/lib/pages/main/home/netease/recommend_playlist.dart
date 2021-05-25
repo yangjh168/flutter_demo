@@ -6,7 +6,20 @@ import 'package:cloud_music/widget/load_data_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class RecommendPlaylist extends StatelessWidget {
+class RecommendPlaylist extends StatefulWidget {
+  @override
+  _RecommendPlaylistState createState() => _RecommendPlaylistState();
+}
+
+class _RecommendPlaylistState extends State<RecommendPlaylist> {
+  @override
+  void initState() {
+    super.initState();
+
+    //修改ImageCache的文件最大缓存值，解决CachedNetworkImage新页面返回会重新加载图片问题，参考：https://github.com/Baseflow/flutter_cached_network_image/issues/529
+    PaintingBinding.instance.imageCache.maximumSizeBytes = 1000 << 20;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -77,10 +90,10 @@ class RecommendPlaylist extends StatelessWidget {
                 imageUrl: item.picUrl,
                 placeholder: (context, url) => Container(
                   width: 130,
-                  height: 100,
+                  height: 130,
                   child: Center(
                     child: CircularProgressIndicator(
-                      strokeWidth: 2,
+                      strokeWidth: 1,
                     ),
                   ),
                 ),

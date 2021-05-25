@@ -1,3 +1,4 @@
+import 'package:cloud_music/entity/model.dart';
 import 'package:cloud_music/entity/song_menu.dart';
 import 'package:dio/dio.dart';
 import '../dio/http_utils.dart';
@@ -18,7 +19,14 @@ class CommonApi {
   }
 
   // 获取推荐的新歌（10首）
-  Future getNewMusicList([Map data, Options options, bool capture]) async {
-    return HttpUtils.get('/personalized/newsong', data, options, capture);
+  Future<List<Music>> getNewMusicList(
+      [Map data, Options options, bool capture]) async {
+    final response =
+        await HttpUtils.get('/personalized/newsong', data, options, capture);
+    final list = (response as List)
+        .cast<Map>()
+        .map((item) => Music.fromMap(item))
+        .toList();
+    return list;
   }
 }

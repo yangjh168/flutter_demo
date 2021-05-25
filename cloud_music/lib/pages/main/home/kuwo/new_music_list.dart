@@ -37,17 +37,13 @@ class NewMusicList extends StatelessWidget {
                 ],
               ),
             ),
-            LoadDataBuilder(
+            LoadDataBuilder<List<Music>>(
                 api: commonApi.getNewMusicList,
                 builder: (context, data) {
-                  List<Music> songs = (data as List)
-                      .cast<Map>()
-                      .map((item) => Music.fromMap(item))
-                      .toList();
                   return Container(
                       child: Column(
-                    children: songs.map<Widget>((item) {
-                      return _playItem(item, songs, context);
+                    children: data.map<Widget>((item) {
+                      return _playItem(item, data, context);
                     }).toList(),
                   ));
                 })

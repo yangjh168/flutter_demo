@@ -38,7 +38,7 @@ class BottomControllerBar extends StatelessWidget {
     }
     return InkWell(
       onTap: () {
-        Routes.navigateTo(context, '/playerPage', root: true);
+        Routes.navigateTo(context, '/playerPage');
       },
       child: Card(
         margin: EdgeInsets.all(0),

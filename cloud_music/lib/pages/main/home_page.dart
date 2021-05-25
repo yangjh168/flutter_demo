@@ -66,8 +66,7 @@ class _HomePageState extends State<HomePage>
             alignment: Alignment.center,
             child: GestureDetector(
               onTap: () {
-                // print('点击搜索');
-                Routes.navigateTo(context, '/searchPage');
+                Routes.navigateTo(context, '/playerView/searchPage');
               },
               child: TextField(
                 style: TextStyle(fontSize: 26.0.sp),
@@ -104,6 +103,7 @@ class _HomePageState extends State<HomePage>
         body: TabBarView(controller: _controller, children: <Widget>[
           NeteaseHome(),
           Text('222'),
+          // Text('333'),
           KuwoHome(),
         ]));
   }
